@@ -1,0 +1,15 @@
+- content_for :main do
+  = editable_content_tag :h1, @page, :title do
+    Page Title
+  = editable_content_tag :p, @page, 'content.content' do
+    Page Content
+  - if @page.attachments['pic']
+    = link_to_attachment(@page.attachments['pic'])
+  = properties_button @page do |f|
+    = f.attachment 'pic'
+  = properties_for @page do |p|
+    = p.string 'title'
+    = p.string 'content.title'
+    = p.attachment 'pic'
+    = p.attachment_list 'pics'
+= render :template => 'layouts/application'

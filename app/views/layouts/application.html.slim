@@ -1,0 +1,35 @@
+doctype html
+<!--[if lt IE 7]><html class="no-js ie6 lt-ie10 lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]><html class="no-js ie7 lt-ie10 lt-ie9 lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="no-js ie8 lt-ie10 lt-ie9"><![endif]-->
+<!--[if IE 9]><html class="no-js ie9 lt-ie10"><![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-js"><!--<![endif]-->
+head
+  meta charset="utf-8"
+  meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"
+  title
+  meta name="description" content=""
+  meta name="author" content=""
+  meta name="keywords" content=""
+  meta name="viewport" content="width=device-width, initial-scale=1.0"
+  = stylesheet_link_tag 'application'
+  = csrf_meta_tag
+  = javascript_include_tag 'application'
+  = yield :head
+=body_tag(:class => default_body_class_for(@page))do
+  #header
+      =render 'header'
+  #container
+    #main role="main"
+      .main-inner
+        -if content_for?(:main)
+          =yield :main
+        -else
+          =yield
+  #footer
+    .footer-inner
+      =default_for :footer do
+        =render 'footer'
+  /[if lt IE 9 ]
+    = javascript_include_tag "compatible"
+</html>

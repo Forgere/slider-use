@@ -1,0 +1,19 @@
+defaults: &DEFAULT
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: cms_template
+  pool: 5
+  username: root
+  password:
+  host: 127.0.0.1
+
+development:
+  <<: *DEFAULT
+
+test:
+  <<: *DEFAULT
+  database: cms_template_test
+
+production:
+  <<: *DEFAULT

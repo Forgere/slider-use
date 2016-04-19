@@ -1,0 +1,61 @@
+button.properties{
+  display: none;
+}
+
+.mercury-edit button.properties{
+  display: block;
+}
+
+.editable{
+  font-size: 14px;
+  h1,h2,h3,h4,h5,h6,p,div{
+    font-weight: normal;
+    text-align: justify;
+  }
+}
+
+.gray{
+  color: gray;
+}
+
+.red{
+  color: red;
+}
+
+.pull-right{
+  float: right;
+}
+
+.pull-left{
+  float: left;
+}
+
+.right{
+  text-align: right;
+}
+
+.left{
+  text-align: left;
+}
+
+.center{
+  text-align: center;
+}
+
+@each $size in 12, 14, 16, 18, 20, 22, 24, 26, 28 {
+  .fs#{$size} {
+    font-size: #{$size}px !important;
+  }
+}
+
+@for $i from 1 through 100 {
+  .span#{$i}px { width: 10px * $i; }
+}
+
+@for $i from 1 through 100 {
+  .span#{$i}p { width: 10% * $i; }
+}
+
+.relative{
+  position: relative;
+}

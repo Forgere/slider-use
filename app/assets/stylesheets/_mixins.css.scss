@@ -1,0 +1,91 @@
+@mixin box-shadow($h:0,$v:0,$blur:3px,$color: #AAA){
+  box-shadow: $h $v $blur $color;
+}
+
+@mixin box-shadow-pie($h:0,$v:0,$blur:3px,$color: #AAA){
+  box-shadow: $h $v $blur $color;
+  .lt-ie9 &{
+    behavior: image-url("PIE.htc");
+    box-shadow: $h $v $blur $color;
+  }
+}
+
+@mixin border-radius($value:3px){
+  border-radius: $value;
+}
+
+@mixin rounded-top($radius){
+  border-top-left-radius: $radius $radius;
+  border-top-right-radius: $radius $radius;
+}
+
+@mixin rounded-bottom($radius){
+  border-bottom-left-radius: $radius $radius;
+  border-bottom-right-radius: $radius $radius;
+}
+
+@mixin border-box{
+  box-sizing: border-box;         /* Opera/IE 8+ */
+  .ie7 &{
+    behavior: asset-url("boxsizing.htc",'stylesheet');
+  }
+}
+
+@mixin vbox{
+  box-orient: vertical;
+  display: box;
+}
+
+@mixin box-flex($value:1){
+  box-flex:1;
+}
+
+@mixin bg($value){
+  background: $value;
+  .ie6 &{
+    behavior: image-url("PIE.htc");
+    -pie-background: $value;
+  }
+}
+
+@mixin inline-block{
+  display: inline-block;
+  .lt-ie8 &{
+    display: inline;
+    zoom: 1;
+  }
+}
+
+@mixin background-image-retina($file, $type, $width, $height) {
+  background-image: image-url($file + '.' + $type);
+  @media
+    only screen and (        min-device-pixel-ratio: 2),
+    only screen and (                min-resolution: 192dpi),
+    only screen and (                min-resolution: 2dppx) {
+    & {
+      background-image: image-url($file + '@2x.' + $type);
+      background-size: $width $height;
+    }
+  }
+}
+
+@mixin respond-to($media) {
+  @if $media == small {
+    // @media only screen and (max-width: $break-small) { @content; }
+    @media only screen and (max-width: $break-small) { @content; }
+  }
+  @else if $media == medium {
+    @media only screen and (min-width: $break-small + 1) and (max-width: $break-large - 1) { @content; }
+  }
+  @else if $media == large {
+    @media only screen and (min-width: $break-large) { @content; }
+  }
+  @else{
+    @media only screen and ($media) { @content;}
+  }
+}
+
+@mixin respond-between($min,$max) {
+  @media only screen and (min-width: $min) and (max-width: $max){ @content;}
+}
+
