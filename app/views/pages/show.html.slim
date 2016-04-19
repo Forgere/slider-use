@@ -1,15 +1,29 @@
 - content_for :main do
-  = editable_content_tag :h1, @page, :title do
-    Page Title
-  = editable_content_tag :p, @page, 'content.content' do
-    Page Content
-  - if @page.attachments['pic']
-    = link_to_attachment(@page.attachments['pic'])
-  = properties_button @page do |f|
-    = f.attachment 'pic'
-  = properties_for @page do |p|
-    = p.string 'title'
-    = p.string 'content.title'
-    = p.attachment 'pic'
-    = p.attachment_list 'pics'
+  .banner
+    .warp
+      =image_tag('showbanner.png')
+  .showdianzan
+    .warp
+      .title
+        =image_tag('upload.png')
+        ul.groups
+          li
+            span 跋山涉水组
+          li
+            span 自由公路游
+          li
+            span 多人休闲组
+      .sliders
+        .slider1.slider
+          ul
+            li
+              a
+                =image_tag('show-1.png')
+                span
+                  | 点赞数
+                  b 100
+        .slider2.slider
+
+        .slider3.slider
+
 = render :template => 'layouts/application'

@@ -1,6 +1,6 @@
 # Be sure to restart your server when you modify this file.
 
-Cms::Application.config.session_store :cookie_store, key: '_cms_session'
+Cms::Application.config.session_store :cookie_store, key: 'roewe360_cms_session'
 
 # Use the database for sessions instead of the cookie-based default,
 # which shouldn't be used to store highly confidential information

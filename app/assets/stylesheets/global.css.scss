@@ -59,3 +59,131 @@ button.properties{
 .relative{
   position: relative;
 }
+// #header
+.headimg{
+  img{
+    width: 100%;
+  }
+}
+//show
+// 三角
+
+
+//对平行四边形三部分的颜色进行赋值
+@mixin parallelogram-color($color) {
+  background: $color;
+  &:before { border-color: transparent $color $color transparent; }
+  &:after { border-color: $color transparent transparent $color; }
+}
+
+//单个三角形的样式
+@mixin triangle($height,$width) {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  position: absolute;
+  border-style: solid;
+  border-width: $height/2 $width/2;
+  top: 0;
+}
+
+.container{
+  background: image_path('bg.jpg')
+}
+.banner{
+  .warp{
+    img{
+      margin-top: -2.5%;
+      width: 100%;
+    }
+  }
+}
+.showdianzan{
+  .warp{
+    width: 1012px;
+    margin: 0 auto;
+    .title{
+      overflow: hidden;
+      >img{
+        float: left;
+      }
+      ul.groups{
+        float: left;
+        margin-left: 30px;
+        li{
+          float: left;
+          height: 160px;
+          line-height: 160px;
+          margin: 0 21px;
+          span{
+            font-family: "黑体简";
+            font-size:22px;
+            position: relative;
+            line-height: 36px;
+            display: inline-block;
+            height: 36px;
+            color: #fefefe;
+            padding: 0 64px;
+            &:after {
+              @include triangle(36px,14px);
+              right: -14px;
+            }
+
+            &:before {
+              @include triangle(36px,14px);
+              left: -14px;
+            }
+
+            @include parallelogram-color(#d11c18);
+          }
+        &:first-child,&:last-child{
+          margin: 0;
+          span{
+            &:after {
+              @include triangle(36px,14px);
+              right: -14px;
+            }
+
+            &:before {
+              @include triangle(36px,14px);
+              left: -14px;
+            }
+
+            @include parallelogram-color(#626161);
+          }
+        }
+        }
+      }
+    }
+    .slider{
+      ul{
+        li{
+          a{
+            >img{
+              display: block;
+            }
+            span{
+              display: inline-block;
+              color: #ea5413;
+              font-size: 18px;
+              font-family: '黑体-简 细体';
+              position: relative;
+              &:after {
+                @include triangle(14px,8px);
+                right: -8px;
+              }
+
+              &:before {
+                @include triangle(14px,8px);
+                left: -8px;
+              }
+
+              @include parallelogram-color(#d11c18);
+              }
+          }
+        }
+      }
+    }
+  }
+}
