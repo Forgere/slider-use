@@ -511,6 +511,7 @@ button.properties{
         position: absolute;
         right: 35px;
         top: 42px;
+        z-index: 2;
       }
       .sharebutton{
         margin-top: -40px;
@@ -577,12 +578,14 @@ button.properties{
     }
   }
   .shangchuan{
+    display: none;
     .content{
       position: absolute;
       top: 32px;
     }
     form{
       margin-top: 40px;
+      padding: 0 60px;
       label{
         input[type='text']{
           font-size: 21px;
@@ -590,16 +593,88 @@ button.properties{
           line-height: 45px;
           padding: 0 45px 0 60px;
         }
+        input[type='checkbox']{
+          height: 21px;
+          width: 25px;
+        }
         span{
           position: relative;
           left: 30px;
           top: 10px;
         }
       }
+      label.check{
+        float: left;
+        font-family: '黑体-简 细体';
+        font-size: 21px;
+        color: #ffffff;
+        margin-left: 30px;
+        margin-top: 25px;
+      }
       p{
         font-size: 16px;
         color: white;
         margin-top: 14px;
+      }
+    }
+  }
+  .zhuce{
+    .content{
+      position: absolute;
+      top: 32px;
+      width: 100%;
+      form{
+        width: 590px;
+        margin: 0 auto;
+        margin-top: 60px;
+        p{
+          margin-bottom: 28px;
+          height:28px;
+          line-height: 28px;
+          label{
+            font-size: 28px;
+            color: #ffffff;
+            float: left;
+            margin-right: 50px;
+          }
+          input{
+            height: 28px;
+            line-height: 28px;
+            font-size: 24px;
+            box-sizing:border-box;
+            float: left;
+          }
+          select{
+            width: 380px;
+            float: left;
+            height: 28px;
+            line-height: 28px;
+            font-size: 24px;
+            box-sizing:border-box;
+          }
+        }
+        p.big{
+          margin-bottom: 40px;
+        }
+        p.word{
+          width: 570px;
+          text-align: left;
+          font-size: 20px;
+          color: #ffffff;
+          font-family: '黑体-简 细体';
+        }
+        span{
+          margin: 0 42px;
+          input[type='radio']{
+            margin-right: 8px;
+          }
+          label{
+            font-size: 28px;
+            color: #ffffff;
+            font-family: '黑体-简 细体';
+            margin-bottom: -8px;
+          }
+        }
       }
     }
   }
