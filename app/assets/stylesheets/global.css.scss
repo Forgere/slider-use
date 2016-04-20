@@ -495,7 +495,7 @@ button.properties{
     top: 56px;
     width: 100%;
     text-align: center;
-    z-index: 2;
+    z-index: 10;
     .warp{
       position: relative;
       width: 1012px;
@@ -574,6 +574,33 @@ button.properties{
     .content{
       position: absolute;
       top: 32px;
+    }
+  }
+  .shangchuan{
+    .content{
+      position: absolute;
+      top: 32px;
+    }
+    form{
+      margin-top: 40px;
+      label{
+        input[type='text']{
+          font-size: 21px;
+          height: 45px;
+          line-height: 45px;
+          padding: 0 45px 0 60px;
+        }
+        span{
+          position: relative;
+          left: 30px;
+          top: 10px;
+        }
+      }
+      p{
+        font-size: 16px;
+        color: white;
+        margin-top: 14px;
+      }
     }
   }
 }

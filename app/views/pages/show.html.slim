@@ -368,4 +368,22 @@
           =image_tag('tanchu-button.png')
         .content
           =image_tag('zansuccesscontent.png')
+    .shangchuan.tanchu
+      .warp
+        .title
+          =image_tag('title-shangchuan.png')
+        .close
+        .kuangbg
+          =image_tag('tanchukuang3.png')
+        .sharebutton
+          =image_tag('tanchu-buttonup.png')
+        .content
+          =image_tag('shangchuancontent.png')
+          form
+            label
+              input type="text" id="input1" placeholder="点击上传电脑图片"
+              input type="file" id="myfile" value="点击上传电脑图片" onchange="input1.value=this.value" style="display:none"
+              span onclick="myfile.click();"
+                =image_tag('camera.png')
+            p （√勾选明信片宣言）
 = render :template => 'layouts/application'
