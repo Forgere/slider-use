@@ -1,29 +1,356 @@
 - content_for :main do
   .banner
     .warp
-      =image_tag('showbanner.png')
-  .showdianzan
-    .warp
-      .title
-        =image_tag('upload.png')
-        ul.groups
-          li
-            span 跋山涉水组
-          li
-            span 自由公路游
-          li
-            span 多人休闲组
-      .sliders
-        .slider1.slider
-          ul
+      span
+  .showarea
+    .showdianzan
+      .warp
+        .title.title1
+          =image_tag('upload.png')
+          ul.groups
             li
-              a
-                =image_tag('show-1.png')
-                span
-                  | 点赞数
-                  b 100
-        .slider2.slider
-
-        .slider3.slider
-
+              span 跋山涉水组
+            li
+              span 自由公路游
+            li
+              span 多人休闲组
+        .sliders
+          .slider1.slider
+            ul
+              li
+                a
+                  =image_tag('show-2.png')
+                  span.greenbg
+                    i
+                    | 点赞数
+                    b 100
+              li
+                a
+                  =image_tag('show-1.png')
+                  span.greenbg.clicked
+                    | 点赞数
+                    b 100
+                    i
+              li
+                a
+                  =image_tag('show-4.png')
+                  span.greenbg
+                    | 点赞数
+                    b 100
+                    i
+              li
+                a
+                  =image_tag('show-3.png')
+                  span.greenbg
+                    | 点赞数
+                    b 100
+                    i
+              li
+                a
+                  =image_tag('show-1.png')
+                  span.greenbg
+                    | 点赞数
+                    b 100
+                    i
+              li
+                a
+                  =image_tag('show-2.png')
+                  span.greenbg
+                    | 点赞数
+                    b 100
+                    i
+              li
+                a
+                  =image_tag('show-3.png')
+                  span.greenbg
+                    | 点赞数
+                    b 100
+                    i
+              li
+                a
+                  =image_tag('show-4.png')
+                  span.greenbg
+                    | 点赞数
+                    b 100
+                    i
+          .slider2.slider.showslider
+            ul
+              li
+                a
+                  =image_tag('show-1.png')
+                  span.greenbg
+                    i
+                    | 点赞数
+                    b 100
+              li
+                a
+                  =image_tag('show-2.png')
+                  span.greenbg.clicked
+                    | 点赞数
+                    b 100
+                    i
+              li
+                a
+                  =image_tag('show-3.png')
+                  span.greenbg
+                    | 点赞数
+                    b 100
+                    i
+              li
+                a
+                  =image_tag('show-4.png')
+                  span.greenbg
+                    | 点赞数
+                    b 100
+                    i
+              li
+                a
+                  =image_tag('show-1.png')
+                  span.greenbg
+                    | 点赞数
+                    b 100
+                    i
+              li
+                a
+                  =image_tag('show-2.png')
+                  span.greenbg
+                    | 点赞数
+                    b 100
+                    i
+              li
+                a
+                  =image_tag('show-3.png')
+                  span.greenbg
+                    | 点赞数
+                    b 100
+                    i
+              li
+                a
+                  =image_tag('show-4.png')
+                  span.greenbg
+                    | 点赞数
+                    b 100
+                    i
+          .slider3.slider
+            ul
+              li
+                a
+                  =image_tag('show-4.png')
+                  span.greenbg
+                    i
+                    | 点赞数
+                    b 100
+              li
+                a
+                  =image_tag('show-3.png')
+                  span.greenbg.clicked
+                    | 点赞数
+                    b 100
+                    i
+              li
+                a
+                  =image_tag('show-2.png')
+                  span.greenbg
+                    | 点赞数
+                    b 100
+                    i
+              li
+                a
+                  =image_tag('show-1.png')
+                  span.greenbg
+                    | 点赞数
+                    b 100
+                    i
+              li
+                a
+                  =image_tag('show-1.png')
+                  span.greenbg
+                    | 点赞数
+                    b 100
+                    i
+              li
+                a
+                  =image_tag('show-2.png')
+                  span.greenbg
+                    | 点赞数
+                    b 100
+                    i
+              li
+                a
+                  =image_tag('show-3.png')
+                  span.greenbg
+                    | 点赞数
+                    b 100
+                    i
+              li
+                a
+                  =image_tag('show-4.png')
+                  span.greenbg
+                    | 点赞数
+                    b 100
+                    i
+          a.unslider-arrow.prev
+            =image_tag('leftarrow.png')
+          a.unslider-arrow.next
+            =image_tag('rightarrow.png')
+        =editable_content_tag :div, @page, 'content.rule', :class => 'rule' do
+          |
+    .showroute
+      .warp
+        .title.title2
+          ul.groups
+            li
+              span 跋山涉水组
+            li
+              span 自由公路游
+            li
+              span 多人休闲组
+        .sliders
+          .slider1.slider
+            ul
+              li
+                a
+                  =image_tag('show-6.png')
+                  span.title 【自由行】<雾灵山两日自由行>宿雾灵山庄上人家度假村
+              li
+                a
+                  =image_tag('show-5.png')
+                  span.title 【自由行】<雾灵山两日自由行>宿雾灵山庄上人家度假村
+              li
+                a
+                  =image_tag('show-8.png')
+                  span.title 【自由行】<雾灵山两日自由行>宿雾灵山庄上人家度假村
+              li
+                a
+                  =image_tag('show-7.png')
+                  span.title 【自由行】<雾灵山两日自由行>宿雾灵山庄上人家度假村
+              li
+                a
+                  =image_tag('show-5.png')
+                  span.title 【自由行】<雾灵山两日自由行>宿雾灵山庄上人家度假村
+              li
+                a
+                  =image_tag('show-6.png')
+                  span.title 【自由行】<雾灵山两日自由行>宿雾灵山庄上人家度假村
+              li
+                a
+                  =image_tag('show-7.png')
+                  span.title 【自由行】<雾灵山两日自由行>宿雾灵山庄上人家度假村
+              li
+                a
+                  =image_tag('show-8.png')
+                  span.title 【自由行】<雾灵山两日自由行>宿雾灵山庄上人家度假村
+          .slider2.slider.showslider
+            ul
+              li
+                a
+                  =image_tag('show-5.png')
+                  span.title 【自由行】<雾灵山两日自由行>宿雾灵山庄上人家度假村
+              li
+                a
+                  =image_tag('show-6.png')
+                  span.title 【自由行】<雾灵山两日自由行>宿雾灵山庄上人家度假村
+              li
+                a
+                  =image_tag('show-7.png')
+                  span.title 【自由行】<雾灵山两日自由行>宿雾灵山庄上人家度假村
+              li
+                a
+                  =image_tag('show-8.png')
+                  span.title 【自由行】<雾灵山两日自由行>宿雾灵山庄上人家度假村
+              li
+                a
+                  =image_tag('show-5.png')
+                  span.title 【自由行】<雾灵山两日自由行>宿雾灵山庄上人家度假村
+              li
+                a
+                  =image_tag('show-6.png')
+                  span.title 【自由行】<雾灵山两日自由行>宿雾灵山庄上人家度假村
+              li
+                a
+                  =image_tag('show-7.png')
+                  span.title 【自由行】<雾灵山两日自由行>宿雾灵山庄上人家度假村
+              li
+                a
+                  =image_tag('show-8.png')
+                  span.title 【自由行】<雾灵山两日自由行>宿雾灵山庄上人家度假村
+          .slider3.slider
+            ul
+              li
+                a
+                  =image_tag('show-8.png')
+                  span.title 【自由行】<雾灵山两日自由行>宿雾灵山庄上人家度假村
+              li
+                a
+                  =image_tag('show-7.png')
+                  span.title 【自由行】<雾灵山两日自由行>宿雾灵山庄上人家度假村
+              li
+                a
+                  =image_tag('show-6.png')
+                  span.title 【自由行】<雾灵山两日自由行>宿雾灵山庄上人家度假村
+              li
+                a
+                  =image_tag('show-5.png')
+                  span.title 【自由行】<雾灵山两日自由行>宿雾灵山庄上人家度假村
+              li
+                a
+                  =image_tag('show-5.png')
+                  span.title 【自由行】<雾灵山两日自由行>宿雾灵山庄上人家度假村
+              li
+                a
+                  =image_tag('show-6.png')
+                  span.title 【自由行】<雾灵山两日自由行>宿雾灵山庄上人家度假村
+              li
+                a
+                  =image_tag('show-7.png')
+                  span.title 【自由行】<雾灵山两日自由行>宿雾灵山庄上人家度假村
+              li
+                a
+                  =image_tag('show-8.png')
+                  span.title 【自由行】<雾灵山两日自由行>宿雾灵山庄上人家度假村
+        .dots
+          span •
+          span.active •
+          span •
+  .hotel
+    .warp
+      .slider
+        ul
+          li
+            a
+              =image_tag('hotel1.png')
+              span.title 成都花水湾名人度假酒店
+          li
+            a
+              =image_tag('hotel2.png')
+              span.title 上海嘉福悦国际大酒店
+          li
+            a
+              =image_tag('hotel2.png')
+              span.title 上海嘉福悦国际大酒店
+      a.unslider-arrow.prev ‹
+      a.unslider-arrow.next ›
+  .liangdian
+    .warp
+      a.bigimage href="#"
+        =image_tag('liangdianbg.png')
+      a.button href="#"
+        =image_tag('liangdianbg_button.png')
+  .tanchus
+    .huodongguize.tanchu
+      .warp
+        .title
+          =image_tag('title-huodongguize.png')
+        .close
+        .kuangbg
+          =image_tag('tanchukuang.png')
+        =editable_content_tag :div, @page, 'content.huodongguize', :class => 'guize' do
+          |
+    .gongxi.tanchu
+      .warp
+        .title
+          =image_tag('title-gongxi.png')
+        .close
+        .kuangbg
+          =image_tag('tanchukuang2.png')
 = render :template => 'layouts/application'
