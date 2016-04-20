@@ -512,6 +512,12 @@ button.properties{
         right: 35px;
         top: 42px;
       }
+      .sharebutton{
+        margin-top: -40px;
+        &:hover{
+          cursor: pointer;
+        }
+      }
     }
   }
   .huodongguize{
@@ -554,6 +560,13 @@ button.properties{
         font-weight: bold;
         font-family: '黑体-简 中等'
       }
+    }
+  }
+  .gongxi{
+    display: none;
+    .content{
+      position: absolute;
+      top: 32px;
     }
   }
 }
