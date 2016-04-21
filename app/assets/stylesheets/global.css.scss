@@ -91,7 +91,6 @@ button.properties{
 .main-inner{
   background: url(image_path('bg.jpg')) no-repeat;
   background-size: cover;
-  margin-top: -6px;
   position: relative;
 }
 .banner{
@@ -101,13 +100,14 @@ button.properties{
   top: -2%;
   margin: 4px 0;
   background-size: cover;
+  margin-top: -89px;
   .warp{
     margin: 0 auto;
     width: 1012px;
     span{
       display: block;
       height: 54px;
-      width: 110px;
+      width: 330px;
       float: right;
       margin-right: 196px;
       &:hover{
@@ -496,6 +496,7 @@ button.properties{
     width: 100%;
     text-align: center;
     z-index: 10;
+    display: none;
     .warp{
       position: relative;
       width: 1012px;
@@ -515,8 +516,21 @@ button.properties{
       }
       .sharebutton{
         margin-top: -40px;
+        position: relative;
         &:hover{
           cursor: pointer;
+        }
+        span{
+          display: inline-block;
+          width: 56px;
+          height: 69px;
+          position: absolute;
+        }
+        .weixin{
+          left: 513px;
+        }
+        .weibo{
+          left: 569px;
         }
       }
     }
@@ -678,4 +692,14 @@ button.properties{
       }
     }
   }
+}
+.zhezhao{
+  background-color: #000000;
+  opacity:0.5;
+  position: absolute;
+  z-index: 9;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  display: none;
 }
