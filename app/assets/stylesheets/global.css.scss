@@ -140,7 +140,7 @@ button.properties{
             line-height: 160px;
             margin: 0 21px;
             span{
-              font-family: "黑体简";
+              font-family: "微软雅黑";
               font-size:22px;
               position: relative;
               line-height: 36px;
@@ -190,7 +190,7 @@ button.properties{
         width: 100%; 
         position: relative; 
         .slider{
-          width: 100%;
+          width: 98%;
           overflow: hidden;
           display: none;
           ul{
@@ -199,7 +199,7 @@ button.properties{
             width: 500%;
             li{
               float: left;
-              width: 5%;
+              width: 253px;
               a{
                 float: left;
                 margin-right: 25px;
@@ -212,7 +212,7 @@ button.properties{
                   display: block;
                   color: #ea5413;
                   font-size: 18px;
-                  font-family: '黑体-简 细体';
+                  font-family: '微软雅黑';
                   position: relative;
                   margin-left: 12px;
                   margin-top: 12px;
@@ -222,6 +222,9 @@ button.properties{
                   padding: 0 24px 0 38px;
                   box-sizing:border-box;
                   background: url(image_path('dianzanborder.png')) no-repeat;
+                  &:hover{
+                    cursor: pointer;
+                  }
                   i{
                     float: left;
                     display: inline-block;
@@ -245,6 +248,9 @@ button.properties{
         .unslider-arrow{
           position: absolute;
           top: 44.5px;
+          &:hover{
+            cursor: pointer;
+          }
         }
         .prev{
           left: -25px;
@@ -257,7 +263,7 @@ button.properties{
         margin-top: 108px;
         p{
           font-size: 22px;
-          font-family: '黑体-简 细体';
+          font-family: '微软雅黑';
           color: #636262;
           line-height: 32px;
           height: 32px;
@@ -293,7 +299,7 @@ button.properties{
             line-height: 160px;
             margin: 0 21px;
             span{
-              font-family: "黑体简";
+              font-family: "微软雅黑";
               font-size:22px;
               position: relative;
               line-height: 36px;
@@ -339,6 +345,9 @@ button.properties{
             margin: 0 14px;
             margin-top: 24px;
             display: inline-block;
+            &:hover{
+              cursor: pointer;
+            }
           }
           span.active2{
             color: #d91e1c;
@@ -368,7 +377,7 @@ button.properties{
                   display: block;
                   color: #3a2d29;
                   font-size: 16px;
-                  font-family: '黑体-简 细体';
+                  font-family: '微软雅黑';
                   margin-top: 12px;
                   line-height: 24px;
                   height: 48px;
@@ -416,7 +425,7 @@ button.properties{
     position: relative;
     padding-bottom: 77px;
     .slider{
-      width: 542px;
+      width: 488px;
       overflow: hidden;
       position: relative;
       top: 95px;
@@ -429,6 +438,7 @@ button.properties{
           box-sizing:border-box;
           a{
             float: left;
+            text-decoration: none;
             >img{
               display: block;
               width: 217px;
@@ -438,12 +448,13 @@ button.properties{
               display: block;
               color: #3a2d29;
               font-size: 16px;
-              font-family: '黑体-简 细体';
+              font-family: '微软雅黑';
               margin-top: 12px;
               line-height: 24px;
               height: 48px;
               box-sizing:border-box;
               text-align: center;
+              text-decoration: none;
             }
           }
         }
@@ -455,12 +466,15 @@ button.properties{
       font-weight: bolder;
       color: #d91e1c;
       font-size: 60px;
+      &:hover{
+        cursor: pointer;
+      }
     }
     .prev{
       left: 425px;
     }
     .next{
-      right: 55px;
+      right: 92px;
     }
   }
 }
@@ -537,7 +551,7 @@ button.properties{
       text-align: left;
       color: #ffffff;
       font-size: 18px;
-      font-family: '黑体-简 细体';
+      font-family: '微软雅黑';
       line-height: 28px;
       overflow-y: scroll;
       box-sizing:border-box;
@@ -566,7 +580,7 @@ button.properties{
       }
       b{
         font-weight: bold;
-        font-family: '黑体-简 中等'
+        font-family: '微软雅黑'
       }
     }
   }
@@ -612,7 +626,7 @@ button.properties{
       }
       label.check{
         float: left;
-        font-family: '黑体-简 细体';
+        font-family: '微软雅黑';
         font-size: 21px;
         color: #ffffff;
         margin-left: 30px;
@@ -669,7 +683,7 @@ button.properties{
           text-align: left;
           font-size: 20px;
           color: #ffffff;
-          font-family: '黑体-简 细体';
+          font-family: '微软雅黑';
         }
         span{
           margin: 0 42px;
@@ -679,7 +693,7 @@ button.properties{
           label{
             font-size: 28px;
             color: #ffffff;
-            font-family: '黑体-简 细体';
+            font-family: '微软雅黑';
             margin-bottom: -8px;
           }
         }
