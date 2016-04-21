@@ -1,8 +1,9 @@
 GIT
   remote: git@git.xtunes.cn:xtunes/cms.git
-  revision: 5555a02c88917ef7da48abc8cd29c2e69b638954
+  revision: a4eea261becdf4153c0a5d219dee7f54839781ef
+  branch: 4.0
   specs:
-    amalgam (4.0.0)
+    amalgam (4.0.3)
       acts-as-taggable-on (~> 2.3.1)
       acts_as_list (~> 0.2.0)
       awesome_nested_set (~> 2.1.6)
@@ -115,8 +116,8 @@ GEM
     eventmachine (1.0.4)
     execjs (2.5.2)
     ffi (1.9.6)
-    font-awesome-rails (4.3.0.0)
-      railties (>= 3.2, < 5.0)
+    font-awesome-rails (4.6.1.0)
+      railties (>= 3.2, < 5.1)
     formatador (0.2.5)
     globalize3 (0.3.1)
       activemodel (>= 3.0.0)
@@ -142,7 +143,7 @@ GEM
       multi_json (~> 1.8)
     guard-pow (2.0.0)
       guard (~> 2.0)
-    haml (4.0.6)
+    haml (4.0.7)
       tilt
     highline (1.7.3)
     hike (1.2.3)
@@ -175,8 +176,8 @@ GEM
       railties (~> 3.2)
     method_source (0.8.2)
     mime-types (1.25.1)
-    mini_magick (4.2.3)
-    mini_portile (0.6.2)
+    mini_magick (4.5.1)
+    mini_portile2 (2.0.0)
     modernizr-rails (2.7.1)
     multi_json (1.11.0)
     mysql2 (0.3.17)
@@ -188,8 +189,8 @@ GEM
     net-ssh (2.9.2)
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
-    nokogiri (1.6.6.2)
-      mini_portile (~> 0.6.0)
+    nokogiri (1.6.7.2)
+      mini_portile2 (~> 2.0.0.rc2)
     notiffany (0.0.3)
       nenv (~> 0.1)
       shellany (~> 0.0)
@@ -312,4 +313,4 @@ DEPENDENCIES
   xtunes_helpers!
 
 BUNDLED WITH
-   1.10.6
+   1.11.2

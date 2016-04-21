@@ -101,6 +101,7 @@ button.properties{
   margin: 4px 0;
   background-size: cover;
   margin-top: -89px;
+  padding-bottom: 4px;
   .warp{
     margin: 0 auto;
     width: 1012px;
@@ -126,10 +127,13 @@ button.properties{
         overflow: hidden;
         >img{
           float: left;
+          &:hover{
+            cursor: pointer;
+          }
         }
         ul.groups{
           float: left;
-          margin-left: 30px;
+          margin-left: 12px;
           li{
             float: left;
             height: 160px;
@@ -157,11 +161,10 @@ button.properties{
                 left: -14px;
               }
 
-              @include parallelogram-color(#d11c18);
+              @include parallelogram-color(#626161);
             }
-          &:first-child,&:last-child{
-            margin: 0;
-            span{
+            span.active{
+              margin: 0;
               &:after {
                 @include triangle(36px,14px);
                 right: -14px;
@@ -172,14 +175,20 @@ button.properties{
                 left: -14px;
               }
 
-              @include parallelogram-color(#626161);
+              @include parallelogram-color(#d11c18);
             }
-          }
           }
         }
       }
       .sliders{
-        position: relative;
+        -webkit-touch-callout: none; 
+        -webkit-user-select: none; 
+        -khtml-user-select: none; 
+        -moz-user-select: none; 
+        -ms-user-select: none; 
+        user-select: none; 
+        width: 100%; 
+        position: relative; 
         .slider{
           width: 100%;
           overflow: hidden;

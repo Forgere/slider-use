@@ -8,11 +8,11 @@
             li
               span 跋山涉水组
             li
-              span 自由公路游
+              span.active 自由公路游
             li
               span 多人休闲组
         .sliders
-          .slider1.slider
+          .slider1.slider#slider1
             ul
               li
                 a
@@ -70,7 +70,7 @@
                     | 点赞数
                     b 100
                     i
-          .slider2.slider.showslider
+          .slider2.slider.showslider#slider2
             ul
               li
                 a
@@ -128,7 +128,7 @@
                     | 点赞数
                     b 100
                     i
-          .slider3.slider
+          .slider3.slider#slider3
             ul
               li
                 a
@@ -186,9 +186,9 @@
                     | 点赞数
                     b 100
                     i
-          a.unslider-arrow.prev
+          a.unslider-arrow.prev.btn-prev
             =image_tag('leftarrow.png')
-          a.unslider-arrow.next
+          a.unslider-arrow.next.btn-next
             =image_tag('rightarrow.png')
         =editable_content_tag :div, @page, 'content.rule', :class => 'rule' do
           |

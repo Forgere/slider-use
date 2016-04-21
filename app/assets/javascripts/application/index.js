@@ -48,4 +48,33 @@ $(function(){
 		event.preventDefault();
 		/* Act on the event */
 	});
+
+
+// //跑马灯效果
+// 	$('.sliders').carousel({resizeChildByNum: 4 });
+// //切换slider
+//   $('.showdianzan .groups li').eq(0).click(function(event) {
+//       /* Act on the event */
+//       $('.showdianzan .groups li span').removeClass('active');
+//       $(this).find('span').addClass('active');
+//       $('.showdianzan .slider').hide().removeClass('showslider');
+//       $('.showdianzan #slider1').show().addClass('showslider');
+// 			$('.sliders').carousel({resizeChildByNum: 4 });
+//   });
+//   $('.showdianzan .groups li').eq(1).click(function(event) {
+//       /* Act on the event */
+//       $('.showdianzan .groups li span').removeClass('active');
+//       $(this).find('span').addClass('active');
+//       $('.showdianzan .slider').hide().removeClass('showslider');
+//       $('.showdianzan #slider2').show().addClass('showslider');
+//       $('.sliders').carousel({resizeChildByNum: 4 });
+//   });
+//   $('.showdianzan .groups li').eq(2).click(function(event) {
+//       /* Act on the event */
+//       $('.showdianzan .groups li span').removeClass('active');
+//       $(this).find('span').addClass('active');
+//       $('.showdianzan .slider').hide().removeClass('showslider');
+//       $('.showdianzan #slider3').show().addClass('showslider');
+//       $('.sliders').carousel({resizeChildByNum: 4 });
+//     });
 });

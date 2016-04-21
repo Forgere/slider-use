@@ -24,7 +24,7 @@ group :assets do
 end
 
 # The Gems for Amalgam
-gem 'amalgam', git: 'git@git.xtunes.cn:xtunes/cms.git'
+gem 'amalgam', git: 'git@git.xtunes.cn:xtunes/cms.git', branch: '4.0'
 gem 'rails_config'
 gem 'slim', '2.0.0'
 
