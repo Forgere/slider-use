@@ -3,7 +3,6 @@ $(function(){
 	function showzhezhao(){
 		$('.zhezhao').css('display','block');
 		var wheight =$(document).height();
-		console.log(wheight);
 		$('.zhezhao').css('height',wheight);
 	}
 	//遮罩关闭
@@ -48,7 +47,4 @@ $(function(){
 		event.preventDefault();
 		/* Act on the event */
 	});
-
-
-
 });

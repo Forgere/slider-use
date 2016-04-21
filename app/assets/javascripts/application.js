@@ -13,4 +13,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require carousel
+//= require unslider.js
 //= require_tree ./application

@@ -188,76 +188,85 @@ button.properties{
         -ms-user-select: none; 
         user-select: none; 
         width: 100%; 
-        position: relative; 
-        .slider{
-          width: 98%;
-          overflow: hidden;
+        .sliderwarp{
+          position: relative;
           display: none;
-          ul{
-            margin-left: -253px;
+          padding: 0 20px;
+          width: 100%;
+          .carousel-inner{
             overflow: hidden;
-            width: 500%;
-            li{
-              float: left;
-              width: 253px;
-              a{
+            width: 980px;
+            margin: 0 auto;
+            ul{
+              overflow: hidden;
+              width: 10000px;
+              display: inline-block;
+              li{
                 float: left;
-                margin-right: 25px;
-                >img{
-                  display: block;
-                  width: 232px;
-                  height: 154px;
-                }
-                span.greenbg{
-                  display: block;
-                  color: #ea5413;
-                  font-size: 18px;
-                  font-family: '微软雅黑';
-                  position: relative;
-                  margin-left: 12px;
-                  margin-top: 12px;
-                  line-height: 30px;
-                  width: 220px;
-                  height: 30px;
-                  padding: 0 24px 0 38px;
-                  box-sizing:border-box;
-                  background: url(image_path('dianzanborder.png')) no-repeat;
-                  &:hover{
-                    cursor: pointer;
+                width: 232px;
+                padding: 10px;
+                a{
+                  float: left;
+                  display: inline-block;
+                  overflow: hidden;
+                  img{
+                    display: block;
+                    width: 232px;
+                    height: 154px;
                   }
-                  i{
-                    float: left;
-                    display: inline-block;
-                    width: 26px;
+                  span.greenbg{
+                    display: block;
+                    color: #ea5413;
+                    font-size: 18px;
+                    font-family: '微软雅黑';
+                    position: relative;
+                    margin-left: 12px;
+                    margin-top: 12px;
+                    line-height: 30px;
+                    width: 220px;
                     height: 30px;
-                    background: url(image_path('zan.png')) no-repeat left 50%;
+                    padding: 0 24px 0 38px;
+                    box-sizing:border-box;
+                    background: url(image_path('dianzanborder.png')) no-repeat;
+                    &:hover{
+                      cursor: pointer;
+                    }
+                    i{
+                      float: left;
+                      display: inline-block;
+                      width: 26px;
+                      height: 30px;
+                      background: url(image_path('zan.png')) no-repeat left 50%;
+                    }
                   }
-                }
-                span.clicked{
-                  i{
-                    background: url(image_path('haoduozan.png')) no-repeat left 50%;
+                  span.clicked{
+                    i{
+                      background: url(image_path('haoduozan.png')) no-repeat left 50%;
+                    }
                   }
                 }
               }
-            }
+            }            
           }
+          .unslider-arrow{
+            position: absolute;
+            top: 44.5px;
+            z-index: 9;
+            cursor: pointer;
+            width: 26px;
+            height: 69px;
+          }
+          .prev{
+            left: 0px;
+          }
+          .next{
+            right: 0px;
+          }         
         }
         .showslider{
-          display: block;
-        }
-        .unslider-arrow{
-          position: absolute;
-          top: 44.5px;
-          &:hover{
-            cursor: pointer;
+            display: block;
           }
-        }
-        .prev{
-          left: -25px;
-        }
-        .next{
-          right: -5px;
-        }
+
       }
       .rule{
         margin-top: 108px;
@@ -336,41 +345,49 @@ button.properties{
           }
         }
       }
-      .sliders{
+      .routes{
+        position: relative;
         .dots{
           text-align: center;
-          span{
-            font-size: 24px;
-            color: #646363;
-            margin: 0 14px;
-            margin-top: 24px;
+          margin:18px 0;
+          li{
+            float: none;
+            background-color: #646363;
             display: inline-block;
-            &:hover{
-              cursor: pointer;
+            width: 10px;
+            height: 10px;
+            margin-right: 25px;
+            font-size: 0;
+            cursor: pointer;
+            @include border-radius(6.5px);
+            .lt-ie8 &{
+              color: #646363;
+              // text-indent: -99px;
             }
           }
-          span.active2{
-            color: #d91e1c;
+          li.active{
+            background-color: #d91e1c;
           }
         }
-        position: relative;
-        .slider{
+        .route{
           width: 100%;
           overflow: hidden;
           display: none;
           ul{
-            overflow: hidden;
-            width: 500%;
             li{
               float: left;
-              width: 5%;
+              width: 1012px;
+              overflow: hidden;
+              margin:0;
+              display: block;
               a{
                 float: left;
-                margin-right: 25px;
                 text-decoration: none;
-                >img{
-                  display: block;
-                  width: 232px;
+                width: 231px;
+                display: block;
+                padding:0 11px;
+                img{
+                  width: 231px;
                   height: 154px;
                 }
                 span.title{
@@ -424,57 +441,66 @@ button.properties{
     background: url(image_path('hotelbg.png')) no-repeat 50% top;
     position: relative;
     padding-bottom: 77px;
-    .slider{
-      width: 488px;
-      overflow: hidden;
-      position: relative;
+    height: 308px;
+    .sliders{
+      position: absolute;
       top: 95px;
       left: 442px;
-      ul{
+      width: 556px;
+      .carousel-inner{
         overflow: hidden;
-        width: 500%;
-        li{
-          float: left;
-          box-sizing:border-box;
-          a{
+        margin:0 auto;
+        width: 493px;
+        ul{
+          overflow: hidden;
+          width: 10000px;
+          display: inline-block;
+          margin-left:-13px;
+          li{
             float: left;
-            text-decoration: none;
-            >img{
-              display: block;
-              width: 217px;
-              height: 173px;
+            .ie6 &{
+              display: inline;
             }
-            span.title{
-              display: block;
-              color: #3a2d29;
-              font-size: 16px;
-              font-family: '微软雅黑';
-              margin-top: 12px;
-              line-height: 24px;
-              height: 48px;
-              box-sizing:border-box;
-              text-align: center;
+            padding:0 13px;
+            a{
+              display: inline-block;
               text-decoration: none;
+              img{
+                width: 233px;
+                height: 174px;
+              }
+              span.title{
+                display: block;
+                color: #3a2d29;
+                font-size: 16px;
+                font-family: '微软雅黑';
+                margin-top: 12px;
+                line-height: 24px;
+                height: 48px;
+                box-sizing:border-box;
+                text-align: center;
+                text-decoration: none;
+              }
             }
           }
         }
       }
-    }
-    .unslider-arrow{
-      position: absolute;
-      top: 145px;
-      font-weight: bolder;
-      color: #d91e1c;
-      font-size: 60px;
-      &:hover{
+      .unslider-arrow{
+        position: absolute;
+        top: 55px;
+        font-weight: bolder;
+        color: #d91e1c;
+        font-size: 60px;
         cursor: pointer;
+        width: 25px;
       }
-    }
-    .prev{
-      left: 425px;
-    }
-    .next{
-      right: 92px;
+      .prev{
+        left: 0px;
+        text-align: right;
+      }
+      .next{
+        right: 0px;
+      }
     }
   }
 }
