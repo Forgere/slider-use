@@ -194,6 +194,7 @@ button.properties{
           overflow: hidden;
           display: none;
           ul{
+            margin-left: -253px;
             overflow: hidden;
             width: 500%;
             li{
@@ -261,7 +262,7 @@ button.properties{
           left: -25px;
         }
         .next{
-          right: 0;
+          right: -5px;
         }
       }
       .rule{
