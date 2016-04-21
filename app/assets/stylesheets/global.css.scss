@@ -214,13 +214,14 @@ button.properties{
                   font-size: 18px;
                   font-family: '黑体-简 细体';
                   position: relative;
-                  margin-left: 30px;
+                  margin-left: 12px;
                   margin-top: 12px;
                   line-height: 30px;
-                  width: 173px;
+                  width: 220px;
                   height: 30px;
                   padding: 0 24px 0 38px;
                   box-sizing:border-box;
+                  background: url(image_path('dianzanborder.png')) no-repeat;
                   i{
                     float: left;
                     display: inline-block;
@@ -228,19 +229,6 @@ button.properties{
                     height: 30px;
                     background: url(image_path('zan.png')) no-repeat left 50%;
                   }
-                  &:after {
-                    @include triangle(30px,17px);
-                    right: -16px;
-                  }
-                  &:hover{
-                    cursor: pointer;
-                  }
-                  &:before {
-                    @include triangle(30px,17px);
-                    left: -16px;
-                  }
-
-                  @include parallelogram-color(#3a2d29);
                 }
                 span.clicked{
                   i{
@@ -326,40 +314,36 @@ button.properties{
                 left: -14px;
               }
 
-              @include parallelogram-color(#d11c18);
+              @include parallelogram-color(#626161);
             }
-          &:first-child,&:last-child{
-            margin: 0;
-            span{
+            span.active{
               &:after {
                 @include triangle(36px,14px);
                 right: -14px;
               }
-
               &:before {
                 @include triangle(36px,14px);
                 left: -14px;
               }
-
-              @include parallelogram-color(#626161);
+              @include parallelogram-color(#d11c18);
             }
           }
-          }
-        }
-      }
-      .dots{
-        text-align: center;
-        margin-top: 18px;
-        span{
-          font-size: 24px;
-          color: #646363;
-          margin: 0 14px;
-        }
-        span.active{
-          color: #d91e1c;
         }
       }
       .sliders{
+        .dots{
+          text-align: center;
+          span{
+            font-size: 24px;
+            color: #646363;
+            margin: 0 14px;
+            margin-top: 24px;
+            display: inline-block;
+          }
+          span.active2{
+            color: #d91e1c;
+          }
+        }
         position: relative;
         .slider{
           width: 100%;
@@ -374,6 +358,7 @@ button.properties{
               a{
                 float: left;
                 margin-right: 25px;
+                text-decoration: none;
                 >img{
                   display: block;
                   width: 232px;
@@ -388,6 +373,7 @@ button.properties{
                   line-height: 24px;
                   height: 48px;
                   box-sizing:border-box;
+                  text-decoration: none;
                 }
               }
             }
@@ -410,7 +396,7 @@ button.properties{
       .title2{
         margin-top: 105px;
         ul.groups{
-          margin-left: 200px;
+          margin-left: 146px;
           li{
             line-height: 60px;
             height: 60px;
@@ -430,18 +416,16 @@ button.properties{
     position: relative;
     padding-bottom: 77px;
     .slider{
-      width: 504px;
+      width: 542px;
       overflow: hidden;
       position: relative;
       top: 95px;
-      left: 444px;
+      left: 442px;
       ul{
         overflow: hidden;
         width: 500%;
         li{
           float: left;
-          width: 10%;
-          padding:0 12px;
           box-sizing:border-box;
           a{
             float: left;
@@ -506,7 +490,6 @@ button.properties{
     width: 100%;
     text-align: center;
     z-index: 10;
-    display: none;
     .warp{
       position: relative;
       width: 1012px;
@@ -643,6 +626,7 @@ button.properties{
     }
   }
   .zhuce{
+    display: none;
     .content{
       position: absolute;
       top: 32px;

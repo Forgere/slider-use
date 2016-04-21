@@ -12,7 +12,7 @@ $.fn.carousel = (options={})->
    @defaults: { 
      nextSelector: '.btn-next' 
      prevSelector: '.btn-prev' 
-     innerSelector: '.showslider' 
+     innerSelector: '.cinner' 
      thumbnailsSelector: 'ul' 
      scrollDuring: 200 
      resizeChildByNum: false # 视口包含元素数量, 根据视口大小自动调整元素大小 

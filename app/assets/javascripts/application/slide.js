@@ -33,7 +33,7 @@
             $('.sliders').mouseleave(function(){
                 silde.init(a);
             });
-            $('.btn-prev').on('click', function(event) {
+           $('.prev').on('click', function(event) {
                 event.preventDefault();
                 /* Act on the event */
                 $ul.stop().animate({'margin-left': '-'+width},'slow',function(){
@@ -45,7 +45,7 @@
                         );
                 });
             });
-            $('.btn-next').on('click', function(event) {
+            $('.next').on('click', function(event) {
                 event.preventDefault();
                 /* Act on the event */
                 $('.showdianzan .showslider').find('ul').stop().animate({'margin-left':'-'+2*width},'slow',function(){
@@ -69,7 +69,7 @@
         $('.showdianzan .slider').hide().removeClass('showslider');
         $('.showdianzan #slider1').show().addClass('showslider');
                 //动起来
-        silde.init('.showdianzan .showslider');
+        silde.init('#slider1');
     });
     $('.showdianzan .groups li').eq(1).click(function(event) {
         /* Act on the event */
@@ -79,7 +79,7 @@
         $('.showdianzan .slider').hide().removeClass('showslider');
         $('.showdianzan #slider2').show().addClass('showslider');
                 //动起来
-        silde.init('.showdianzan .showslider');
+        silde.init('#slider2');
     });
     $('.showdianzan .groups li').eq(2).click(function(event) {
         /* Act on the event */
@@ -89,10 +89,53 @@
         $('.showdianzan .slider').hide().removeClass('showslider');
         $('.showdianzan #slider3').show().addClass('showslider');
         //动起来
-        silde.init('.showdianzan .showslider');
+        silde.init('#slider3');
     });
-
         //动起来
-        silde.init('.showdianzan .showslider');
+        silde.init('#slider2');
+
+//路线
+    $('.showroute .groups li').eq(0).click(function(event) {
+        /* Act on the event */
+        $('.showroute .groups li span').removeClass('active');
+        $(this).find('span').addClass('active');
+        $('.showroute .slider').hide().removeClass('showslider');
+        $('.showroute #slider4').show().addClass('showslider');
+        $('.showroute span').removeClass('active2');
+        $('.showroute .dots span').first().addClass('active2');
+        $('.showroute .showslider ul').css({'margin-left':'0px'});
+    });
+    $('.showroute .groups li').eq(1).click(function(event) {
+        /* Act on the event */
+        $('.showroute .groups li span').removeClass('active');
+        $(this).find('span').addClass('active');
+        $('.showroute .slider').hide().removeClass('showslider');
+        $('.showroute #slider5').show().addClass('showslider');
+        $('.showroute span').removeClass('active2');
+        $('.showroute .dots span').first().addClass('active2');
+        $('.showroute .showslider ul').css({'margin-left':'0px'});
+    });
+    $('.showroute .groups li').eq(2).click(function(event) {
+        /* Act on the event */
+        $('.showroute .groups li span').removeClass('active');
+        $(this).find('span').addClass('active');
+        $('.showroute .slider').hide().removeClass('showslider');
+        $('.showroute #slider6').show().addClass('showslider');
+        $('.showroute span').removeClass('active2');
+        $('.showroute .dots span').first().addClass('active2');
+        $('.showroute .showslider ul').css({'margin-left':'0px'});
+    });
+    $('.showroute .btn-prev').click(function() {
+        $('.showroute span').removeClass('active2');
+        $(this).addClass('active2');
+        $('.showroute .showslider ul').animate({'margin-left':'0px'},'slow');
+    });
+    $('.showroute .btn-next').click(function() {
+        $('.showroute span').removeClass('active2');
+        $(this).addClass('active2');
+        $('.showroute .showslider ul').animate({'margin-left':'-1012px'},'slow');
+    });
+        //hotel
+        $('#hotelslider').carousel({resizeChildByNum: 2 ,innerSelector: '.inner'});
     });
 })(jQuery);
