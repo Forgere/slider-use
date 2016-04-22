@@ -512,10 +512,6 @@ button.properties{
     a.bigimage{
       img{
         margin-bottom: 16px;
-        transition-duration: 1s;
-        &:hover{
-          transform:scale(1.1);
-        }
       }
     }
     a.button{
