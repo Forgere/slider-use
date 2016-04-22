@@ -37,7 +37,7 @@ GIT
       capistrano-maintenance (~> 0.0.4)
 
 GEM
-  remote: https://ruby.taobao.org/
+  remote: https://gems.ruby-china.org/
   specs:
     actionmailer (3.2.21)
       actionpack (= 3.2.21)

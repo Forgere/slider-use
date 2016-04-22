@@ -1,4 +1,4 @@
-source 'https://ruby.taobao.org'
+source 'https://gems.ruby-china.org/'
 
 gem 'rails', '3.2.21'
 gem 'bcrypt-ruby', '~> 3.0.0'
