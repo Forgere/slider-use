@@ -36,7 +36,7 @@ $(function(){
 			alert("请上传图片");
 			return false;
 		}
-		if(!$("input#upload_type_1")[0].checked && !$("input#upload_type_2")[0].checked && !$("input#upload_type_3")[0].checked){
+		if(!$("input#upload_upload_type_1")[0].checked && !$("input#upload_upload_type_2")[0].checked && !$("input#upload_upload_type_3")[0].checked){
 			alert("请选择明信片宣言");
 			return false;
 		}

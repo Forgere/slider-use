@@ -11,7 +11,7 @@ class UploadsController < ApplicationController
           }
         else
           format.html{
-            render text: '字段填写不全或者格式错误'
+            render text: '手机号已经被使用或者字段填写不全或者格式错误'
           }
         end
       end
