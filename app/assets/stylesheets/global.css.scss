@@ -481,7 +481,7 @@ button.properties{
         top: 0;
         z-index: 1;
         &:hover{
-          transform:scale(1.2);
+          transform:scale(1.1);
           z-index: 5;
         }
       }
@@ -498,7 +498,7 @@ button.properties{
         left:345px;
         top: 169px;
         &:hover+img{
-          transform:scale(1.2);
+          transform:scale(1.1);
           z-index: 2;
         }
       }
@@ -510,7 +510,7 @@ button.properties{
         left:145px;
         top: 301px;
         &:hover+img{
-          transform:scale(1.2);
+          transform:scale(1.1);
           z-index: 2;
         }
       }
@@ -527,7 +527,7 @@ button.properties{
         left:448px;
         top: 340px;
         &:hover+img{
-          transform:scale(1.2);
+          transform:scale(1.1);
           z-index: 2;
         }
       }
@@ -541,7 +541,7 @@ button.properties{
         top: 2px;
         z-index: 1;
         &:hover{
-          transform:scale(1.2);
+          transform:scale(1.1);
           z-index: 5;
         }
       }
@@ -550,7 +550,7 @@ button.properties{
         bottom: 78px;
         z-index: 1;
         &:hover{
-          transform:scale(1.2);
+          transform:scale(1.1);
           z-index: 5;
         }
       }
@@ -563,7 +563,7 @@ button.properties{
 .tanchus{
   .tanchu{
     position: absolute;
-    top: 56px;
+    top: -4px;
     width: 100%;
     text-align: center;
     z-index: 10;
@@ -582,7 +582,8 @@ button.properties{
         position: absolute;
         right: 35px;
         top: 42px;
-        z-index: 2;
+        z-index: 11;
+        // background: url(image_path('closeimg.png'));
       }
       .sharebutton{
         margin-top: -40px;
