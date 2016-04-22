@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150323091507) do
+ActiveRecord::Schema.define(:version => 20160422034902) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "username"
@@ -66,13 +66,6 @@ ActiveRecord::Schema.define(:version => 20150323091507) do
     t.integer  "page_id"
   end
 
-  create_table "requests", :force => true do |t|
-    t.string   "name"
-    t.string   "passed"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"
@@ -88,6 +81,18 @@ ActiveRecord::Schema.define(:version => 20150323091507) do
 
   create_table "tags", :force => true do |t|
     t.string "name"
+  end
+
+  create_table "uploads", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "name"
+    t.string   "mobile"
+    t.string   "img"
+    t.integer  "type"
+    t.string   "city"
+    t.integer  "is_contact"
+    t.integer  "page_id"
   end
 
 end
