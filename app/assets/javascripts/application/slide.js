@@ -175,7 +175,7 @@
         //     $('.showroute .showslider ul').animate({'margin-left':'-1012px'},'slow');
         // });
             //hotel
-        $('#hotelslider').carousel();
+        $('#hotelslider').carousel({resizeChildByNum: 2 });
 
         //jia
         $('#slider1').carousel();

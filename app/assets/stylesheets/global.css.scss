@@ -415,6 +415,9 @@ button.properties{
         overflow: hidden;
         margin:0 auto;
         width: 493px;
+        .lt-ie9 &{
+          width: 492px;
+        }
         ul{
           overflow: hidden;
           width: 10000px;
@@ -425,13 +428,15 @@ button.properties{
             .ie6 &{
               display: inline;
             }
-            padding:0 13px;
             a{
               display: inline-block;
               text-decoration: none;
               img{
                 width: 233px;
                 height: 174px;
+                .lt-ie9 &{
+                  max-width: none;
+                }
               }
               span.title{
                 display: block;
