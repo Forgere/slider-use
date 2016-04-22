@@ -134,7 +134,7 @@ button.properties{
             float: left;
             height: 160px;
             line-height: 160px;
-            margin: 0 21px;
+            // margin: 0 21px;
             span{
               font-family: "微软雅黑";
               font-size:22px;
@@ -147,6 +147,11 @@ button.properties{
               cursor: pointer;
               background: url(image_path('blackangle.png')) no-repeat;
               background-size: contain;
+              .lt-ie9 &{
+                width: 280px;
+                box-sizing:border-box;
+                text-indent: 0.5em;
+              }
             }
             span.active{
               margin: 0;
@@ -280,7 +285,6 @@ button.properties{
             float: left;
             height: 160px;
             line-height: 160px;
-            margin: 0 21px;
             span{
               font-family: "微软雅黑";
               font-size:22px;
@@ -293,6 +297,10 @@ button.properties{
               cursor: pointer;
               background: url(image_path('blackangle.png')) no-repeat;
               background-size: contain;
+              .lt-ie9 &{
+                width: 280px;
+                box-sizing:border-box;
+              }
             }
             span.active{
               background: url(image_path('redangle.png')) no-repeat;
@@ -583,7 +591,11 @@ button.properties{
         right: 35px;
         top: 42px;
         z-index: 11;
+        cursor: pointer;
         // background: url(image_path('closeimg.png'));
+        .lt-ie9 &{
+          background: url(about:blank);
+        }
       }
       .sharebutton{
         margin-top: -40px;
@@ -599,6 +611,9 @@ button.properties{
         }
         .weixin{
           left: 513px;
+          .lt-ie9 &{
+            background: url(about:blank);
+          }
         }
         .weibo{
           left: 569px;
@@ -606,6 +621,9 @@ button.properties{
             display: inline-block;
             width: 100%;
             height: 100%;
+            .lt-ie9 &{
+              background: url(about:blank);
+            }
           }
         }
       }
@@ -875,6 +893,7 @@ button.properties{
 .zhezhao{
   background-color: #000000;
   opacity:0.5;
+  filter:alpha(opacity=50);
   position: absolute;
   z-index: 9;
   width: 100%;

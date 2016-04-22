@@ -16,7 +16,9 @@ $(function(){
 	$('.banner span').on('click',function(){
 		showzhezhao();
 		$('.huodongguize').show();
+		$(window).scrollTop(636);
 	});
+
 	//我要上传弹出
 	$('.title1 img').on('click', function(event) {
 		event.preventDefault();
