@@ -111,9 +111,7 @@ button.properties{
       width: 330px;
       float: right;
       margin-right: 196px;
-      &:hover{
-        cursor: pointer;
-      }
+      cursor: pointer;
     }
   }
 }
@@ -127,9 +125,7 @@ button.properties{
         overflow: hidden;
         >img{
           float: left;
-          &:hover{
-            cursor: pointer;
-          }
+          cursor: pointer;
         }
         ul.groups{
           float: left;
@@ -148,9 +144,7 @@ button.properties{
               height: 36px;
               color: #fefefe;
               padding: 0 64px;
-              &:hover{
-                cursor: pointer;
-              }
+              cursor: pointer;
               &:after {
                 @include triangle(36px,14px);
                 right: -14px;
@@ -228,9 +222,7 @@ button.properties{
                     padding: 0 24px 0 38px;
                     box-sizing:border-box;
                     background: url(image_path('dianzanborder.png')) no-repeat;
-                    &:hover{
-                      cursor: pointer;
-                    }
+                    cursor: pointer;
                     i{
                       float: left;
                       display: inline-block;
@@ -316,9 +308,7 @@ button.properties{
               height: 36px;
               color: #fefefe;
               padding: 0 64px;
-              &:hover{
-                cursor: pointer;
-              }
+              cursor: pointer;
               &:after {
                 @include triangle(36px,14px);
                 right: -14px;
@@ -505,13 +495,98 @@ button.properties{
   }
 }
 .liangdian{
+  margin-top: 20px;
   .warp{
     width: 1012px;
     margin: 0 auto;
     text-align: center;
-    a.bigimage{
+    .liangdianimages{
+      margin-bottom: 16px;
+      background: url(image_path('liangdianbg.png'));
+      width: 1001px;
+      height: 486px;
+      position: relative;
       img{
-        margin-bottom: 16px;
+        position: absolute;
+        transition-duration:0.3s;
+      }
+      .left1{
+        left: 0;
+        top: 0;
+        z-index: 1;
+        &:hover{
+          transform:scale(1.2);
+          z-index: 5;
+        }
+      }
+      .zhong1{
+        left: 228px;
+        top: 144px;
+        z-index: 1;
+      }
+      p.blockzhong1{
+        position: absolute;
+        width: 177px;
+        height: 125px;
+        z-index:4;
+        left:345px;
+        top: 169px;
+        &:hover+img{
+          transform:scale(1.2);
+          z-index: 2;
+        }
+      }
+      p.blockzhong2{
+        position: absolute;
+        width: 177px;
+        height: 125px;
+        z-index:4;
+        left:145px;
+        top: 301px;
+        &:hover+img{
+          transform:scale(1.2);
+          z-index: 2;
+        }
+      }
+      .zhong2{
+        left: 88px;
+        top: 266px;
+        z-index: 1;
+      }
+      p.blockzhong3{
+        position: absolute;
+        width: 177px;
+        height: 125px;
+        z-index:4;
+        left:448px;
+        top: 340px;
+        &:hover+img{
+          transform:scale(1.2);
+          z-index: 2;
+        }
+      }
+      .zhong3{
+        left: 245px;
+        top: 227px;
+        z-index: 1;
+      }
+      .right1{
+        right: 0;
+        top: 2px;
+        z-index: 1;
+        &:hover{
+          transform:scale(1.2);
+          z-index: 5;
+        }
+      }
+      .right2{
+        right: 0;
+        bottom: 78px;
+        z-index: 1;
+        &:hover{
+          transform:scale(1.2);
+          z-index: 5;
+        }
       }
     }
     a.button{
