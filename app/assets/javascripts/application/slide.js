@@ -161,8 +161,8 @@
        //          during: 800,
        //          delay: 7000,
        //          dots: true,             //  Display dot navigation
-       //          fluid: true   
-       //      }); //  Support responsive design. May break non-responsive designs     
+       //          fluid: true
+       //      }); //  Support responsive design. May break non-responsive designs
 
         // $('.showroute .btn-prev').click(function() {
         //     $('.showroute span').removeClass('active2');
