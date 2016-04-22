@@ -145,31 +145,13 @@ button.properties{
               color: #fefefe;
               padding: 0 64px;
               cursor: pointer;
-              &:after {
-                @include triangle(36px,14px);
-                right: -14px;
-              }
-
-              &:before {
-                @include triangle(36px,14px);
-                left: -14px;
-              }
-
-              @include parallelogram-color(#626161);
+              background: url(image_path('blackangle.png')) no-repeat;
+              background-size: contain;
             }
             span.active{
               margin: 0;
-              &:after {
-                @include triangle(36px,14px);
-                right: -14px;
-              }
-
-              &:before {
-                @include triangle(36px,14px);
-                left: -14px;
-              }
-
-              @include parallelogram-color(#d11c18);
+              background: url(image_path('redangle.png')) no-repeat;
+              background-size: contain;
             }
           }
         }
@@ -309,28 +291,12 @@ button.properties{
               color: #fefefe;
               padding: 0 64px;
               cursor: pointer;
-              &:after {
-                @include triangle(36px,14px);
-                right: -14px;
-              }
-
-              &:before {
-                @include triangle(36px,14px);
-                left: -14px;
-              }
-
-              @include parallelogram-color(#626161);
+              background: url(image_path('blackangle.png')) no-repeat;
+              background-size: contain;
             }
             span.active{
-              &:after {
-                @include triangle(36px,14px);
-                right: -14px;
-              }
-              &:before {
-                @include triangle(36px,14px);
-                left: -14px;
-              }
-              @include parallelogram-color(#d11c18);
+              background: url(image_path('redangle.png')) no-repeat;
+              background-size: contain;
             }
           }
         }
