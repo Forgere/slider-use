@@ -44,9 +44,12 @@ $(function(){
 	$('.sharebutton .weixin').on('click',function(event) {
 		event.preventDefault();
 		/* Act on the event */
+		$('.tanchu').hide();
+		$('.erweima').show();
 	});
-	$('.sharebutton .weibo').on('click',function(event) {
-		event.preventDefault();
+	$('span.right').click(function(event) {
 		/* Act on the event */
+		$('.erweima').hide();
+		$('.zhezhao').hide();
 	});
 });
