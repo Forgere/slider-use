@@ -27,19 +27,27 @@ $(function(){
 		$('.zhucewarp').hide();
 	});
 	//注册弹出（加判断）
-	$('.shangchuan .sharebutton').on('click',function(event) {
+	$('.shangchuanwarp .sharebutton').on('click',function(event) {
 		event.preventDefault();
 		/* Act on the event */
+		if($('input#upload_img').val().length === 0 || !$('input#upload_img').val().match(/\.gif|jpg|jpeg|png|bmp$/)){
+			alert("请上传图片");
+			return false;
+		}
+		if(!$("input#upload_type_1")[0].checked && !$("input#upload_type_2")[0].checked && !$("input#upload_type_3")[0].checked){
+			alert("请选择明信片宣言");
+			return false;
+		}
 		$('.shangchuanwarp').hide();
 		$('.zhucewarp').show();
 	});
 	//注册提交后，上传成功弹出
-	$('.zhucewarp .sharebutton').on('click',function(event) {
-		event.preventDefault();
-		/* Act on the event */
-		$('.shangchuan').hide();
-		$('.gongxi').show();
-	});
+	// $('.zhucewarp .sharebutton').on('click',function(event) {
+	// 	event.preventDefault();
+	// 	/* Act on the event */
+	// 	$('.shangchuan').hide();
+	// 	$('.gongxi').show();
+	// });
 	//分享按钮
 	$('.sharebutton .weixin').on('click',function(event) {
 		event.preventDefault();
@@ -52,4 +60,15 @@ $(function(){
 		$('.erweima').hide();
 		$('.zhezhao').hide();
 	});
+
+	$(".xuanxiang input").change(function(e){
+		$(".xuanxiang label").removeClass('checked');
+		$(".xuanxiang input:checked+label").addClass('checked');
+	});
+
+	// $("input[type='submit']").click(function(e){
+	// 	event.preventDefault();
+
+	// 	$()
+	// });
 });

@@ -9,6 +9,7 @@ class CreateUpload < ActiveRecord::Migration
       t.string :city
       t.integer :is_contact
       t.integer :page_id
+      t.string :original_filename
     end
   end
 

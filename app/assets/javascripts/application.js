@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require carousel
 //= require unslider.js
+//= require jquery.remotipart
 //= require_tree ./application

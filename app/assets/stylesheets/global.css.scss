@@ -681,6 +681,17 @@ button.properties{
           left: 46px;
           top: -26px;
         }
+        input[type="file"]{
+          opacity: 0;
+          filter: alpha(opacity=0);
+          width: 46px;
+          position: absolute;
+          left: 323px;
+          top: 195px;
+          width: 390px;
+          height: 50px;
+          z-index: 999;
+        }
         .content{
           margin-bottom: 30px;
         }
@@ -722,11 +733,13 @@ button.properties{
           }
           input[type="radio"]{
             position: absolute;
-            width: 20px;
-            height: 20px;
-            visibility: hidden;
+            width: 0;
+            -moz-opacity: 0;
+            //filter:alpha(opacity:0);
+            opacity:0;
+            outline:none;
           }
-          input[type="radio"]:checked+label{
+          label.check.checked{
             background: url(checkbox.jpg) no-repeat;
           }
         }

@@ -384,6 +384,7 @@
         .kuangbg
           =image_tag('tanchukuang3.png')
           form
+          = form_for Upload.new, :html => { :multipart => true, target: "upload_target" } do |f|
             .shangchuanwarp
               .title
                 =image_tag('title-shangchuan.png')
@@ -391,45 +392,52 @@
                 =image_tag('shangchuancontent.png')
               label
                 input type="text" id="input1" placeholder="点击上传电脑图片" disabled="disabled"
-                input type="file" id="myfile" value="点击上传电脑图片" onchange="input1.value=this.value" style="display:none"
-                span onclick="myfile.click();"
+                = f.file_field :img, onchange: "input1.value=this.value"
+                span onclick="upload_img.click();"
                   =image_tag('camera.png')
               p （√勾选明信片宣言）
               span.xuanxiang
-                input type='radio' name='Option' value=1 id="xuanxiang1"
-                label.check for="xuanxiang1" 荣威360强劲动力，再高的坡也能爬!
+                = f.radio_button 'type', 1
+                label.check for="upload_type_1" 荣威360强劲动力，再高的坡也能爬!
               span.xuanxiang
-                input type='radio' name='Option' value=2 id="xuanxiang2"
-                label.check for="xuanxiang2" 低油耗!想去哪儿就去哪儿!
+                = f.radio_button 'type', 2
+                label.check for="upload_type_2" 低油耗!想去哪儿就去哪儿!
               span.xuanxiang
-                input type='radio' name='Option' value=3 id="xuanxiang3"
-                label.check for="xuanxiang3" 荣威360超大空间，全家出游So easy！
+                = f.radio_button 'type', 3
+                label.check for="upload_type_3" 荣威360超大空间，全家出游So easy！
               .sharebutton
-                =image_tag('tanchu-buttonup.png')
+                = image_tag("tanchu-buttonup.png")
             .zhucewarp
               .title
                 =image_tag('title-zhuce.png')
               p
                 label for="name"  &nbsp&nbsp&nbsp&nbsp姓名
-                input type="text" id="name"
+                = f.text_field "name"
               p
                 label for="phone"  &nbsp&nbsp&nbsp&nbsp手机
-                input type="text" id="phone"
+                = f.text_field "mobile"
               p
                 label for="city" &nbsp&nbsp&nbsp&nbsp城市
-                select id="city"
+                = f.select "city", "<option>武汉</option><option>宁波</option><option>北京</option><option>杭州</option><option>上海</option>".html_safe, :include_blank => true
               p.big
                 label for="yan" 验证码
-                input type="text" id="yan"
+                = f.text_field "captcha", style: "width: 200px;"
+                = captcha_tag height: 30
+                javascript:
+                  $(function(){
+                    $(".big img").click(function(e){
+                       $(e.target).attr("src", '/captcha?i=' + Date.now());
+                    });
+                  });
               p.word 是否愿意接受指定城市经销商与您联系，到店即可获得精美礼品,先到先得，抢完即止。
               span
-                input type="radio" id="male" name="sex" checked='checked'
-                label for="male" 是
+                = f.radio_button "is_contact", 1, checked: true
+                label for="is_contact" 是
               span
-                input type="radio" id="famale" name="sex"
-                label for="famale" 否
+                = f.radio_button "is_contact", 0
+                label for="is_contact" 否
               .sharebutton
-                =image_tag('button-action.png')
+                = f.submit "提交", :type => :image, :src => image_path("button-action.png")
     .zhuce.tanchu
       .warp
         .title
@@ -450,9 +458,6 @@
             p
               label for="city" &nbsp&nbsp&nbsp&nbsp城市
               select id="city"
-            p.big
-              label for="yan" 验证码
-              input type="text" id="yan"
             p.word 是否愿意接受指定城市经销商与您联系，到店即可获得精美礼品,先到先得，抢完即止。
             span
               input type="radio" id="male" name="sex" checked='checked'
@@ -467,4 +472,17 @@
             span 分享到微信朋友圈
             span.right ✕
           =image_tag('erweima.png')
+  iframe id="upload_target" name="upload_target" style="height:0px;"
+  javascript:
+    $('#upload_target').on('load', function(){
+        body = $('iframe').contents().find('body')[0].innerHTML;
+        if(body == "上传成功"){
+          $('.shangchuan').hide();
+          $('.gongxi').show();
+        }else{
+            if(body !== ""){
+              alert(body);
+            }
+        }
+    });
 = render :template => 'layouts/application'

@@ -22,7 +22,7 @@ group :assets do
   gem 'sprockets-media_query_combiner'
   gem "autoprefixer-rails"
 end
-
+gem 'remotipart', '~> 1.2'
 # The Gems for Amalgam
 gem 'amalgam', git: 'git@git.xtunes.cn:xtunes/cms.git', branch: '4.0'
 gem 'rails_config'
@@ -31,6 +31,9 @@ gem 'slim', '2.0.0'
 gem 'mediaelement_rails'
 
 gem 'xtunes_helpers', git: 'git@xtunes.cn:xtunes/helper.git'
+
+gem 'easy_captcha'
+gem 'rmagick'
 
 # The Gems for Test
 gem 'quiet_assets', '>= 1.0.1', group: :development
