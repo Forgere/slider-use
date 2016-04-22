@@ -23,19 +23,21 @@ $(function(){
 		/* Act on the event */
 		showzhezhao();
 		$('.shangchuan').show();
+		$('.shangchuanwarp').show();
+		$('.zhucewarp').hide();
 	});
 	//注册弹出（加判断）
 	$('.shangchuan .sharebutton').on('click',function(event) {
 		event.preventDefault();
 		/* Act on the event */
-		$('.shangchuan').hide();
-		$('.zhuce').show();
+		$('.shangchuanwarp').hide();
+		$('.zhucewarp').show();
 	});
 	//注册提交后，上传成功弹出
-	$('.zhuce .sharebutton').on('click',function(event) {
+	$('.zhucewarp .sharebutton').on('click',function(event) {
 		event.preventDefault();
 		/* Act on the event */
-		$('.zhuce').hide();
+		$('.shangchuan').hide();
 		$('.gongxi').show();
 	});
 	//分享按钮

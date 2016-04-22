@@ -363,31 +363,56 @@
           span.weibo
     .shangchuan.tanchu
       .warp
-        .title
-          =image_tag('title-shangchuan.png')
         .close
         .kuangbg
           =image_tag('tanchukuang3.png')
-        .sharebutton
-          =image_tag('tanchu-buttonup.png')
-        .content
-          =image_tag('shangchuancontent.png')
           form
-            label
-              input type="text" id="input1" placeholder="点击上传电脑图片" disabled="disabled"
-              input type="file" id="myfile" value="点击上传电脑图片" onchange="input1.value=this.value" style="display:none"
-              span onclick="myfile.click();"
-                =image_tag('camera.png')
-            p （√勾选明信片宣言）
-            span.xuanxiang
-              input type='radio' name='Option' value=1 id="xuanxiang1"
-              label.check for="xuanxiang1" 荣威360强劲动力，再高的坡也能爬!
-            span.xuanxiang
-              input type='radio' name='Option' value=2 id="xuanxiang2"
-              label.check for="xuanxiang2" 低油耗!想去哪儿就去哪儿!
-            span.xuanxiang
-              input type='radio' name='Option' value=3 id="xuanxiang3"
-              label.check for="xuanxiang3" 荣威360超大空间，全家出游So easy！
+            .shangchuanwarp
+              .title
+                =image_tag('title-shangchuan.png')
+              .content
+                =image_tag('shangchuancontent.png')
+              label
+                input type="text" id="input1" placeholder="点击上传电脑图片" disabled="disabled"
+                input type="file" id="myfile" value="点击上传电脑图片" onchange="input1.value=this.value" style="display:none"
+                span onclick="myfile.click();"
+                  =image_tag('camera.png')
+              p （√勾选明信片宣言）
+              span.xuanxiang
+                input type='radio' name='Option' value=1 id="xuanxiang1"
+                label.check for="xuanxiang1" 荣威360强劲动力，再高的坡也能爬!
+              span.xuanxiang
+                input type='radio' name='Option' value=2 id="xuanxiang2"
+                label.check for="xuanxiang2" 低油耗!想去哪儿就去哪儿!
+              span.xuanxiang
+                input type='radio' name='Option' value=3 id="xuanxiang3"
+                label.check for="xuanxiang3" 荣威360超大空间，全家出游So easy！
+              .sharebutton
+                =image_tag('tanchu-buttonup.png')
+            .zhucewarp
+              .title
+                =image_tag('title-zhuce.png')
+              p
+                label for="name"  &nbsp&nbsp&nbsp&nbsp姓名
+                input type="text" id="name"
+              p
+                label for="phone"  &nbsp&nbsp&nbsp&nbsp手机
+                input type="text" id="phone"
+              p
+                label for="city" &nbsp&nbsp&nbsp&nbsp城市
+                select id="city"
+              p.big
+                label for="yan" 验证码
+                input type="text" id="yan"
+              p.word 是否愿意接受指定城市经销商与您联系，到店即可获得精美礼品,先到先得，抢完即止。
+              span
+                input type="radio" id="male" name="sex" checked='checked'
+                label for="male" 是
+              span
+                input type="radio" id="famale" name="sex"
+                label for="famale" 否
+              .sharebutton
+                =image_tag('button-action.png')
     .zhuce.tanchu
       .warp
         .title
