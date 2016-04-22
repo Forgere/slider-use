@@ -581,7 +581,7 @@ button.properties{
       line-height: 28px;
       overflow-y: scroll;
       box-sizing:border-box;
-      padding-right: 147px;
+      padding-right: 146px;
       width: 880px;
       height: 420px;
       &::-webkit-scrollbar-track
@@ -640,28 +640,39 @@ button.properties{
           line-height: 45px;
           padding: 0 45px 0 60px;
         }
-        input[type='checkbox']{
-          height: 21px;
-          width: 25px;
-        }
         span{
           position: relative;
           left: 30px;
           top: 10px;
         }
       }
-      label.check{
+      p{
+        font-size: 16px;
+        color: white;
+        margin-top: 14px;
+      }
+      .xuanxiang{
         float: left;
         font-family: '微软雅黑';
         font-size: 21px;
         color: #ffffff;
         margin-left: 30px;
         margin-top: 25px;
-      }
-      p{
-        font-size: 16px;
-        color: white;
-        margin-top: 14px;
+        position: relative;
+        label.check{
+          display: inline-block;
+          background: url(checkbox2.jpg) no-repeat;
+          padding-left: 30px;
+        }
+        input[type="radio"]{
+          position: absolute;
+          width: 20px;
+          height: 20px;
+          visibility: hidden;
+        }
+        input[type="radio"]:checked+label{
+          background: url(checkbox.jpg) no-repeat;
+        }
       }
     }
   }
