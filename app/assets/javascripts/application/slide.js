@@ -65,34 +65,23 @@
             /* Act on the event */
             $('.showdianzan .groups li span').removeClass('active');
             $(this).find('span').addClass('active');
-            // window.clearInterval(timemachine);
             $('.showdianzan .sliderwarp').hide().removeClass('showslider');
             $('.showdianzan #slider1').show().addClass('showslider');
-            //动起来
-            // silde.init('#slider1');
         });
         $('.showdianzan .groups li').eq(1).click(function(event) {
             /* Act on the event */
             $('.showdianzan .groups li span').removeClass('active');
             $(this).find('span').addClass('active');
-            // window.clearInterval(timemachine);
             $('.showdianzan .sliderwarp').hide().removeClass('showslider');
             $('.showdianzan #slider2').show().addClass('showslider');
-                    //动起来
-            // silde.init('#slider2');
         });
         $('.showdianzan .groups li').eq(2).click(function(event) {
             /* Act on the event */
             $('.showdianzan .groups li span').removeClass('active');
             $(this).find('span').addClass('active');
-            // window.clearInterval(timemachine);
             $('.showdianzan .sliderwarp').hide().removeClass('showslider');
             $('.showdianzan #slider3').show().addClass('showslider');
-            //动起来
-            // silde.init('#slider3');
         });
-        // 动起来
-        // silde.init('#slider2');
 
         //路线
         $("#slider5").unslider({
@@ -192,6 +181,5 @@
         $('#slider1').carousel();
         $('#slider2').carousel();
         $('#slider3').carousel();
-        // $('.showdianzan .sliders').carousel({resizeChildByNum: 4 ,innerSelector: '.showslider'});
     });
 })(jQuery);
