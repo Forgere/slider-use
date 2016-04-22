@@ -69,9 +69,72 @@ $(function(){
 		$(".xuanxiang input:checked+label").addClass('checked');
 	});
 
-	// $("input[type='submit']").click(function(e){
-	// 	event.preventDefault();
-
-	// 	$()
-	// });
+	$('.lt-ie9 .left1').hover(function() {
+		w = $(this).width();
+		h = $(this).height();
+		 // Stuff to do when the mouse enters the element 
+		$(this).width(1.1*w);
+		$(this).height(1.1*h);
+		},function(){
+		$(this).width(157);
+		$(this).height(360);
+	});
+	$('.lt-ie9 .right1').hover(function() {
+		w = $(this).width();
+		h = $(this).height();
+		 // Stuff to do when the mouse enters the element 
+		$(this).width(1.1*w);
+		$(this).height(1.1*h);
+		},function(){
+		$(this).width(275);
+		$(this).height(121);
+	});
+	$('.lt-ie9 .right2').hover(function() {
+		w = $(this).width();
+		h = $(this).height();
+		// Stuff to do when the mouse enters the element 
+		$(this).width(1.1*w);
+		$(this).height(1.1*h);
+		$(this).css('margin', '0 -2px -10px 0');
+		},function(){
+		$(this).width(w);
+		$(this).height(h);
+		$(this).css('margin', '0');
+	});
+	$('.lt-ie9 .blockzhong1').hover(function() {
+		w = $('.zhong1').width();
+		h = $('.zhong1').height();
+		 // Stuff to do when the mouse enters the element 
+		$('.zhong1').width(1.1*w);
+		$('.zhong1').height(1.1*h);
+		$('.zhong1').css('margin', '-10px 0 0 -10px');
+		},function(){
+		$('.zhong1').width(473);
+		$('.zhong1').height(192);
+		$('.zhong1').css('margin', '0');
+	});
+	$('.lt-ie9 .blockzhong2').hover(function() {
+		w = $('.zhong2').width();
+		h = $('.zhong2').height();
+		 // Stuff to do when the mouse enters the element 
+		$('.zhong2').width(1.1*w);
+		$('.zhong2').height(1.1*h);
+		$('.zhong2').css('margin', '-10px 0 0 -10px');
+		},function(){
+		$('.zhong2').width(359);
+		$('.zhong2').height(219);
+		$('.zhong2').css('margin', '0');
+	});
+	$('.lt-ie9 .blockzhong3').hover(function() {
+		w = $('.zhong3').width();
+		h = $('.zhong3').height();
+		 // Stuff to do when the mouse enters the element 
+		$('.zhong3').width(1.1*w);
+		$('.zhong3').height(1.1*h);
+		$('.zhong3').css('margin', '-15px 0 0 -15px');
+		},function(){
+		$('.zhong3').width(380);
+		$('.zhong3').height(258);
+		$('.zhong3').css('margin', '0');
+	});
 });

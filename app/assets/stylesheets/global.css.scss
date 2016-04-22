@@ -494,8 +494,8 @@ button.properties{
         top: 0;
         z-index: 1;
         &:hover{
-          transform:scale(1.1);
           z-index: 5;
+          transform:scale(1.1);
         }
       }
       .zhong1{
@@ -514,6 +514,9 @@ button.properties{
           transform:scale(1.1);
           z-index: 2;
         }
+        .lt-ie9 &{
+          background: url(about:blank);
+        }
       }
       p.blockzhong2{
         position: absolute;
@@ -525,6 +528,9 @@ button.properties{
         &:hover+img{
           transform:scale(1.1);
           z-index: 2;
+        }
+        .lt-ie9 &{
+          background: url(about:blank);
         }
       }
       .zhong2{
@@ -539,6 +545,9 @@ button.properties{
         z-index:4;
         left:448px;
         top: 340px;
+        .lt-ie9 &{
+          background: url(about:blank);
+        }
         &:hover+img{
           transform:scale(1.1);
           z-index: 2;
@@ -554,8 +563,8 @@ button.properties{
         top: 2px;
         z-index: 1;
         &:hover{
-          transform:scale(1.1);
           z-index: 5;
+          transform:scale(1.1);
         }
       }
       .right2{
@@ -563,8 +572,8 @@ button.properties{
         bottom: 78px;
         z-index: 1;
         &:hover{
-          transform:scale(1.1);
           z-index: 5;
+          transform:scale(1.1);
         }
       }
     }
