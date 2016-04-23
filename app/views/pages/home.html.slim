@@ -269,13 +269,13 @@
               .title
                 =image_tag('title-zhuce.png')
               p
-                label for="name"  &nbsp&nbsp&nbsp&nbsp姓名
+                label for="name" 姓名
                 = f.text_field "name"
               p
-                label for="phone"  &nbsp&nbsp&nbsp&nbsp手机
+                label for="phone" 手机
                 = f.text_field "mobile"
               p
-                label for="city" &nbsp&nbsp&nbsp&nbsp城市
+                label for="city" 城市
                 = f.select "city", "<option>武汉</option><option>宁波</option><option>北京</option><option>杭州</option><option>上海</option>".html_safe, :include_blank => true
               p.big
                 label for="yan" 验证码
