@@ -58,7 +58,7 @@ $(function(){
 	$('.sharebutton .weixin').on('click',function(event) {
 		event.preventDefault();
 		/* Act on the event */
-		$('.tanchu').hide();
+		//$('.tanchu').hide();
 		$('.erweima').show();
 	});
 	$('span.right').click(function(event) {
