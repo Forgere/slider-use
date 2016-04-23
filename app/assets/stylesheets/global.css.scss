@@ -600,11 +600,11 @@ button.properties{
         top: 0;
       }
       .close{
-        width: 45px;
-        height: 45px;
+        width: 90px;
+        height: 90px;
         position: absolute;
-        right: 35px;
-        top: 42px;
+        right: 0px;
+        top: 0px;
         z-index: 11;
         cursor: pointer;
         // background: url(image_path('closeimg.png'));
@@ -796,6 +796,7 @@ button.properties{
           margin-bottom: 28px;
           height:28px;
           line-height: 28px;
+          overflow: hidden;
           label{
             font-size: 28px;
             color: #ffffff;
@@ -808,6 +809,7 @@ button.properties{
             font-size: 24px;
             box-sizing:border-box;
             float: left;
+            width: 350px;
           }
           select{
             width: 350px;
