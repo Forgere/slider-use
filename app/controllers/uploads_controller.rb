@@ -13,7 +13,7 @@ class UploadsController < ApplicationController
             render text: "您已经点赞过"
           }
         end
-      elsif @upload && @upload.img
+      elsif @upload && @upload.img && !params[:vote_id]
         respond_to do |format|
           format.html{
             render text: "您已经上传过照片"
