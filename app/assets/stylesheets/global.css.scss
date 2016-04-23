@@ -687,15 +687,16 @@ button.properties{
       }
       .usersshareimg{
         position: absolute;
+        overflow: hidden;
         bottom: 124px;
         right: 79px;
         width: 472px;
         height: 196px;
-        background: url(image_path('zhanwei.png')) no-repeat;
         background-size: contain;
-        filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='image_path('zhanwei.png')',sizingMethod='scale');
-        border-top-left-radius: 8px solid white;
-        border-top-right-radius: 8px solid white;
+        //filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='image_path('zhanwei.png')',sizingMethod='scale');
+        img{
+          border-radius: 8px;
+        }
       }
     }
   }
