@@ -3,7 +3,7 @@ Cms::Application.routes.draw do
 
   resources :pages, :only => [:show]
   resources :posts, :only => [:show]
-  resources :uploads, :only => [:create]
+  resources :uploads, :only => [:create, :show]
   mount Amalgam::Engine => '/'
   root :to => 'pages#show' , :defaults => {:id => 'home'}
 end

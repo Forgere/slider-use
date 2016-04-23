@@ -15,62 +15,15 @@
           .sliderwarp#slider1
             .slider1.slider.carousel-inner
               ul
-                li
-                  a
-                    =image_tag('show-2.png')
-                    span.greenbg
-                      i
-                      | 点赞数
-                      b 100
-                li
-                  a
-                    =image_tag('show-1.png')
-                    span.greenbg.clicked
-                      | 点赞数
-                      b 100
-                      i
-                li
-                  a
-                    =image_tag('show-4.png')
-                    span.greenbg
-                      | 点赞数
-                      b 100
-                      i
-                li
-                  a
-                    =image_tag('show-3.png')
-                    span.greenbg
-                      | 点赞数
-                      b 100
-                      i
-                li
-                  a
-                    =image_tag('show-1.png')
-                    span.greenbg
-                      | 点赞数
-                      b 100
-                      i
-                li
-                  a
-                    =image_tag('show-2.png')
-                    span.greenbg
-                      | 点赞数
-                      b 100
-                      i
-                li
-                  a
-                    =image_tag('show-3.png')
-                    span.greenbg
-                      | 点赞数
-                      b 100
-                      i
-                li
-                  a
-                    =image_tag('show-4.png')
-                    span.greenbg
-                      | 点赞数
-                      b 100
-                      i
+                - Upload.where(upload_type: 1).each do |upload|
+                  li
+                    a
+                      =image_tag(upload.img.url)
+                      span.greenbg class= "upload_#{upload.id}"
+                        i
+                        | 点赞数
+                        b
+                          = upload.vote_count
             a.unslider-arrow.prev.btn-prev
               =image_tag('leftarrow.png')
             a.unslider-arrow.next.btn-next
@@ -78,62 +31,15 @@
           .sliderwarp.showslider#slider2
             .slider2.slider.carousel-inner
               ul
-                li
-                  a
-                    =image_tag('show-1.png')
-                    span.greenbg
-                      i
-                      | 点赞数
-                      b 100
-                li
-                  a
-                    =image_tag('show-2.png')
-                    span.greenbg.clicked
-                      | 点赞数
-                      b 100
-                      i
-                li
-                  a
-                    =image_tag('show-3.png')
-                    span.greenbg
-                      | 点赞数
-                      b 100
-                      i
-                li
-                  a
-                    =image_tag('show-4.png')
-                    span.greenbg
-                      | 点赞数
-                      b 100
-                      i
-                li
-                  a
-                    =image_tag('show-1.png')
-                    span.greenbg
-                      | 点赞数
-                      b 100
-                      i
-                li
-                  a
-                    =image_tag('show-2.png')
-                    span.greenbg
-                      | 点赞数
-                      b 100
-                      i
-                li
-                  a
-                    =image_tag('show-3.png')
-                    span.greenbg
-                      | 点赞数
-                      b 100
-                      i
-                li
-                  a
-                    =image_tag('show-4.png')
-                    span.greenbg
-                      | 点赞数
-                      b 100
-                      i
+                - Upload.where(upload_type: 2).each do |upload|
+                  li
+                    a
+                      =image_tag(upload.img.url)
+                      span.greenbg class= "upload_#{upload.id}"
+                        i
+                        | 点赞数
+                        b
+                          = upload.vote_count
             a.unslider-arrow.prev.btn-prev
               =image_tag('leftarrow.png')
             a.unslider-arrow.next.btn-next
@@ -141,62 +47,15 @@
           .sliderwarp#slider3
             .slider3.slider.carousel-inner
               ul
-                li
-                  a
-                    =image_tag('show-4.png')
-                    span.greenbg
-                      i
-                      | 点赞数
-                      b 100
-                li
-                  a
-                    =image_tag('show-3.png')
-                    span.greenbg.clicked
-                      | 点赞数
-                      b 100
-                      i
-                li
-                  a
-                    =image_tag('show-2.png')
-                    span.greenbg
-                      | 点赞数
-                      b 100
-                      i
-                li
-                  a
-                    =image_tag('show-1.png')
-                    span.greenbg
-                      | 点赞数
-                      b 100
-                      i
-                li
-                  a
-                    =image_tag('show-1.png')
-                    span.greenbg
-                      | 点赞数
-                      b 100
-                      i
-                li
-                  a
-                    =image_tag('show-2.png')
-                    span.greenbg
-                      | 点赞数
-                      b 100
-                      i
-                li
-                  a
-                    =image_tag('show-3.png')
-                    span.greenbg
-                      | 点赞数
-                      b 100
-                      i
-                li
-                  a
-                    =image_tag('show-4.png')
-                    span.greenbg
-                      | 点赞数
-                      b 100
-                      i
+                - Upload.where(upload_type: 3).each do |upload|
+                  li
+                    a
+                      =image_tag(upload.img.url)
+                      span.greenbg class= "upload_#{upload.id}"
+                        i
+                        | 点赞数
+                        b
+                          = upload.vote_count
             a.unslider-arrow.prev.btn-prev
               =image_tag('leftarrow.png')
             a.unslider-arrow.next.btn-next
@@ -383,7 +242,6 @@
         .close
         .kuangbg
           =image_tag('tanchukuang3.png')
-          form
           = form_for Upload.new, :html => { :multipart => true, target: "upload_target" } do |f|
             .shangchuanwarp
               .title
@@ -480,9 +338,28 @@
           $('.shangchuan').hide();
           $('.gongxi').show();
         }else{
-            if(body !== ""){
-              alert(body);
+            if(body == "点赞成功"){
+              $('.shangchuan').hide();
+              $('.shangchuan').hide();
+              if(window.action_str){
+                $("form").attr("action", window.action_str);
+              }
+              curr = $("span.upload_"+window.tar_str).find('b').text();
+              $("span.upload_"+window.tar_str).find('b').text(parseInt(curr) + 1);
+              alert("点赞成功");
+            }else{
+              if(body !== ""){
+                alert(body);
+              }
             }
         }
+    });
+    $("span.greenbg").click(function(e){
+      window.tar_str = $(e.target).attr('class').match(/upload_(\d+)/)[1];
+      window.action_str = $("form").attr("action");
+      $("form").attr("action", window.action_str + "?vote_id="+window.tar_str);
+      $('.shangchuan').show();
+      $('.shangchuanwarp').hide();
+      $('.zhucewarp').show();
     });
 = render :template => 'layouts/application'

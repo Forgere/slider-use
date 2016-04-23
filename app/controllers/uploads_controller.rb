@@ -1,18 +1,44 @@
 class UploadsController < ApplicationController
 
   def create
+    if(params[:vote_id])
+      params[:upload][:vote_id] = params[:vote_id]
+    end
     captcha = params[:upload].delete(:captcha)
     if captcha_valid? captcha
-      @upload = Upload.new(params[:upload])
-      respond_to do |format|
-        if(@upload.save)
+      @upload = Upload.where(mobile: params[:upload][:mobile]).first
+      if @upload && @upload.vote_id && params[:vote_id]
+        respond_to do |format|
           format.html{
-            render text: '上传成功'
+            render text: "您已经点赞过"
           }
-        else
+        end
+      elsif @upload && @upload.vote_id && params[:vote_id]
+        respond_to do |format|
           format.html{
-            render text: '手机号已经被使用或者字段填写不全或者格式错误'
+            render text: "您已经上传过照片"
           }
+        end
+      else
+        @upload ||= Upload.new(params[:upload])
+        respond_to do |format|
+          if(@upload.save)
+            format.html{
+              if(params[:vote_id])
+                upload = Upload.find(params[:vote_id])
+                upload.vote_count = upload.vote_count + 1
+                upload.save
+                render text: '点赞成功'
+              else
+                render text: '上传成功'
+              end
+            }
+          else
+            format.html{
+              logger.info @upload.errors.inspect
+              render text: '字段填写不全或者格式错误'
+            }
+          end
         end
       end
     else
@@ -22,5 +48,10 @@ class UploadsController < ApplicationController
         }
       end
     end
+  end
+
+  def show
+    upload = Upload.find(params[:id])
+    send_file upload.img.file.path
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160422034902) do
+ActiveRecord::Schema.define(:version => 20160423023309) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "username"
@@ -84,16 +84,18 @@ ActiveRecord::Schema.define(:version => 20160422034902) do
   end
 
   create_table "uploads", :force => true do |t|
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
     t.string   "name"
     t.string   "mobile"
     t.string   "img"
-    t.integer  "type"
+    t.integer  "upload_type"
     t.string   "city"
     t.integer  "is_contact"
     t.integer  "page_id"
     t.string   "original_filename"
+    t.integer  "vote_id"
+    t.integer  "vote_count",        :default => 0
   end
 
 end
