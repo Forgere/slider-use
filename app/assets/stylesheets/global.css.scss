@@ -516,7 +516,7 @@ button.properties{
           z-index: 2;
         }
         .lt-ie9 &{
-          background: url(about:blank);
+          background: url('about:blank');
         }
       }
       p.blockzhong2{
@@ -531,7 +531,7 @@ button.properties{
           z-index: 2;
         }
         .lt-ie9 &{
-          background: url(about:blank);
+          background: url('about:blank');
         }
       }
       .zhong2{
@@ -547,7 +547,7 @@ button.properties{
         left:448px;
         top: 340px;
         .lt-ie9 &{
-          background: url(about:blank);
+          background: url('about:blank');
         }
         &:hover+img{
           transform:scale(1.1);
@@ -609,7 +609,7 @@ button.properties{
         cursor: pointer;
         // background: url(image_path('closeimg.png'));
         .lt-ie9 &{
-          background: url(about:blank);
+          background: url('about:blank');
         }
       }
       .sharebutton{
@@ -627,7 +627,7 @@ button.properties{
         .weixin{
           left: 513px;
           .lt-ie9 &{
-            background: url(about:blank);
+            background: url('about:blank');
           }
         }
         .weibo{
@@ -637,7 +637,7 @@ button.properties{
             width: 100%;
             height: 100%;
             .lt-ie9 &{
-              background: url(about:blank);
+              background: url('about:blank');
             }
           }
         }
