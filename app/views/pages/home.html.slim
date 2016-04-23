@@ -341,13 +341,12 @@
         }else{
             if(body == "点赞成功"){
               $('.shangchuan').hide();
-              $('.shangchuan').hide();
               if(window.action_str){
                 $("form").attr("action", window.action_str);
               }
               curr = $("span.upload_"+window.tar_str).find('b').text();
               $("span.upload_"+window.tar_str).find('b').text(parseInt(curr) + 1);
-              alert("点赞成功");
+              $('.zansuccess').show();
             }else{
               if(body !== ""){
                 alert(body);
