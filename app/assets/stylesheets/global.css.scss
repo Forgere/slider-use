@@ -515,9 +515,7 @@ button.properties{
           transform:scale(1.1);
           z-index: 2;
         }
-        .lt-ie9 &{
-          background: url('about:blank');
-        }
+        background: url('about:blank');
       }
       p.blockzhong2{
         position: absolute;
@@ -530,9 +528,7 @@ button.properties{
           transform:scale(1.1);
           z-index: 2;
         }
-        .lt-ie9 &{
-          background: url('about:blank');
-        }
+        background: url('about:blank');
       }
       .zhong2{
         left: 88px;
@@ -546,9 +542,7 @@ button.properties{
         z-index:4;
         left:448px;
         top: 340px;
-        .lt-ie9 &{
-          background: url('about:blank');
-        }
+        background: url('about:blank');
         &:hover+img{
           transform:scale(1.1);
           z-index: 2;
@@ -608,9 +602,7 @@ button.properties{
         z-index: 11;
         cursor: pointer;
         // background: url(image_path('closeimg.png'));
-        .lt-ie9 &{
-          background: url('about:blank');
-        }
+        background: url('about:blank');
       }
       .sharebutton{
         margin-top: -40px;
@@ -626,9 +618,7 @@ button.properties{
         }
         .weixin{
           left: 513px;
-          .lt-ie9 &{
-            background: url('about:blank');
-          }
+          background: url('about:blank');
         }
         .weibo{
           left: 569px;
@@ -636,9 +626,7 @@ button.properties{
             display: inline-block;
             width: 100%;
             height: 100%;
-            .lt-ie9 &{
-              background: url('about:blank');
-            }
+            background: url('about:blank');
           }
         }
       }
