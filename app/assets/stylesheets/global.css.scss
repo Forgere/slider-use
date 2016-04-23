@@ -116,7 +116,7 @@ button.properties{
   }
 }
 .showarea{
-  background: url(image_path('routebg.png')) no-repeat 50% 195px;
+  background: url(image_path('routebg.png')) no-repeat 50% 106px;
   .showdianzan{
     .warp{
       width: 1012px;
@@ -182,6 +182,7 @@ button.properties{
               overflow: hidden;
               width: 10000px;
               display: inline-block;
+              height: 218px;
               li{
                 float: left;
                 width: 232px;
@@ -248,7 +249,7 @@ button.properties{
 
       }
       .rule{
-        margin-top: 108px;
+        // margin-top: 108px;
         p{
           font-size: 22px;
           font-family: '微软雅黑';
