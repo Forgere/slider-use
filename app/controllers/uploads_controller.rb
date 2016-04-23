@@ -13,7 +13,7 @@ class UploadsController < ApplicationController
             render text: "您已经点赞过"
           }
         end
-      elsif @upload && @upload.vote_id && params[:vote_id]
+      elsif @upload && @upload.img
         respond_to do |format|
           format.html{
             render text: "您已经上传过照片"
@@ -21,6 +21,7 @@ class UploadsController < ApplicationController
         end
       else
         @upload ||= Upload.new(params[:upload])
+        @upload.vote_id = params[:vote_id] if params[:vote_id]
         respond_to do |format|
           if(@upload.save)
             format.html{
