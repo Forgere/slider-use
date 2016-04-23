@@ -282,6 +282,7 @@
                 = f.text_field "captcha", style: "width: 200px;"
                 = captcha_tag height: 30
                 javascript:
+                  Date.now = Date.now || function() { return +new Date; }; 
                   $(function(){
                     $(".big img").click(function(e){
                        $(e.target).attr("src", '/captcha?i=' + Date.now());
