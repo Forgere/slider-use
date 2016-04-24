@@ -31,7 +31,7 @@ class UploadsController < ApplicationController
                 upload.save
                 render text: '点赞成功'
               else
-                render text: "#{@upload.img.url}:#{@upload.upload_type}"
+                render text: "#{@upload.img.url};#{@upload.upload_type}"
               end
             }
           else
