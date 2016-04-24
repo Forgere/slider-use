@@ -176,7 +176,19 @@
         // });
             //hotel
         $('#hotelslider').carousel({resizeChildByNum: 2 });
-
+        var scroll = function(){
+            //$(".hotel .btn-next").trigger("click");
+            inner = $('.hotel .carousel-inner');
+            var pos =  parseFloat(inner.find('ul').css('margin-left') || 0);
+            childOuterWidth = inner.width()/2;
+            count = inner.find('li').length;
+            pos = pos + childOuterWidth * -2;
+            if(pos == -1 * childOuterWidth * count){
+              pos = 0;
+            }
+            inner.find('ul').stop().animate({'margin-left': pos},200);
+        };
+        var autoScroll = setInterval(scroll,5000);
         //jia
         $('#slider1').carousel();
         $('#slider2').carousel();
