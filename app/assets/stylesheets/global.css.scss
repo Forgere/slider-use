@@ -951,6 +951,14 @@ button.properties{
     background: none;
     height: auto;
     width: 100%;
+    span{
+      position: absolute;
+      height: 100%;
+      display: block;
+      width: 20%;
+      background: url(about:blank);
+      top: 0;
+    }
   }
 
 }
