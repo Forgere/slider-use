@@ -401,6 +401,10 @@ button.properties{
 .hotel{
   background: url(image_path('hotelbgwarp.png')) no-repeat 50% top;
   height: 327px;
+  margin-top: 8px;
+  .home_wap &{
+    background: none;
+  }
   .warp{
     width: 1012px;
     margin: 0 auto;
@@ -408,17 +412,30 @@ button.properties{
     position: relative;
     padding-bottom: 77px;
     height: 308px;
+    .home_wap &{
+      background: url(image_path('wap_hotelbg.png')) no-repeat 50% top;
+      background-size: contain;
+      height: 140px;
+    }
     .sliders{
       position: absolute;
       top: 95px;
       left: 442px;
       width: 556px;
+      .home_wap &{
+        top: 45px;
+        right: 2px;
+        width: 245px;
+      }
       .carousel-inner{
         overflow: hidden;
         margin:0 auto;
         width: 493px;
         .lt-ie9 &{
           width: 492px;
+        }
+        .home_wap &{
+          width: 220px;
         }
         ul{
           overflow: hidden;
@@ -436,6 +453,10 @@ button.properties{
               img{
                 width: 233px;
                 height: 174px;
+                .home_wap &{
+                  width: 104px;
+                  height: 78px;
+                }
                 .lt-ie9 &{
                   max-width: none;
                 }
@@ -443,11 +464,11 @@ button.properties{
               span.title{
                 display: block;
                 color: #3a2d29;
-                font-size: 16px;
+                font-size: 8px;
                 font-family: '微软雅黑';
-                margin-top: 12px;
-                line-height: 24px;
-                height: 48px;
+                margin-top: 4px;
+                line-height: 20px;
+                height: 20px;
                 box-sizing:border-box;
                 text-align: center;
                 text-decoration: none;
