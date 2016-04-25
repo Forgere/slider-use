@@ -1,5 +1,10 @@
 .headimg
 	=editable_image_tag @page, 'content.title3',:placeholder_options => {:width => 400, :height => 300}
-.banner
-	.warp
-	  span
+-if @page.slug == 'home'
+	.banner
+		.warp
+		  span
+-if @page.slug == 'home_wap'
+	.banner
+		=image_tag('wap_banner')
+		span
