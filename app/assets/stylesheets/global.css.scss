@@ -946,8 +946,16 @@ button.properties{
 }
 // wap
 .home_wap{
+  .inner{
+    width: 360px;
+    .innercontent{
+      position: relative;
+    }
+  }
+}
+.home_wap{
   .banner{
-    margin-top: 0;
+    margin-top: -2px;
     background: none;
     height: auto;
     width: 100%;
@@ -955,9 +963,10 @@ button.properties{
       position: absolute;
       height: 100%;
       display: block;
-      width: 20%;
+      width: 50px;
       background: url(about:blank);
       top: 0;
+      left: 270px;
     }
   }
 
