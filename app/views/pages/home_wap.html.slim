@@ -26,9 +26,9 @@
                           b
                             = upload.vote_count
               a.unslider-arrow.prev.btn-prev
-                =image_tag('leftarrow.png')
+                =image_tag('wap-leftarrow.png')
               a.unslider-arrow.next.btn-next
-               =image_tag('rightarrow.png')
+               =image_tag('wap-rightarrow.png')
             .sliderwarp#slider2
               .slider2.slider.carousel-inner
                 ul
@@ -61,10 +61,10 @@
                 =image_tag('leftarrow.png')
               a.unslider-arrow.next.btn-next
                 =image_tag('rightarrow.png')
-          =editable_content_tag :div, @page, 'content.rule', :class => 'rule' do
-            |
       .showroute
         .warp
+          =editable_content_tag :div, @page, 'content.rule', :class => 'rule' do
+            |
           .title.title2
             ul.groups
               li#route1
@@ -86,19 +86,16 @@
                   a href="http://adtz1.package.qunar.com/user/detail.jsp?id=3296996159&ttsRouteType=本地游&ad_departure=5LiK5rW3&ad_arrive=5YyX5Lqs&filterDate=&qssrc=eyJ0cyI6IjE0NjA2OTE0NjAyMTEiLCJzcmMiOiJhbGwuZW52YyIsImFjdCI6InNjcm9sbCJ9&ts=1460691480012_649#route_id=11196287&productId=3296996159&vendorid=qb2c_adtz1&DepLastDate=2016-07-14&tf=&searchid=1460691480012_649&arrive=5YyX5Lqs&DepDate=2016-04-16&vendor=54ix5omT5ZCs5ZGo6L655ri4572R&djtf=&function=6Ieq55Sx6KGM&tm=l01_all_search_newc&from=&isAds=&departure=5LiK5rW3&tp=1460691466720_987" target="blank"
                     =image_tag('北京雾灵山.jpg')
                     span.title 【自由行】<雾灵山两日自由行>宿雾灵山庄上人家度假村
+                li
                   a href="http://pril3.package.qunar.com/user/detail.jsp?id=291180374&order_source=tts_tuan&ttsRouteType=本地游&ad_departure=5LiK5rW3&ad_arrive=5a6B5rOi&filterDate=&qssrc=eyJ0cyI6IjE0NjA2OTEyNTc3MDciLCJzcmMiOiJhbGwuZW52YyIsImFjdCI6InNjcm9sbCJ9&ts=1460691324605_469#route_id=13966226&productId=291180374&vendorid=qb2c_pril3&DepLastDate=2016-06-30&tf=&searchid=1460691324605_469&arrive=5a6B5rOi&DepDate=2016-04-16&vendor=5rWZ6aOO6Ieq55Sx6KGM&djtf=&function=6Ieq55Sx6KGM&tm=l01_all_search_newc&from=&isAds=&departure=5LiK5rW3&tp=1460691278772_659" target="blank"
                     =image_tag('宁波.jpg')
                     span.title 【自由行】【春季-踏青】游：黄贤海上长城森林公园
-                li
                   a href="http://hbyy6.package.qunar.com/user/detail.jsp?id=829101825&ttsRouteType=本地游&ad_departure=5LiK5rW3&ad_arrive=5q2m5rGJ&filterDate=&qssrc=eyJ0cyI6IjE0NjA2OTExMzM4NTUiLCJzcmMiOiJhbGwuZW52YyIsImFjdCI6InNjcm9sbCJ9&ts=1460691189766_666#route_id=15162293&productId=829101825&vendorid=qb2c_hbyy6&DepLastDate=2016-05-03&tf=&searchid=1460691189766_666&arrive=5q2m5rGJ&DepDate=2016-04-16&vendor=5rmW5YyX5piT5ri45aSp5LiL5Zu95peF&djtf=&function=6Ieq55Sx6KGM&tm=l01_all_search_newc&from=&isAds=&departure=5LiK5rW3&tp=1460691167114_142" target="blank"
                     =image_tag('武汉.jpg')
                     span.title 【自由行】武汉黄陂云雾山锦里沟2日游
             .slider5.route#slider5
               ul
                 li
-                  a href="http://tndj1.package.qunar.com/user/detail.jsp?id=812744268&order_source=tts_tuan&ttsRouteType=" target="blank"
-                    =image_tag('杭州2.jpg')
-                    span.title 【自由行】杭州千岛湖林海归真双人自驾2日游
                   a href="http://fxyc3.package.qunar.com/user/detail.jsp?id=2102609618&ttsRouteType=本地游&ad_departure=5YyX5Lqs&ad_arrive=5LiK5rW3&filterDate=&qssrc=eyJ0cyI6IjE0NjA2OTE4MTgxODYiLCJzcmMiOiJhbGwuZW52YyIsImFjdCI6InNjcm9sbCJ9&ts=1460691910791_625#route_id=15418641&productId=2102609618&vendorid=qb2c_tczzy&DepLastDate=2016-06-30&tf=&searchid=1460691910791_625&arrive=5LiK5rW3&DepDate=2016-04-20&vendor=5ZCM56iL6Ieq5Yqp5ri4&djtf=&function=6Ieq55Sx6KGM&tm=l01_all_search_newc&from=&isAds=&departure=5YyX5Lqs&tp=1460691894856_303" target="blank"
                     =image_tag('上海.jpg')
                     span.title 【自由行】上海之根雪浪湖温泉度假村
@@ -109,6 +106,9 @@
                     =image_tag('北京密云.jpg')
                     span.title 【自由行】<北京密云两日自由行>宿南山驿站农家乐，食农家特色美食，畅游卧虎山长城美景
                 li
+                  a href="http://tndj1.package.qunar.com/user/detail.jsp?id=812744268&order_source=tts_tuan&ttsRouteType=" target="blank"
+                    =image_tag('杭州2.jpg')
+                    span.title 【自由行】杭州千岛湖林海归真双人自驾2日游
                   a href="http://hbxz2.package.qunar.com/user/detail.jsp?id=1851310036&ttsRouteType=本地游&ad_departure=5LiK5rW3&ad_arrive=5q2m5rGJ&filterDate=&qssrc=eyJ0cyI6IjE0NjA2OTE5Nzk0ODkiLCJzcmMiOiJhbGwuZW52YyIsImFjdCI6InNjcm9sbCJ9&ts=1460692018798_763#route_id=15023266&productId=1851310036&vendorid=qb2c_hbxz2&DepLastDate=2016-07-14&tf=&searchid=1460692018798_763&arrive=5q2m5rGJ&DepDate=2016-04-16&vendor=5rmW5YyX6IGU5Y%2BL5Zu96ZmF5peF6KGM56S%2B5pyJ6ZmQ5YWs5Y%2B4&djtf=&function=6Ieq55Sx6KGM&tm=l01_all_search_newc&from=&isAds=&departure=5LiK5rW3&tp=1460692002815_204" target="blank"
                     =image_tag('武汉2.jpg')
                     span.title 【自由行】武汉到木兰锦里沟双人自驾游！
@@ -124,10 +124,10 @@
                   a href="http://adtz1.package.qunar.com/user/detail.jsp?id=4197523925&ttsRouteType=本地游&ad_departure=5LiK5rW3&ad_arrive=5YyX5Lqs&filterDate=&qssrc=eyJ0cyI6IjE0NjA2OTI0MDYwMzIiLCJzcmMiOiJhbGwuZW52YyIsImFjdCI6InNjcm9sbCJ9&ts=1460692444259_071#route_id=6029598&productId=4197523925&vendorid=qb2c_adtz1&DepLastDate=2016-07-14&tf=&searchid=1460692444259_071&arrive=5YyX5Lqs&DepDate=2016-04-16&vendor=54ix5omT5ZCs5ZGo6L655ri4572R&djtf=&function=6Ieq55Sx6KGM&tm=l01_all_search_newc&from=&isAds=&departure=5LiK5rW3&tp=1460692410397_039" target="blank"
                     =image_tag('北京青龙峡.jpg')
                     span.title 【自由行】<青龙峡两日自行、自驾游>绿野山庄自助烧烤、玩彩蛋真人CS、体验激情短漂、游青龙峡，感受乡野乐趣，轻松无限
+                li
                   a href="http://myylx.package.qunar.com/user/detail.jsp?id=3557036704&ttsRouteType=本地游&ad_departure=5LiK5rW3&ad_arrive=5a6B5rOi&filterDate=&qssrc=eyJ0cyI6IjE0NjA2OTIzMDI5NjEiLCJzcmMiOiJhbGwuZW52YyIsImFjdCI6ImZpbHRlciJ9&ts=1460692314001_786#route_id=5083781&productId=3557036704&vendorid=qb2c_myylxw&DepLastDate=2016-10-12&tf=&searchid=1460692314001_786&arrive=5a6B5rOi&DepDate=2016-04-16&vendor=5oWi5oKg5oKg5peF6KGM572R&djtf=&function=6Ieq55Sx6KGM&tm=l01_all_search_newc&from=&isAds=&departure=5LiK5rW3&tp=1460692304115_984" target="blank"
                     =image_tag('宁波天.jpg')
                     span.title 【自由行】天马四明山居度假村森林别墅房住宿1晚+浙东大竹海门票双人自由行
-                li
                   a href="http://fxyc3.package.qunar.com/user/detail.jsp?id=1937785631&ttsRouteType=本地游&ad_departure=5LiK5rW3&ad_arrive=5a6B5rOi&filterDate=&qssrc=eyJ0cyI6IjE0NjA2OTIxMzk5NTYiLCJzcmMiOiJhbGwuZW52YyIsImFjdCI6InNjcm9sbCJ9&ts=1460692218695_433#route_id=5900734&productId=1937785631&vendorid=qb2c_tczzy&DepLastDate=2016-06-30&tf=&searchid=1460692218695_433&arrive=5a6B5rOi&DepDate=2016-04-16&vendor=5ZCM56iL6Ieq5Yqp5ri4&djtf=&function=6Ieq55Sx6KGM&tm=l01_all_search_newc&from=&isAds=&departure=5LiK5rW3&tp=1460692197720_434" target="blank"
                     =image_tag('宁波达.jpg')
                     span.title 【自由行】达蓬山旅游度假区(仙佛谷成人票)2张+达蓬山旅游度假区(环湖乐园成人票)2张+宁波曙光丽亭酒店(标准双人房)1晚
@@ -386,4 +386,9 @@
       var s = document.getElementsByTagName("script")[0]; 
       s.parentNode.insertBefore(hm, s);
     })();
+  javascript:
+    $('#slider1').carousel({resizeChildByNum: 3 });
+    $('#slider3').carousel({resizeChildByNum: 3 });
+    $('#slider3').carousel({resizeChildByNum: 3 });
+
 = render :template => 'layouts/application'

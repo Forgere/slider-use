@@ -190,8 +190,6 @@
         };
         var autoScroll = setInterval(scroll,5000);
         //jia
-        $('#slider1').carousel();
-        $('#slider2').carousel();
-        $('#slider3').carousel();
+
     });
 })(jQuery);

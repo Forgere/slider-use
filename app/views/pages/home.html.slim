@@ -363,6 +363,9 @@
             }
         }
     });
+    $('#slider1').carousel();
+    $('#slider2').carousel();
+    $('#slider3').carousel();
     $(document).on('click',"span.greenbg",function(e){
       if(e.target.tagName ==='I'){
         window.tar_str = $(e.target).parent().attr('class').match(/upload_(\d+)/)[1];
