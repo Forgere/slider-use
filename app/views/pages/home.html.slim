@@ -338,7 +338,7 @@
   iframe id="upload_target" name="upload_target" style="height:0px;"
   javascript:
     //触发轮播
-    var lis = $('.showdianzan .groups li');
+    var lis = $('.showroute .groups li');
     var countli = 0;
     function clickcount(){
       if(countli == 3){countli = 0};
@@ -347,12 +347,12 @@
     }
     slidetime = setInterval(clickcount,5000);
     //暂停
-    $('.showdianzan .groups li span').hover(function(){
+    $('.showroute .groups li span').hover(function(){
       clearInterval(slidetime);
     },function(){
       slidetime = setInterval(clickcount,5000);
     })
-    $('.showdianzan .carousel-inner a').hover(function(){
+    $('.showroute .route a').hover(function(){
       clearInterval(slidetime);
     },function(){
       slidetime = setInterval(clickcount,5000);
