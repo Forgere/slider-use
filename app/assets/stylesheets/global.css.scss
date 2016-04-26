@@ -659,13 +659,24 @@ button.properties{
           width: 56px;
           height: 69px;
           position: absolute;
+          .home_wap &{
+            top: 0;
+            width: 29px;
+            height: 24px;
+          }
         }
         .weixin{
           left: 513px;
           background: url('about:blank');
+          .home_wap &{
+            left: 180px;
+          }
         }
         .weibo{
           left: 569px;
+          .home_wap &{
+            left: 208px;
+          }
           a{
             display: inline-block;
             width: 100%;
@@ -1040,13 +1051,24 @@ button.properties{
       padding: 20px;
       width: 480px;
       margin:0 auto;
+      .home_wap &{
+        width: 200px;
+      }
       p{
         line-height: 40px;
         height: 40px;
         border-bottom: 1px solid #000000;
         margin-bottom: 10px;
+        .home_wap &{
+          line-height: 20px;
+          height: 20px;
+          margin-bottom: 5px;
+        }
         span{
           font-size: 20px;
+          .home_wap &{
+            font-size: 14px;
+          }
         }
         span.right{
           float: right;
@@ -1057,6 +1079,10 @@ button.properties{
       img{
         width: 300px;
         margin-left: 75px;
+        .home_wap &{
+          width: 175px;
+          margin-left: 12px;
+        }
       }
     }
   }

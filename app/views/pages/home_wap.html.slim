@@ -214,15 +214,10 @@
 
       .zansuccess.tanchu
         .warp
-          .title
-            =image_tag('title-gongxi.png')
-          .close
           .kuangbg
-            =image_tag('tanchukuang2.png')
-          .content
-            =image_tag('zansuccesscontent.png')
+            =image_tag('wap_zansuccessbg.png')
           .sharebutton
-            =image_tag('tanchu-button.png')
+            =image_tag('wap_sharebutton.png')
             span.weixin
             span.weibo
               a href="javascript:void((function(s,d,e,r,l,p,t,z,c){var f='http://v.t.sina.com.cn/share/share.php?appkey=',u=z||d.location,p=['&url=',e(u),'&title=',e(t||d.title),'&source=',e(r),'&sourceUrl=',e(l),'&content=',c||'gb2312','&pic=',e(p||'')].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=440,height=430,left=',(s.width-440)/2,',top=',(s.height-430)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else a();})(screen,document,encodeURIComponent,'','','','荣威360，让幸福更多，让幸福汇聚！快来跟随荣威360一起，全家幸福出游吧！ #全家出游 幸福满载#','','utf-8'));"
@@ -324,6 +319,8 @@
       $("form").attr("action", window.action_str + "?vote_id="+window.tar_str);
       $('.shangchuan').show();
       $('.shangchuanwarp').hide();
+      $('.zhezhao').show();
+      $('.home_wap .shangchuan .kuangbg>img').attr('src','/assets/wap_zhucebg.png');
       $('.zhucewarp').show();
     });
     var _hmt = _hmt || [];

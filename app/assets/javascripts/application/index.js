@@ -1,4 +1,6 @@
 $(function(){
+	var wheight =$(document).height();
+	$('.zhezhao').css('height',wheight);
 	//遮罩显示
 	function showzhezhao(){
 		$('.zhezhao').css('display','block');
@@ -74,8 +76,11 @@ $(function(){
 	//分享按钮
 	$('.sharebutton .weixin').on('click',function(event) {
 		event.preventDefault();
+		event.stopPropagation();
 		/* Act on the event */
 		//$('.tanchu').hide();
+		$('.zhezhao').show();
+		$('.tanchu').hide();
 		$('.erweima').show();
 	});
 	$('span.right').click(function(event) {
