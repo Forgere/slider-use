@@ -1106,6 +1106,8 @@ button.properties{
 }
 // wap
 .home_wap{
+  position: absolute;
+  transform-origin:0 0;
   .inner{
     width: 360px;
     .innercontent{

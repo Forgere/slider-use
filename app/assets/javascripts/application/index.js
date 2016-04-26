@@ -1,4 +1,12 @@
 $(function(){
+    var $w = $(window),
+    ww = $w.width(),
+    wh = $w.height(),
+    transform;
+    var scale = ww/360;
+    transform = 'scale(' + scale + ',' + scale + ')';
+    $('.home_wap').css('-webkit-transform', transform)
+      .css('transform', transform);
 	var wheight =$(document).height();
 	$('.zhezhao').css('height',wheight);
 	//遮罩显示
