@@ -761,6 +761,9 @@ button.properties{
       width: 100%;
       height: 100%;
       .shangchuanwarp{
+        .home_wap &{
+          margin-top: 105;
+        }
         .title{
           position: absolute;
           left: 46px;
@@ -776,6 +779,9 @@ button.properties{
           width: 390px;
           height: 50px;
           z-index: 999;
+          .home_wap &{
+            height: 24px;
+          }
         }
         .content{
           margin-bottom: 30px;
@@ -786,22 +792,50 @@ button.properties{
           position: absolute;
         }
         label{
+          .home_wap &{
+            position: absolute;
+            top: 95px;
+            left: 81px;
+          }
           input[type='text']{
             font-size: 21px;
             height: 45px;
             line-height: 45px;
             padding: 0 45px 0 60px;
+            .home_wap &{
+              height: 24px;
+              line-height: 24px;
+              font-size: 12px;
+              padding: 0 30px;
+              width: 100px;
+            }
           }
           span{
             position: relative;
-            left: 30px;
+            left: 20px;
             top: 10px;
+            .home_wap &{
+              top: 5px;
+              left: 15px;
+            }
+            img{
+              .home_wap &{
+                width: 24px;
+              }
+            }
           }
         }
         p{
           font-size: 16px;
           color: white;
           margin-top: 14px;
+          .home_wap &{
+            font-size: 10px;
+            margin-top: 0;
+            position: absolute;
+            top: 134px;
+            left: 120px;
+          }
         }
         .xuanxiang{
           float: left;
@@ -811,10 +845,22 @@ button.properties{
           margin-left: 100px;
           margin-top: 25px;
           position: relative;
+          .home_wap &{
+            display: block;
+            margin-left: -23px;
+            float: none;
+            height: 14px;
+            font-size: 13px;
+          }
           label.check{
             display: inline-block;
             background: url(checkbox2.jpg) no-repeat;
             padding-left: 30px;
+            .home_wap &{
+              background: url(wap_checkbox.jpg) no-repeat;
+              background-size: contain;
+              height: 13px;
+            }
           }
           input[type="radio"]{
             position: absolute;
@@ -826,6 +872,10 @@ button.properties{
           }
           label.check.checked{
             background: url(checkbox.jpg) no-repeat;
+            .home_wap &{
+              background: url(wap_checkbox2.jpg) no-repeat;
+              background-size: contain;
+            }
           }
         }
       }
