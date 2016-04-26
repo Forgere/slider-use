@@ -34,6 +34,7 @@ gem 'xtunes_helpers', git: 'git@xtunes.cn:xtunes/helper.git'
 
 gem 'easy_captcha'
 gem 'rmagick'
+gem 'axlsx_rails','~> 0.3.0'
 
 # The Gems for Test
 gem 'quiet_assets', '>= 1.0.1', group: :development

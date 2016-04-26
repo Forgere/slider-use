@@ -1,0 +1,7 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "导出数据") do |sheet|
+  #sheet.add_row @records.first.members.map { |m| m.to_s.force_encoding('UTF-8') }
+  @records.each do |record|
+    sheet.add_row record.to_a
+  end
+end
