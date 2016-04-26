@@ -339,7 +339,7 @@
   javascript:
     $('#upload_target').on('load', function(){
         body = $('iframe').contents().find('body')[0].innerHTML;
-        if(body.indexOf(":") > -1){
+        if(body.indexOf(";") > -1){
           $('.shangchuan').hide();
           $('.gongxi').show();
           attrs = body.split(";");
