@@ -750,7 +750,13 @@ button.properties{
         position: absolute;
         bottom: 80px;
         right: 79px;
-        display: none;
+        // display: none;
+        .home_wap &{
+          bottom: auto;
+          right: auto;
+          left: 23.5px;
+          top: 201px;
+        }
       }
       .usersshareimg{
         position: absolute;
@@ -761,7 +767,18 @@ button.properties{
         height: 196px;
         background-size: contain;
         //filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='image_path('zhanwei.png')',sizingMethod='scale');
+        .home_wap &{
+          background: url(image_path('zhanwei.png')) no-repeat;
+          background-size: cover;
+          left: 23.5px;
+          top: 73px;
+          bottom: auto;
+          height: 128px;
+          width: 308px;
+
+        }
         img{
+          width: 100%;
           border-radius: 8px;
         }
       }
