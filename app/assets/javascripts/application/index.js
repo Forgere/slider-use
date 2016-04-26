@@ -16,12 +16,16 @@ $(function(){
     }
 	});
 	//wap close
-	$('.home_wap .tanchu').on('click', function() {
+	$('.home_wap .tanchu').on('click', function(e) {
 		$('.tanchu').hide();
 		$('.zhezhao').hide();
 		if(window.action_str){
       $("form").attr("action", window.action_str);
     }
+	});
+	$('.shangchuanwarp').on('click', function(event) {
+    event.stopPropagation();
+		/* Act on the event */
 	});
 	//规则弹出
 	$('.banner span').on('click',function(){

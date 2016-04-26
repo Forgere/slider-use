@@ -762,7 +762,7 @@ button.properties{
       height: 100%;
       .shangchuanwarp{
         .home_wap &{
-          margin-top: 105;
+          margin-top: 88px;
         }
         .title{
           position: absolute;
@@ -772,7 +772,6 @@ button.properties{
         input[type="file"]{
           opacity: 0;
           filter: alpha(opacity=0);
-          width: 46px;
           position: absolute;
           left: 323px;
           top: 195px;
@@ -780,7 +779,10 @@ button.properties{
           height: 50px;
           z-index: 999;
           .home_wap &{
-            height: 24px;
+            height: 30px;
+            width: 210px;
+            left: 0;
+            top: 0;
           }
         }
         .content{
@@ -790,11 +792,20 @@ button.properties{
           bottom: 12px;
           left: 356px;
           position: absolute;
+          .home_wap &{
+            left: 112px;
+            bottom: 31px;
+          }
+          img{
+            .home_wap &{
+              width: 135px;
+            }
+          }
         }
         label{
           .home_wap &{
             position: absolute;
-            top: 95px;
+            top: 113px;
             left: 81px;
           }
           input[type='text']{
@@ -833,7 +844,7 @@ button.properties{
             font-size: 10px;
             margin-top: 0;
             position: absolute;
-            top: 134px;
+            top: 151px;
             left: 120px;
           }
         }
