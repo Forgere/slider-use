@@ -337,6 +337,26 @@
           =image_tag('erweima.png')
   iframe id="upload_target" name="upload_target" style="height:0px;"
   javascript:
+    //触发轮播
+    var lis = $('.showdianzan .groups li');
+    var countli = 0;
+    function clickcount(){
+      if(countli == 3){countli = 0};
+      $(lis[countli]).find('span').trigger("click");
+      return countli += 1;
+    }
+    slidetime = setInterval(clickcount,5000);
+    //暂停
+    $('.showdianzan .groups li span').hover(function(){
+      clearInterval(slidetime);
+    },function(){
+      slidetime = setInterval(clickcount,5000);
+    })
+    $('.showdianzan .carousel-inner a').hover(function(){
+      clearInterval(slidetime);
+    },function(){
+      slidetime = setInterval(clickcount,5000);
+    })
     $('#upload_target').on('load', function(){
         body = $('iframe').contents().find('body')[0].innerHTML;
         if(body.indexOf(";") > -1){
