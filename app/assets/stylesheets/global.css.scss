@@ -99,7 +99,10 @@ button.properties{
   }
 }
 .showarea{
-  background: url(image_path('routebg.png')) no-repeat 50% 106px;
+  background: url(image_path('routebg.png')) no-repeat 50% 167px;
+  .home_wap &{
+    background: url(image_path('routebg.png')) no-repeat 50% 106px;
+  }
   .showdianzan{
     .warp{
       width: 1012px;
@@ -231,7 +234,10 @@ button.properties{
 
       }
       .rule{
-        // margin-top: 108px;
+        margin-top: 58px;
+        .home_wap &{
+          margin-top: 0;
+        }
         p{
           font-size: 22px;
           font-family: '微软雅黑';
