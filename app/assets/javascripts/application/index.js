@@ -112,6 +112,7 @@ var proSchool = {"00":["合肥","芜湖","阜阳","六安","池州","亳州"],
   //遮罩大小
 	var wheight =$(document).height();
 	$('.zhezhao').css('height',wheight);
+	window.fileSelected = false;
 	//遮罩显示
 	function showzhezhao(){
 		$('.zhezhao').css('display','block');
@@ -161,11 +162,14 @@ var proSchool = {"00":["合肥","芜湖","阜阳","六安","池州","亳州"],
 		$('.shangchuanwarp').show();
 		$('.zhucewarp').hide();
 	});
+	$('input#upload_img').on("change", function(){
+		window.fileSelected = true;
+	});
 	//注册弹出（加判断）
 	$('.shangchuanwarp .sharebutton').on('click',function(event) {
 		event.preventDefault();
 		/* Act on the event */
-		if($('input#upload_img').val().length === 0 || !$('input#upload_img').val().match(/\.gif|jpg|jpeg|png|bmp$/)){
+		if(!window.fileSelected){
 			alert("请上传图片");
 			return false;
 		}
