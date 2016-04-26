@@ -53,7 +53,11 @@ class UploadsController < ApplicationController
 
   def show
     upload = Upload.find(params[:id])
-    send_file upload.img.file.path
+    if params[:thumb] == 'list'
+      send_file upload.img.list.file.path
+    else
+      send_file upload.img.file.path
+    end
   end
 
   def export

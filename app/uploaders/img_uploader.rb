@@ -26,6 +26,10 @@ class ImgUploader < CarrierWave::Uploader::Base
     process :resize_to_fill => [32, 32]
   end
 
+  version :list do
+    process :resize_to_fill => [232, 154]
+  end
+
   def cache_dir
     "#{Rails.root}/attachments/files/temp"
   end

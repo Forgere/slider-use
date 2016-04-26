@@ -15,10 +15,10 @@
           .sliderwarp.showslider#slider1
             .slider1.slider.carousel-inner
               ul
-                - Upload.where(upload_type: 1).each do |upload|
+                - Upload.where(upload_type: 1).where('original_filename is not null').each do |upload|
                   li
                     a
-                      =image_tag(upload.img.url)
+                      =image_tag(upload.img.list.url + "?thumb=list")
                       span.greenbg class= "upload_#{upload.id}"
                         i
                         | 点赞数
@@ -31,10 +31,10 @@
           .sliderwarp#slider2
             .slider2.slider.carousel-inner
               ul
-                - Upload.where(upload_type: 2).each do |upload|
+                - Upload.where(upload_type: 2).where('original_filename is not null').each do |upload|
                   li
                     a
-                      =image_tag(upload.img.url)
+                      =image_tag(upload.img.list.url + "?thumb=list")
                       span.greenbg class= "upload_#{upload.id}"
                         i
                         | 点赞数
@@ -47,10 +47,10 @@
           .sliderwarp#slider3
             .slider3.slider.carousel-inner
               ul
-                - Upload.where(upload_type: 3).each do |upload|
+                - Upload.where(upload_type: 3).where('original_filename is not null').each do |upload|
                   li
                     a
-                      =image_tag(upload.img.url)
+                      =image_tag(upload.img.list.url + "?thumb=list")
                       span.greenbg class= "upload_#{upload.id}"
                         i
                         | 点赞数
