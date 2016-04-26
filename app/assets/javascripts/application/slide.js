@@ -94,13 +94,13 @@
             during: 800,
             delay: 7000,
             dots: true,             //  Display dot navigation
-            fluid: true   
+            fluid: true
         });
         $("#slider6").unslider({
             during: 800,
             delay: 7000,
             dots: true,             //  Display dot navigation
-            fluid: true   
+            fluid: true
         });
         $('#route1').click(function(event) {
             /* Act on the event */

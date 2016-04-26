@@ -65,9 +65,9 @@
 			//  Set the relative widths
 			ul.css({position: 'relative', left: 0, width: ((len) * 100) + '%'});
 			if(o.fluid) {
-				li.css({'float': 'left'}).width((100 / len) + '%');
+				li.css({'float': 'left'}).width('360px');
 			} else {
-				li.css({'float': 'left'}).width((_.max[0]) + 'px');
+				li.css({'float': 'left'}).width('360px');
 			}
 
 			//  Autoslide
