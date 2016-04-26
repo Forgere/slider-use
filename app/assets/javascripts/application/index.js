@@ -27,6 +27,10 @@ $(function(){
     event.stopPropagation();
 		/* Act on the event */
 	});
+	$('.zhucewarp').on('click', function(event) {
+    event.stopPropagation();
+		/* Act on the event */
+	});
 	//规则弹出
 	$('.banner span').on('click',function(){
 		showzhezhao();
@@ -56,6 +60,7 @@ $(function(){
 			alert("请选择明信片宣言");
 			return false;
 		}
+		$('.home_wap .shangchuan .kuangbg>img').attr('src','/assets/wap_zhucebg.png');
 		$('.shangchuanwarp').hide();
 		$('.zhucewarp').show();
 	});

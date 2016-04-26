@@ -500,9 +500,11 @@ button.properties{
       .prev{
         left: -4px;
         text-align: right;
+        font-family: "微软雅黑";
       }
       .next{
         right: 5px;
+        font-family: "微软雅黑";
       }
     }
   }
@@ -640,6 +642,15 @@ button.properties{
       .sharebutton{
         margin-top: -40px;
         position: relative;
+        .home_wap &{
+          left: 0;
+          bottom: -28px;
+        }
+        img{
+          .home_wap &{
+            width: 135px;
+          }
+        }
         &:hover{
           cursor: pointer;
         }
@@ -895,27 +906,46 @@ button.properties{
         width: 590px;
         margin: 0 auto;
         margin-top: 60px;
-        .title{
-          position: absolute;
-          left: 46px;
-          top: -26px;
+        .home_wap &{
+          padding-left: 33px;
+          width: 330px;
         }
         .sharebutton{
           bottom: 12px;
           left: 356px;
           position: absolute;
+          .home_wap &{
+            left: 105px;
+            bottom: 32px;
+          }
+          input{
+            .home_wap &{
+              width: 135px;
+              height: 26px;
+            }
+          }
         }
         p{
           margin-bottom: 28px;
           height:28px;
           line-height: 28px;
           overflow: hidden;
+          .home_wap &{
+            height: 22px;
+            line-height: 22px;
+          }
           label{
             font-size: 28px;
             color: #ffffff;
             float: left;
             width: 140px;
             text-align: center;
+            .home_wap &{
+              font-size: 14px;
+              margin-right:30px;
+              width: 71px;
+              text-align: right;
+            }
           }
           input{
             height: 28px;
@@ -924,6 +954,12 @@ button.properties{
             box-sizing:border-box;
             float: left;
             width: 350px;
+            .home_wap &{
+              height: 22px;
+              line-height: 22px;
+              font-size: 14px;
+              width: 120px;
+            }
           }
           select{
             width: 350px;
@@ -932,10 +968,18 @@ button.properties{
             line-height: 28px;
             font-size: 24px;
             box-sizing:border-box;
+            .home_wap &{
+              width: 150px;
+            }
           }
         }
         p.big{
           margin-bottom: 40px;
+          img{
+            .home_wap &{
+              margin: 4px 0 0 -20px;
+            }
+          }
         }
         p.word{
           width: 570px;
@@ -943,9 +987,17 @@ button.properties{
           font-size: 20px;
           color: #ffffff;
           font-family: '微软雅黑';
+          .home_wap &{
+            width: 280px;
+            font-size: 14px;
+            height: 40px;
+          }
         }
         span{
           margin: 0 42px;
+          .home_wap &{
+            margin: 0 25px;
+          }
           input[type='radio']{
             margin-right: 8px;
           }
@@ -954,67 +1006,9 @@ button.properties{
             color: #ffffff;
             font-family: '微软雅黑';
             margin-bottom: -8px;
-          }
-        }
-      }
-    }
-  }
-  .zhuce{
-    display: none;
-    .content{
-      position: absolute;
-      top: 32px;
-      width: 100%;
-      form{
-        width: 590px;
-        margin: 0 auto;
-        margin-top: 60px;
-        p{
-          margin-bottom: 28px;
-          height:28px;
-          line-height: 28px;
-          label{
-            font-size: 28px;
-            color: #ffffff;
-            float: left;
-            margin-right: 50px;
-          }
-          input{
-            height: 28px;
-            line-height: 28px;
-            font-size: 24px;
-            box-sizing:border-box;
-            float: left;
-          }
-          select{
-            width: 380px;
-            float: left;
-            height: 28px;
-            line-height: 28px;
-            font-size: 24px;
-            box-sizing:border-box;
-          }
-        }
-        p.big{
-          margin-bottom: 40px;
-        }
-        p.word{
-          width: 570px;
-          text-align: left;
-          font-size: 20px;
-          color: #ffffff;
-          font-family: '微软雅黑';
-        }
-        span{
-          margin: 0 42px;
-          input[type='radio']{
-            margin-right: 8px;
-          }
-          label{
-            font-size: 28px;
-            color: #ffffff;
-            font-family: '微软雅黑';
-            margin-bottom: -8px;
+            .home_wap &{
+              font-size: 14px;
+            }
           }
         }
       }
