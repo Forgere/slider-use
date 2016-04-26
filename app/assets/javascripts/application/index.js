@@ -15,6 +15,14 @@ $(function(){
       $("form").attr("action", window.action_str);
     }
 	});
+	//wap close
+	$('.home_wap .tanchu').on('click', function() {
+		$('.tanchu').hide();
+		$('.zhezhao').hide();
+		if(window.action_str){
+      $("form").attr("action", window.action_str);
+    }
+	});
 	//规则弹出
 	$('.banner span').on('click',function(){
 		showzhezhao();

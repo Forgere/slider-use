@@ -681,6 +681,15 @@ button.properties{
       padding-right: 146px;
       width: 880px;
       height: 420px;
+      .home_wap &{
+        top: 40px;
+        left: 26px;
+        font-size: 8px;
+        line-height: 18px;
+        padding-right: 0;
+        width: 300px;
+        height: 422px;
+      }
       &::-webkit-scrollbar-track
       {
         -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
@@ -700,6 +709,9 @@ button.properties{
         -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
         background-color: #D62929;
         width: 8px;
+        .home_wap &{
+          background-color: #c64806;
+        }
       }
       b{
         font-weight: bold;
