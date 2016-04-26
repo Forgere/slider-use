@@ -404,6 +404,7 @@ button.properties{
   margin-top: 8px;
   .home_wap &{
     background: none;
+    height: 145px;
   }
   .warp{
     width: 1012px;
@@ -424,7 +425,7 @@ button.properties{
       width: 556px;
       .home_wap &{
         top: 45px;
-        right: 2px;
+        left: 113px;
         width: 245px;
       }
       .carousel-inner{
@@ -472,6 +473,10 @@ button.properties{
                 box-sizing:border-box;
                 text-align: center;
                 text-decoration: none;
+                .home_wap &{
+                  height: 10px;
+                  line-height: 10px;
+                }
               }
             }
           }
@@ -479,19 +484,25 @@ button.properties{
       }
       .unslider-arrow{
         position: absolute;
-        top: 55px;
+        top: 28px;
         font-weight: bolder;
         color: #d91e1c;
         font-size: 60px;
         cursor: pointer;
         width: 25px;
+        .home_wap &{
+          width: 8px;
+          height: 15px;
+          display: inline-block;
+          font-size: 30px;
+        }
       }
       .prev{
-        left: 0px;
+        left: -4px;
         text-align: right;
       }
       .next{
-        right: 0px;
+        right: 5px;
       }
     }
   }
