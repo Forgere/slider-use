@@ -54,14 +54,14 @@ class UploadsController < ApplicationController
   def show
     upload = Upload.find(params[:id])
     if params[:thumb] == 'list'
-      send_file upload.img.list.file.path
+      send_file upload.img.list.file.path, disposition: 'inline'
     else
-      send_file upload.img.file.path
+      send_file upload.img.file.path, disposition: 'inline'
     end
   end
 
   def export
-    sql = 'select name as "姓名",mobile as "手机号",city as "城市",(case when is_contact > 0 then "可以联系" else "不可以联系" end) as "是否可以联系",created_at as "提交日期", (case when vote_id > 0 then "点赞" else "没点赞" end) as "是否点赞", (case when original_filename is not NULL then "上传照片" else "没有上传照片" end) as "是否上传照片", (case when upload_type = 1 then "荣威360强劲动力，再高的坡也能爬!" when upload_type = 2 then "低油耗!想去哪儿就去哪儿!" when upload_type = 3 then "荣威360超大空间，全家出游So easy！" else "" end) as "口号" from uploads where created_at > date_add(CURDATE(), INTERVAL -1 DAY) and created_at < CURDATE()'
+    sql = 'select name as "姓名",mobile as "手机号",city as "城市",(case when is_contact > 0 then "可以联系" else "不可以联系" end) as "是否可以联系",created_at as "提交日期", (case when vote_id > 0 then "点赞" else "没点赞" end) as "是否点赞", (case when original_filename is not NULL then "上传照片" else "没有上传照片" end) as "是否上传照片", (case when upload_type = 1 then "荣威360强劲动力，再高的坡也能爬!" when upload_type = 2 then "低油耗!想去哪儿就去哪儿!" when upload_type = 3 then "荣威360超大空间，全家出游So easy！" else "" end) as "口号" from uploads'
     @records = ActiveRecord::Base.connection.execute(sql)
     respond_to do |format|
       format.xlsx
