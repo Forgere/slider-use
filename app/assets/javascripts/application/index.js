@@ -26,7 +26,7 @@ $(function(){
     }
 	});
 	//wap close
-	$('.home_wap .tanchu').on('click', function(e) {
+	$('.mobile .tanchu').on('click', function(e) {
 		$('.tanchu').hide();
 		$('.zhezhao').hide();
 		if(window.action_str){
@@ -70,7 +70,7 @@ $(function(){
 			alert("请选择明信片宣言");
 			return false;
 		}
-		$('.home_wap .shangchuan .kuangbg>img').attr('src','/assets/wap_zhucebg.png');
+		$('.mobile .shangchuan .kuangbg>img').attr('src','/assets/wap_zhucebg.png');
 		$('.shangchuanwarp').hide();
 		$('.zhucewarp').show();
 	});

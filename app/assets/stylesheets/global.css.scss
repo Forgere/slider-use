@@ -254,10 +254,6 @@ button.properties{
     }
   }
   .showroute{
-    .mobile &{
-      background: url(image_path('wap_routebg.png')) no-repeat;
-      background-size: contain;
-    }
     .warp{
       width: 1012px;
       margin: 0 auto;
@@ -273,10 +269,6 @@ button.properties{
             float: left;
             height: 160px;
             line-height: 160px;
-            .mobile &{
-              height: 36px;
-              line-height: 36px;
-            }
             span{
               font-family: "微软雅黑";
               font-size:22px;
@@ -292,14 +284,6 @@ button.properties{
               .lt-ie9 &{
                 width: 280px;
                 box-sizing:border-box;
-              }
-              .mobile &{
-                font-size: 9px;
-                line-height: 15px;
-                height: 15px;
-                padding:0 22px;
-                background: url(image_path('wap_greenborder.png')) no-repeat;
-                background-size: cover;
               }
             }
             span.active{
@@ -402,10 +386,6 @@ button.properties{
   background: url(image_path('hotelbgwarp.png')) no-repeat 50% top;
   height: 327px;
   margin-top: 8px;
-  .mobile &{
-    background: none;
-    height: 145px;
-  }
   .warp{
     width: 1012px;
     margin: 0 auto;
@@ -413,30 +393,17 @@ button.properties{
     position: relative;
     padding-bottom: 77px;
     height: 308px;
-    .mobile &{
-      background: url(image_path('wap_hotelbg.png')) no-repeat 50% top;
-      background-size: contain;
-      height: 140px;
-    }
     .sliders{
       position: absolute;
       top: 95px;
       left: 442px;
       width: 556px;
-      .mobile &{
-        top: 45px;
-        left: 113px;
-        width: 245px;
-      }
       .carousel-inner{
         overflow: hidden;
         margin:0 auto;
         width: 493px;
         .lt-ie9 &{
           width: 492px;
-        }
-        .mobile &{
-          width: 220px;
         }
         ul{
           overflow: hidden;
@@ -454,10 +421,6 @@ button.properties{
               img{
                 width: 233px;
                 height: 174px;
-                .mobile &{
-                  width: 104px;
-                  height: 78px;
-                }
                 .lt-ie9 &{
                   max-width: none;
                 }
@@ -473,10 +436,6 @@ button.properties{
                 box-sizing:border-box;
                 text-align: center;
                 text-decoration: none;
-                .mobile &{
-                  height: 10px;
-                  line-height: 10px;
-                }
               }
             }
           }
@@ -490,12 +449,6 @@ button.properties{
         font-size: 60px;
         cursor: pointer;
         width: 25px;
-        .mobile &{
-          width: 8px;
-          height: 15px;
-          display: inline-block;
-          font-size: 30px;
-        }
       }
       .prev{
         left: -4px;
@@ -642,14 +595,7 @@ button.properties{
       .sharebutton{
         margin-top: -40px;
         position: relative;
-        .mobile &{
-          left: 0;
-          bottom: -28px;
-        }
         img{
-          .mobile &{
-            width: 135px;
-          }
         }
         &:hover{
           cursor: pointer;
@@ -659,24 +605,13 @@ button.properties{
           width: 56px;
           height: 69px;
           position: absolute;
-          .mobile &{
-            top: 0;
-            width: 29px;
-            height: 24px;
-          }
         }
         .weixin{
           left: 513px;
           background: url('about:blank');
-          .mobile &{
-            left: 180px;
-          }
         }
         .weibo{
           left: 569px;
-          .mobile &{
-            left: 208px;
-          }
           a{
             display: inline-block;
             width: 100%;
@@ -703,15 +638,6 @@ button.properties{
       padding-right: 146px;
       width: 880px;
       height: 420px;
-      .mobile &{
-        top: 40px;
-        left: 26px;
-        font-size: 8px;
-        line-height: 18px;
-        padding-right: 0;
-        width: 300px;
-        height: 422px;
-      }
       &::-webkit-scrollbar-track
       {
         -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
@@ -731,9 +657,6 @@ button.properties{
         -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
         background-color: #D62929;
         width: 8px;
-        .mobile &{
-          background-color: #c64806;
-        }
       }
       b{
         font-weight: bold;
@@ -751,12 +674,6 @@ button.properties{
         bottom: 80px;
         right: 79px;
         // display: none;
-        .mobile &{
-          bottom: auto;
-          right: auto;
-          left: 23.5px;
-          top: 201px;
-        }
       }
       .usersshareimg{
         position: absolute;
@@ -767,16 +684,6 @@ button.properties{
         height: 196px;
         background-size: contain;
         //filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='image_path('zhanwei.png')',sizingMethod='scale');
-        .mobile &{
-          background: url(image_path('zhanwei.png')) no-repeat;
-          background-size: cover;
-          left: 23.5px;
-          top: 73px;
-          bottom: auto;
-          height: 128px;
-          width: 308px;
-
-        }
         img{
           width: 100%;
           border-radius: 8px;
@@ -800,9 +707,6 @@ button.properties{
       width: 100%;
       height: 100%;
       .shangchuanwarp{
-        .mobile &{
-          margin-top: 88px;
-        }
         .title{
           position: absolute;
           left: 46px;
@@ -817,12 +721,6 @@ button.properties{
           width: 390px;
           height: 50px;
           z-index: 999;
-          .mobile &{
-            height: 30px;
-            width: 210px;
-            left: 0;
-            top: 0;
-          }
         }
         .content{
           margin-bottom: 30px;
@@ -831,61 +729,24 @@ button.properties{
           bottom: 12px;
           left: 356px;
           position: absolute;
-          .mobile &{
-            left: 112px;
-            bottom: 31px;
-          }
-          img{
-            .mobile &{
-              width: 135px;
-            }
-          }
         }
         label{
-          .mobile &{
-            position: absolute;
-            top: 113px;
-            left: 81px;
-          }
           input[type='text']{
             font-size: 21px;
             height: 45px;
             line-height: 45px;
             padding: 0 45px 0 60px;
-            .mobile &{
-              height: 24px;
-              line-height: 24px;
-              font-size: 12px;
-              padding: 0 30px;
-              width: 100px;
-            }
           }
           span{
             position: relative;
             left: 20px;
             top: 10px;
-            .mobile &{
-              top: 5px;
-              left: 15px;
-            }
-            img{
-              .mobile &{
-                width: 24px;
-              }
-            }
           }
         }
         p{
           font-size: 16px;
           color: white;
           margin-top: 14px;
-          .mobile &{
-            font-size: 10px;
-            margin-top: 0;
-            position: absolute;
-            top: 151px;
-            left: 120px;
-          }
         }
         .xuanxiang{
           float: left;
@@ -895,22 +756,10 @@ button.properties{
           margin-left: 100px;
           margin-top: 25px;
           position: relative;
-          .mobile &{
-            display: block;
-            margin-left: -23px;
-            float: none;
-            height: 14px;
-            font-size: 13px;
-          }
           label.check{
             display: inline-block;
             background: url(checkbox2.jpg) no-repeat;
             padding-left: 30px;
-            .mobile &{
-              background: url(wap_checkbox.jpg) no-repeat;
-              background-size: contain;
-              height: 13px;
-            }
           }
           input[type="radio"]{
             position: absolute;
@@ -922,10 +771,6 @@ button.properties{
           }
           label.check.checked{
             background: url(checkbox.jpg) no-repeat;
-            .mobile &{
-              background: url(wap_checkbox2.jpg) no-repeat;
-              background-size: contain;
-            }
           }
         }
       }
@@ -934,46 +779,22 @@ button.properties{
         width: 590px;
         margin: 0 auto;
         margin-top: 60px;
-        .mobile &{
-          padding-left: 33px;
-          width: 330px;
-        }
         .sharebutton{
           bottom: 12px;
           left: 356px;
           position: absolute;
-          .mobile &{
-            left: 105px;
-            bottom: 32px;
-          }
-          input{
-            .mobile &{
-              width: 135px;
-              height: 26px;
-            }
-          }
         }
         p{
           margin-bottom: 28px;
           height:28px;
           line-height: 28px;
           overflow: hidden;
-          .mobile &{
-            height: 22px;
-            line-height: 22px;
-          }
           label{
             font-size: 28px;
             color: #ffffff;
             float: left;
             width: 140px;
             text-align: center;
-            .mobile &{
-              font-size: 14px;
-              margin-right:30px;
-              width: 71px;
-              text-align: right;
-            }
           }
           input{
             height: 28px;
@@ -982,12 +803,6 @@ button.properties{
             box-sizing:border-box;
             float: left;
             width: 350px;
-            .mobile &{
-              height: 22px;
-              line-height: 22px;
-              font-size: 14px;
-              width: 120px;
-            }
           }
           select{
             width: 350px;
@@ -996,17 +811,11 @@ button.properties{
             line-height: 28px;
             font-size: 24px;
             box-sizing:border-box;
-            .mobile &{
-              width: 150px;
-            }
           }
         }
         p.big{
           margin-bottom: 40px;
           img{
-            .mobile &{
-              margin: 4px 0 0 -20px;
-            }
           }
         }
         p.word{
@@ -1015,17 +824,9 @@ button.properties{
           font-size: 20px;
           color: #ffffff;
           font-family: '微软雅黑';
-          .mobile &{
-            width: 280px;
-            font-size: 14px;
-            height: 40px;
-          }
         }
         span{
           margin: 0 42px;
-          .mobile &{
-            margin: 0 25px;
-          }
           input[type='radio']{
             margin-right: 8px;
           }
@@ -1034,9 +835,6 @@ button.properties{
             color: #ffffff;
             font-family: '微软雅黑';
             margin-bottom: -8px;
-            .mobile &{
-              font-size: 14px;
-            }
           }
         }
       }
@@ -1068,24 +866,13 @@ button.properties{
       padding: 20px;
       width: 480px;
       margin:0 auto;
-      .mobile &{
-        width: 200px;
-      }
       p{
         line-height: 40px;
         height: 40px;
         border-bottom: 1px solid #000000;
         margin-bottom: 10px;
-        .mobile &{
-          line-height: 20px;
-          height: 20px;
-          margin-bottom: 5px;
-        }
         span{
           font-size: 20px;
-          .mobile &{
-            font-size: 14px;
-          }
         }
         span.right{
           float: right;
@@ -1096,270 +883,6 @@ button.properties{
       img{
         width: 300px;
         margin-left: 75px;
-        .mobile &{
-          width: 175px;
-          margin-left: 12px;
-        }
-      }
-    }
-  }
-}
-// wap
-.mobile{
-  position: absolute;
-  transform-origin:0 0;
-  .inner{
-    width: 360px;
-    .innercontent{
-      position: relative;
-    }
-  }
-  .warp{
-    width: auto !important;
-  }
-}
-.mobile{
-  .banner{
-    margin-top: -2px;
-    background: none;
-    height: auto;
-    width: 100%;
-    margin-bottom: 4px;
-    padding-bottom: 0;
-    span{
-      position: absolute;
-      height: 100%;
-      display: block;
-      width: 50px;
-      background: url(about:blank);
-      top: 0;
-      left: 270px;
-    }
-  }
-  .showarea{
-    background: none;
-    .showdianzan{
-      .title1{
-        padding-left: 8px;
-        img{
-          width: 63px;
-        }
-        ul.groups{
-          margin-left: 8px;
-          li{
-            float: left;
-            height: 66px;
-            line-height: 66px;
-            margin: 0 -6px;
-            span{
-              font-family: "微软雅黑";
-              font-size:10px;
-              position: relative;
-              line-height: 16px;
-              display: inline-block;
-              height: 16px;
-              color: #fefefe;
-              padding: 0 22px;
-              cursor: pointer;
-              background: url(image_path('wap_greenborder.png')) no-repeat;
-              background-size: contain;
-            }
-            span.active{
-              margin: 0;
-              background: url(image_path('wap_redborder.png')) no-repeat;
-              background-size: contain;
-            }
-          }
-        }
-      }
-      .sliders{
-        .sliderwarp{
-          padding: 0;
-          width: 100%;
-          .carousel-inner{
-            overflow: hidden;
-            width: 340px;
-            margin: 0 auto;
-            ul{
-              overflow: hidden;
-              width: 10000px;
-              display: inline-block;
-              height: 94px;
-              li{
-                float: left;
-                width: 114px;
-                padding: 2px;
-                box-sizing:border-box;
-                a{
-                  float: left;
-                  display: inline-block;
-                  overflow: hidden;
-                  img{
-                    display: block;
-                    width: 102px;
-                    height: 67px;
-                  }
-                  span.greenbg{
-                    display: block;
-                    color: #ea5413;
-                    font-size: 9px;
-                    font-family: '微软雅黑';
-                    position: relative;
-                    margin-left: 4px;
-                    margin-top: 4px;
-                    line-height: 14px;
-                    width: 92px;
-                    height: 14px;
-                    padding: 0 12px 0 16px;
-                    box-sizing:border-box;
-                    background: url(image_path('wap_zan-border.png')) no-repeat;
-                    cursor: pointer;
-                    background-size: cover;
-                    i{
-                      float: left;
-                      display: inline-block;
-                      width: 12px;
-                      height: 14px;
-                      background: url(image_path('zan.png')) no-repeat left 50%;
-                      background-size: 80%;
-                    }
-                    b{
-                      font-size: 10px;
-                      line-height: 14px;
-                      height: 14px;
-                      display: inline-block;
-                    }
-                  }
-                  span.clicked{
-                    i{
-                      background: url(image_path('haoduozan.png')) no-repeat left 50%;
-                    }
-                  }
-                }
-              }
-            }
-          }
-          .unslider-arrow{
-            position: absolute;
-            top: 23.5px;
-            z-index: 9;
-            cursor: pointer;
-            width: 10px;
-            height: 30px;
-          }
-          .prev{
-            left: 0px;
-          }
-          .next{
-            right: 0px;
-          }
-        }
-        .showslider{
-            display: block;
-          }
-
-      }
-    }
-    .showroute{
-      position: relative;
-      .title2{
-        margin-top: -2px;
-        ul.groups{
-          margin-left: 50px;
-          margin-top: 108px;
-          li{
-            line-height: 14.4px;
-            height: 14.4px;
-            margin: 0 -2px;
-          }
-        }
-      }
-      .routes{
-        position: relative;
-        .route{
-          width: 100%;
-          overflow: hidden;
-          display: none;
-          ul{
-            li{
-              float: left;
-              width: 360px!important;
-              overflow: hidden;
-              margin:0;
-              display: block;
-              a{
-                float: left;
-                text-decoration: none;
-                width: 108px;
-                display: block;
-                padding:0 3px;
-                img{
-                  width: 108px;
-                  height: 80px;
-                }
-                span.title{
-                  display: block;
-                  color: #3a2d29;
-                  font-size: 9px;
-                  font-family: '微软雅黑';
-                  margin-top: 4px;
-                  line-height: 14px;
-                  height: 28px;
-                  box-sizing:border-box;
-                  text-decoration: none;
-                }
-              }
-            }
-          }
-          .dots{
-            text-align: center;
-            margin:18px 0;
-            li{
-              position: absolute;
-              display: inline-block;
-              width: 12px;
-              height: 30px;
-              font-size: 0;
-              cursor: pointer;
-              top: 27px;
-              margin-right:0;
-            }
-            li:first-child{
-              background: url(image_path('wap-leftarrow.png')) no-repeat;
-              background-size: cover;
-              left: 0
-            }
-            li:last-child{
-              background: url(image_path('wap-rightarrow.png')) no-repeat;
-              background-size: cover;
-              right: 1px;
-            }
-          }
-        }
-        .showslider{
-          display: block;
-        }
-        .unslider-arrow{
-          position: absolute;
-          top: 44.5px;
-        }
-        .prev{
-          left: -25px;
-        }
-        .next{
-          right: 0;
-        }
-      }
-      .rule{
-        position: absolute;
-        top: 30px;
-        p{
-          font-size: 9px;
-          font-family: '微软雅黑';
-          color: #636262;
-          line-height: 15px;
-          height: 15px;
-        }
       }
     }
   }
