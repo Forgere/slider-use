@@ -254,7 +254,7 @@ button.properties{
     }
   }
   .showroute{
-    .home_wap &{
+    .mobile &{
       background: url(image_path('wap_routebg.png')) no-repeat;
       background-size: contain;
     }
@@ -273,7 +273,7 @@ button.properties{
             float: left;
             height: 160px;
             line-height: 160px;
-            .home_wap &{
+            .mobile &{
               height: 36px;
               line-height: 36px;
             }
@@ -293,7 +293,7 @@ button.properties{
                 width: 280px;
                 box-sizing:border-box;
               }
-              .home_wap &{
+              .mobile &{
                 font-size: 9px;
                 line-height: 15px;
                 height: 15px;
@@ -402,7 +402,7 @@ button.properties{
   background: url(image_path('hotelbgwarp.png')) no-repeat 50% top;
   height: 327px;
   margin-top: 8px;
-  .home_wap &{
+  .mobile &{
     background: none;
     height: 145px;
   }
@@ -413,7 +413,7 @@ button.properties{
     position: relative;
     padding-bottom: 77px;
     height: 308px;
-    .home_wap &{
+    .mobile &{
       background: url(image_path('wap_hotelbg.png')) no-repeat 50% top;
       background-size: contain;
       height: 140px;
@@ -423,7 +423,7 @@ button.properties{
       top: 95px;
       left: 442px;
       width: 556px;
-      .home_wap &{
+      .mobile &{
         top: 45px;
         left: 113px;
         width: 245px;
@@ -435,7 +435,7 @@ button.properties{
         .lt-ie9 &{
           width: 492px;
         }
-        .home_wap &{
+        .mobile &{
           width: 220px;
         }
         ul{
@@ -454,7 +454,7 @@ button.properties{
               img{
                 width: 233px;
                 height: 174px;
-                .home_wap &{
+                .mobile &{
                   width: 104px;
                   height: 78px;
                 }
@@ -473,7 +473,7 @@ button.properties{
                 box-sizing:border-box;
                 text-align: center;
                 text-decoration: none;
-                .home_wap &{
+                .mobile &{
                   height: 10px;
                   line-height: 10px;
                 }
@@ -490,7 +490,7 @@ button.properties{
         font-size: 60px;
         cursor: pointer;
         width: 25px;
-        .home_wap &{
+        .mobile &{
           width: 8px;
           height: 15px;
           display: inline-block;
@@ -642,12 +642,12 @@ button.properties{
       .sharebutton{
         margin-top: -40px;
         position: relative;
-        .home_wap &{
+        .mobile &{
           left: 0;
           bottom: -28px;
         }
         img{
-          .home_wap &{
+          .mobile &{
             width: 135px;
           }
         }
@@ -659,7 +659,7 @@ button.properties{
           width: 56px;
           height: 69px;
           position: absolute;
-          .home_wap &{
+          .mobile &{
             top: 0;
             width: 29px;
             height: 24px;
@@ -668,13 +668,13 @@ button.properties{
         .weixin{
           left: 513px;
           background: url('about:blank');
-          .home_wap &{
+          .mobile &{
             left: 180px;
           }
         }
         .weibo{
           left: 569px;
-          .home_wap &{
+          .mobile &{
             left: 208px;
           }
           a{
@@ -703,7 +703,7 @@ button.properties{
       padding-right: 146px;
       width: 880px;
       height: 420px;
-      .home_wap &{
+      .mobile &{
         top: 40px;
         left: 26px;
         font-size: 8px;
@@ -731,7 +731,7 @@ button.properties{
         -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
         background-color: #D62929;
         width: 8px;
-        .home_wap &{
+        .mobile &{
           background-color: #c64806;
         }
       }
@@ -751,7 +751,7 @@ button.properties{
         bottom: 80px;
         right: 79px;
         // display: none;
-        .home_wap &{
+        .mobile &{
           bottom: auto;
           right: auto;
           left: 23.5px;
@@ -767,7 +767,7 @@ button.properties{
         height: 196px;
         background-size: contain;
         //filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='image_path('zhanwei.png')',sizingMethod='scale');
-        .home_wap &{
+        .mobile &{
           background: url(image_path('zhanwei.png')) no-repeat;
           background-size: cover;
           left: 23.5px;
@@ -800,7 +800,7 @@ button.properties{
       width: 100%;
       height: 100%;
       .shangchuanwarp{
-        .home_wap &{
+        .mobile &{
           margin-top: 88px;
         }
         .title{
@@ -817,7 +817,7 @@ button.properties{
           width: 390px;
           height: 50px;
           z-index: 999;
-          .home_wap &{
+          .mobile &{
             height: 30px;
             width: 210px;
             left: 0;
@@ -831,18 +831,18 @@ button.properties{
           bottom: 12px;
           left: 356px;
           position: absolute;
-          .home_wap &{
+          .mobile &{
             left: 112px;
             bottom: 31px;
           }
           img{
-            .home_wap &{
+            .mobile &{
               width: 135px;
             }
           }
         }
         label{
-          .home_wap &{
+          .mobile &{
             position: absolute;
             top: 113px;
             left: 81px;
@@ -852,7 +852,7 @@ button.properties{
             height: 45px;
             line-height: 45px;
             padding: 0 45px 0 60px;
-            .home_wap &{
+            .mobile &{
               height: 24px;
               line-height: 24px;
               font-size: 12px;
@@ -864,12 +864,12 @@ button.properties{
             position: relative;
             left: 20px;
             top: 10px;
-            .home_wap &{
+            .mobile &{
               top: 5px;
               left: 15px;
             }
             img{
-              .home_wap &{
+              .mobile &{
                 width: 24px;
               }
             }
@@ -879,7 +879,7 @@ button.properties{
           font-size: 16px;
           color: white;
           margin-top: 14px;
-          .home_wap &{
+          .mobile &{
             font-size: 10px;
             margin-top: 0;
             position: absolute;
@@ -895,7 +895,7 @@ button.properties{
           margin-left: 100px;
           margin-top: 25px;
           position: relative;
-          .home_wap &{
+          .mobile &{
             display: block;
             margin-left: -23px;
             float: none;
@@ -906,7 +906,7 @@ button.properties{
             display: inline-block;
             background: url(checkbox2.jpg) no-repeat;
             padding-left: 30px;
-            .home_wap &{
+            .mobile &{
               background: url(wap_checkbox.jpg) no-repeat;
               background-size: contain;
               height: 13px;
@@ -922,7 +922,7 @@ button.properties{
           }
           label.check.checked{
             background: url(checkbox.jpg) no-repeat;
-            .home_wap &{
+            .mobile &{
               background: url(wap_checkbox2.jpg) no-repeat;
               background-size: contain;
             }
@@ -934,7 +934,7 @@ button.properties{
         width: 590px;
         margin: 0 auto;
         margin-top: 60px;
-        .home_wap &{
+        .mobile &{
           padding-left: 33px;
           width: 330px;
         }
@@ -942,12 +942,12 @@ button.properties{
           bottom: 12px;
           left: 356px;
           position: absolute;
-          .home_wap &{
+          .mobile &{
             left: 105px;
             bottom: 32px;
           }
           input{
-            .home_wap &{
+            .mobile &{
               width: 135px;
               height: 26px;
             }
@@ -958,7 +958,7 @@ button.properties{
           height:28px;
           line-height: 28px;
           overflow: hidden;
-          .home_wap &{
+          .mobile &{
             height: 22px;
             line-height: 22px;
           }
@@ -968,7 +968,7 @@ button.properties{
             float: left;
             width: 140px;
             text-align: center;
-            .home_wap &{
+            .mobile &{
               font-size: 14px;
               margin-right:30px;
               width: 71px;
@@ -982,7 +982,7 @@ button.properties{
             box-sizing:border-box;
             float: left;
             width: 350px;
-            .home_wap &{
+            .mobile &{
               height: 22px;
               line-height: 22px;
               font-size: 14px;
@@ -996,7 +996,7 @@ button.properties{
             line-height: 28px;
             font-size: 24px;
             box-sizing:border-box;
-            .home_wap &{
+            .mobile &{
               width: 150px;
             }
           }
@@ -1004,7 +1004,7 @@ button.properties{
         p.big{
           margin-bottom: 40px;
           img{
-            .home_wap &{
+            .mobile &{
               margin: 4px 0 0 -20px;
             }
           }
@@ -1015,7 +1015,7 @@ button.properties{
           font-size: 20px;
           color: #ffffff;
           font-family: '微软雅黑';
-          .home_wap &{
+          .mobile &{
             width: 280px;
             font-size: 14px;
             height: 40px;
@@ -1023,7 +1023,7 @@ button.properties{
         }
         span{
           margin: 0 42px;
-          .home_wap &{
+          .mobile &{
             margin: 0 25px;
           }
           input[type='radio']{
@@ -1034,7 +1034,7 @@ button.properties{
             color: #ffffff;
             font-family: '微软雅黑';
             margin-bottom: -8px;
-            .home_wap &{
+            .mobile &{
               font-size: 14px;
             }
           }
@@ -1068,7 +1068,7 @@ button.properties{
       padding: 20px;
       width: 480px;
       margin:0 auto;
-      .home_wap &{
+      .mobile &{
         width: 200px;
       }
       p{
@@ -1076,14 +1076,14 @@ button.properties{
         height: 40px;
         border-bottom: 1px solid #000000;
         margin-bottom: 10px;
-        .home_wap &{
+        .mobile &{
           line-height: 20px;
           height: 20px;
           margin-bottom: 5px;
         }
         span{
           font-size: 20px;
-          .home_wap &{
+          .mobile &{
             font-size: 14px;
           }
         }
@@ -1096,7 +1096,7 @@ button.properties{
       img{
         width: 300px;
         margin-left: 75px;
-        .home_wap &{
+        .mobile &{
           width: 175px;
           margin-left: 12px;
         }
@@ -1105,7 +1105,7 @@ button.properties{
   }
 }
 // wap
-.home_wap{
+.mobile{
   position: absolute;
   transform-origin:0 0;
   .inner{
@@ -1118,7 +1118,7 @@ button.properties{
     width: auto !important;
   }
 }
-.home_wap{
+.mobile{
   .banner{
     margin-top: -2px;
     background: none;
