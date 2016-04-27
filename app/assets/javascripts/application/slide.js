@@ -87,8 +87,8 @@
         var unslider5 = $("#slider5").unslider({
                 during: 800,
                 delay: 7000,
-                autoplay:false,
-                dots: true,             //  Display dot navigation
+                dots: true,
+                autoplay:false,             //  Display dot navigation
                 fluid: true
             });
         var unslider4 = $("#slider4").unslider({
