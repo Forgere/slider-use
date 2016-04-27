@@ -788,6 +788,20 @@ button.properties{
           left: 356px;
           position: absolute;
         }
+        //cs
+        .provinceSchool { display:none;position:absolute;width:580px;height:200px;border:1px solid #72B9D7; background-color: #ffffff;}
+        .provinceSchool .choosetitle { width:100%;height:30px;background:url(image_path('title-bg.png')) repeat-x center left;}
+        .provinceSchool .choosetitle span { margin-left:10px;font-weight:600;color:#FFF;line-height:30px;}
+        .provinceSchool .proSelect { width:550px;height:22px;margin:10px 0 6px 15px;}
+        .provinceSchool .proSelect select { width:136px;height: 200px;}
+        .provinceSchool .proSelect input { display:none;}
+        .provinceSchool .schoolList { width:550px;height:110px;margin-left:15px;overflow-y:auto; border:1px solid #72B9D7;}
+        .provinceSchool .schoolList ul { width:510px;}
+        .provinceSchool .schoolList ul li { float:left;width:158px;height:22px;margin-left:6px;padding-left:6px;line-height:22px;cursor:pointer;}
+        .provinceSchool .schoolList ul li.DoubleWidthLi { width:328px;}
+        .provinceSchool .schoolList ul li:hover { background:#72B9D7;}
+        .provinceSchool .button { width:100%;height:40px;margin-top:8px;}
+        .provinceSchool .button button { float:right;height:30px;margin-right:20px;padding:4px 10px; background:url(http://sandbox.runjs.cn/uploads/rs/336/jqq2hkiy/ui-bg.png);border:none;color:#FFF;font-weight:600;cursor:pointer;}
         p{
           margin-bottom: 28px;
           height:28px;
