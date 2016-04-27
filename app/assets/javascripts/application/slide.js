@@ -84,21 +84,24 @@
         });
 
         //路线
-        $("#slider5").unslider({
+        var unslider5 = $("#slider5").unslider({
                 during: 800,
                 delay: 7000,
+                swipe: true,
                 dots: true,             //  Display dot navigation
                 fluid: true
             });
-        $("#slider4").unslider({
+        var unslider4 = $("#slider4").unslider({
             during: 800,
             delay: 7000,
+            swipe: true,
             dots: true,             //  Display dot navigation
             fluid: true
         });
-        $("#slider6").unslider({
+        var unslider6 = $("#slider6").unslider({
             during: 800,
             delay: 7000,
+            swipe: true,
             dots: true,             //  Display dot navigation
             fluid: true
         });
@@ -112,6 +115,7 @@
             $("#slider4").unslider({
                 during: 800,
                 delay: 7000,
+                swipe: true,
                 dots: true,             //  Display dot navigation
                 fluid: true   
             });         //  Support responsive design. May break non-responsive designs
@@ -131,6 +135,7 @@
             $("#slider5").unslider({
                 during: 800,
                 delay: 7000,
+                swipe: true,
                 dots: true,             //  Display dot navigation
                 fluid: true
             });         //  Support responsive design. May break non-responsive designs
@@ -150,6 +155,7 @@
             $("#slider6").unslider({
                 during: 800,
                 delay: 7000,
+                swipe: true,
                 dots: true,             //  Display dot navigation
                 fluid: true   
             });         //  Support responsive design. May break non-responsive designs
@@ -175,7 +181,7 @@
         //     $('.showroute .showslider ul').animate({'margin-left':'-1012px'},'slow');
         // });
             //hotel
-        $('#hotelslider').carousel({resizeChildByNum: 2 });
+        var carousel1 = $('#hotelslider').carousel({resizeChildByNum: 2});
         var scroll = function(){
             //$(".hotel .btn-next").trigger("click");
             inner = $('.hotel .carousel-inner');

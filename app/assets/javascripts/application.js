@@ -16,4 +16,5 @@
 //= require unslider.js
 //= require jquery.remotipart
 //= require_tree ./application
-//= require jquery.event.swipe.js
+//= require jquery.event.swipe
+//= require jquery.touchSwipe.min
