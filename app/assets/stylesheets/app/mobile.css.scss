@@ -2,6 +2,8 @@
 .mobile{
   position: absolute;
   transform-origin:0 0;
+  background: url(image_path('wap_bg.jpg')) no-repeat;
+  background-size: cover;
   .inner{
     width: 360px;
     .innercontent{
@@ -27,6 +29,9 @@
       top: 0;
       left: 270px;
     }
+  }
+  .main-inner{
+    background: none;
   }
   .showarea{
     background: none;

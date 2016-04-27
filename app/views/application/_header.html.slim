@@ -1,11 +1,14 @@
-.headimg
-	.inner
-		=editable_image_tag @page, 'content.title3',:placeholder_options => {:width => 400, :height => 300}
 -if @page.slug == 'home'
+	.headimg
+		.inner
+			img src=image_path('headimg.png') alt=""/
 	.banner
 		.warp
 		  span
 -if @page.slug == 'mobile'
+	.headimg
+		.inner
+			img src=image_path('wap_headimg.png') alt=""/
 	.banner
 		.inner
 			.innercontent
