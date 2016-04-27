@@ -45,7 +45,7 @@ $(function(){
 	$('.banner span').on('click',function(){
 		showzhezhao();
 		$('.huodongguize').show();
-		var sctop = $('.huodongguize').offset().top;
+		var sctop = $('.banner').offset().top;
 		$(window).scrollTop(sctop);
 	});
 
