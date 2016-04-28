@@ -194,7 +194,7 @@
             }
             inner.find('ul').stop().animate({'margin-left': pos},200);
         };
-        var autoScroll = setInterval(scroll,5000);
+        // var autoScroll = setInterval(scroll,5000);
         //jia
 
     });
