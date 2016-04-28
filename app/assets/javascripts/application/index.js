@@ -35,81 +35,72 @@ var proSchool = {"00":["合肥","芜湖","阜阳","六安","池州","亳州"],
 		//province;
 		//proSchool;
 		//学校名称 激活状态
-	$("#city").focus(function(){
-	  var top = $(this).position().top+22;
-  	  var left = $(this).position().left;
-  	  $("div[class='provinceSchool']").css({top:top,left:left});
-  	  $("div[class='provinceSchool']").show();
-	});
-	//初始化省下拉框
-	var provinceArray = "";
-	var provicneSelectStr = "";
-	for(var i=0,len=province.length;i<len;i++){
-	  provinceArray = province[i];
-	  provicneSelectStr = provicneSelectStr + "<option value='"+provinceArray[0]+"'>"+provinceArray[1]+"</option>"
-	} 
-	$("div[class='proSelect'] select").html(provicneSelectStr);
-	//初始化学校列表
-	var selectPro = $("div[class='proSelect'] select").val();
-	var schoolUlStr = "";
-	var schoolListStr = new String(proSchool[selectPro]);
-	var schoolListArray = schoolListStr.split(",");
-	var tempSchoolName = "";
-	for(var i=0,len=schoolListArray.length;i<len;i++){
-	  tempSchoolName = schoolListArray[i];
-	  //console.log(tempSchoolName.length);
-	  if(tempSchoolName.length>13){
-	  	schoolUlStr = schoolUlStr + "<li class='DoubleWidthLi'>"+schoolListArray[i]+"</li>"
-	  }else {
-	  	schoolUlStr = schoolUlStr + "<li>"+schoolListArray[i]+"</li>"
-	  }
-	}
-	$("div[class='schoolList'] ul").html(schoolUlStr);
-	//省切换事件
-	$("div[class='proSelect'] select").change(function(){
-	  if("99"!=$(this).val()){
-	    $("div[class='proSelect'] span").show();
-	    $("div[class='proSelect'] input").hide();
-	  	schoolUlStr = "";
-	    schoolListStr = new String(proSchool[$(this).val()]);
-	    schoolListArray = schoolListStr.split(",");
-	    for(var i=0,len=schoolListArray.length;i<len;i++){
-	  	  tempSchoolName = schoolListArray[i];
+		$("#upload_city").focus(function(){
+		  var top = $(this).position().top+22;
+    	  var left = $(this).position().left;
+    	  $("div[class='provinceSchool']").css({top:top,left:left});
+    	  $("div[class='provinceSchool']").show();
+		});
+		//初始化省下拉框
+		var provinceArray = "";
+		var provicneSelectStr = "";
+		for(var i=0,len=province.length;i<len;i++){
+		  provinceArray = province[i];
+		  provicneSelectStr = provicneSelectStr + "<option value='"+provinceArray[0]+"'>"+provinceArray[1]+"</option>"
+		} 
+		$("div[class='proSelect'] select").html(provicneSelectStr);
+		//初始化学校列表
+		var selectPro = $("div[class='proSelect'] select").val();
+		var schoolUlStr = "";
+		var schoolListStr = new String(proSchool[selectPro]);
+		var schoolListArray = schoolListStr.split(",");
+		var tempSchoolName = "";
+		for(var i=0,len=schoolListArray.length;i<len;i++){
+		  tempSchoolName = schoolListArray[i];
+		  //console.log(tempSchoolName.length);
 		  if(tempSchoolName.length>13){
 		  	schoolUlStr = schoolUlStr + "<li class='DoubleWidthLi'>"+schoolListArray[i]+"</li>"
 		  }else {
 		  	schoolUlStr = schoolUlStr + "<li>"+schoolListArray[i]+"</li>"
 		  }
-	    }
-	    $("div[class='schoolList'] ul").html(schoolUlStr);
-	  }else {
-	    $("div[class='schoolList'] ul").html("");
-	    $("div[class='proSelect'] span").hide();
-	    $("div[class='proSelect'] input").show();
-	  }
-	});
-	//学校列表mouseover事件
-	$("div[class='schoolList'] ul").on("mouseover","li",function(){
-	  $(this).css("background-color","#72B9D7");
-	});
-	//学校列表mouseout事件
-	$("div[class='schoolList'] ul").on("mouseout","li",function(){
-	  $(this).css("background-color","");
-	});
-	//学校列表点击事件
-	$("div[class='schoolList'] ul").on("click","li",function(){
-	  $("#city").val($(this).html());
-	  $("div[class='provinceSchool']").hide();
-	});
-  var $w = $(window),
-  ww = $w.width(),
-  wh = $w.height(),
-  transform;
-  var scale = ww/360;
-  transform = 'scale(' + scale + ',' + scale + ')';
-  $('.mobile').css('-webkit-transform', transform)
-    .css('transform', transform);
-  //遮罩大小
+		}
+		$("div[class='schoolList'] ul").html(schoolUlStr);
+		//省切换事件
+		$("div[class='proSelect'] select").change(function(){
+		  if("99"!=$(this).val()){
+		    $("div[class='proSelect'] span").show();
+		    $("div[class='proSelect'] input").hide();
+		  	schoolUlStr = "";
+		    schoolListStr = new String(proSchool[$(this).val()]);
+		    schoolListArray = schoolListStr.split(",");
+		    for(var i=0,len=schoolListArray.length;i<len;i++){
+		  	  tempSchoolName = schoolListArray[i];
+			  if(tempSchoolName.length>13){
+			  	schoolUlStr = schoolUlStr + "<li class='DoubleWidthLi'>"+schoolListArray[i]+"</li>"
+			  }else {
+			  	schoolUlStr = schoolUlStr + "<li>"+schoolListArray[i]+"</li>"
+			  }
+		    }
+		    $("div[class='schoolList'] ul").html(schoolUlStr);
+		  }else {
+		    $("div[class='schoolList'] ul").html("");
+		    $("div[class='proSelect'] span").hide();
+		    $("div[class='proSelect'] input").show();
+		  }
+		});
+		//学校列表mouseover事件
+		$("div[class='schoolList'] ul").on("mouseover","li",function(){
+		  $(this).css("background-color","#72B9D7");
+		});
+		//学校列表mouseout事件
+		$("div[class='schoolList'] ul").on("mouseout","li",function(){
+		  $(this).css("background-color","");
+		});
+		//学校列表点击事件
+		$("div[class='schoolList'] ul").on("click","li",function(){
+		  $("#upload_city").val($(this).html());
+		  $("div[class='provinceSchool']").hide();
+		});
 	var wheight =$(document).height();
 	$('.zhezhao').css('height',wheight);
 	window.fileSelected = false;
