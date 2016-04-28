@@ -605,6 +605,18 @@
               height: 26px;
             }
           }
+//cs
+        .provinceSchool { display:none;position:absolute;width:200px;height:200px;border:1px solid #72B9D7; background-color: #ffffff;}
+        .provinceSchool .proSelect { width:170px;height:22px;margin:10px 0 6px 15px;}
+        .provinceSchool .proSelect select { width:136px;border:1px solid #72B9D7;}
+        .provinceSchool .proSelect input { display:none;}
+        .provinceSchool .schoolList { width:170px;height:110px;margin-left:15px;overflow-y:auto; border:1px solid #72B9D7;}
+        .provinceSchool .schoolList ul { width:130px;}
+        .provinceSchool .schoolList ul li { float:left;width:110px;height:22px;margin-left:6px;padding-left:6px;line-height:22px;cursor:pointer;}
+        .provinceSchool .schoolList ul li.DoubleWidthLi { width:180px;}
+        .provinceSchool .schoolList ul li:hover { background:#72B9D7;}
+        .provinceSchool .button { width:100%;height:40px;margin-top:8px;}
+        .provinceSchool .button button { float:right;height:30px;margin-right:20px;padding:4px 10px; background:url(http://sandbox.runjs.cn/uploads/rs/336/jqq2hkiy/ui-bg.png);border:none;color:#FFF;font-weight:600;cursor:pointer;}
           p{
             margin-bottom: 28px;
             height:22px;
