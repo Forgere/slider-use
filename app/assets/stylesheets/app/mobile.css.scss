@@ -611,7 +611,7 @@
 //cs
         .provinceSchool { display:none;position:absolute;width:200px;height:200px;border:1px solid #72B9D7; background-color: #ffffff;}
         .provinceSchool .proSelect { width:170px;height:22px;margin:10px 0 6px 15px;}
-        .provinceSchool .proSelect select { width:136px;border:1px solid #72B9D7;}
+        .provinceSchool .proSelect select { width:136px;border:1px solid #72B9D7;height: auto;}
         .provinceSchool .proSelect input { display:none;}
         .provinceSchool .schoolList { width:170px;height:110px;margin-left:15px;overflow-y:auto; border:1px solid #72B9D7;}
         .provinceSchool .schoolList ul { width:130px;}
