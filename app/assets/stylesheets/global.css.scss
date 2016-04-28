@@ -126,10 +126,10 @@ button.properties{
               display: inline-block;
               height: 36px;
               color: #fefefe;
-              padding: 0 64px;
+              text-align: center;
               cursor: pointer;
               background: url(image_path('blackangle.png')) no-repeat;
-              background-size: contain;
+              width: 276px;
               .lt-ie9 &{
                 width: 280px;
                 box-sizing:border-box;
@@ -139,7 +139,6 @@ button.properties{
             span.active{
               margin: 0;
               background: url(image_path('redangle.png')) no-repeat;
-              background-size: contain;
             }
           }
         }
@@ -277,10 +276,10 @@ button.properties{
               display: inline-block;
               height: 36px;
               color: #fefefe;
-              padding: 0 64px;
               cursor: pointer;
+              width: 276px;
+              text-align: center;
               background: url(image_path('blackangle.png')) no-repeat;
-              background-size: contain;
               .lt-ie9 &{
                 width: 280px;
                 box-sizing:border-box;
@@ -288,7 +287,6 @@ button.properties{
             }
             span.active{
               background: url(image_path('redangle.png')) no-repeat;
-              background-size: contain;
             }
           }
         }
