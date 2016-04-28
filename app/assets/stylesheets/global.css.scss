@@ -287,8 +287,8 @@ button.properties{
               }
             }
             span.active{
-              background: url(image_path('wap_redborder.png')) no-repeat;
-              background-size: cover;
+              background: url(image_path('redangle.png')) no-repeat;
+              background-size: contain;
             }
           }
         }
@@ -329,7 +329,7 @@ button.properties{
               margin:0;
               display: block;
               box-sizing: border-box;
-              padding: 0 9px;
+              padding: 0;
               a{
                 float: left;
                 text-decoration: none;
@@ -443,7 +443,7 @@ button.properties{
       }
       .unslider-arrow{
         position: absolute;
-        top: 28px;
+        top: 50px;
         font-weight: bolder;
         color: #d91e1c;
         font-size: 60px;

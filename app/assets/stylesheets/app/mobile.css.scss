@@ -203,24 +203,26 @@
       .routes{
         position: relative;
         .route{
-          width: 100%;
+          width: 340px;
           overflow: hidden;
           display: none;
+          margin: 0 auto;
           ul{
             li{
               float: left;
-              width: 360px!important;
+              width: 338px!important;
               overflow: hidden;
               margin:0;
               display: block;
+              padding: 0 9px;
               a{
                 float: left;
                 text-decoration: none;
-                width: 108px;
+                width: 100px;
                 display: block;
                 padding:0 3px;
                 img{
-                  width: 108px;
+                  width: 100px;
                   height: 80px;
                 }
                 span.title{
@@ -335,9 +337,10 @@
           height: 15px;
           display: inline-block;
           font-size: 30px;
+          top: 28px;
         }
         .prev{
-          left: -4px;
+          left: -6px;
           text-align: right;
           font-family: "微软雅黑";
         }
