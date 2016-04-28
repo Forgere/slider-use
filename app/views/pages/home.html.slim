@@ -377,7 +377,7 @@
               $('.shangchuan').hide();
               $('.shangchuan').hide();
               if(window.action_str){
-                $("form").attr("action", window.action_str);
+                $("form#new_upload").attr("action", window.action_str);
               }
               curr = $("span.upload_"+window.tar_str).find('b').text();
               $("span.upload_"+window.tar_str).find('b').text(parseInt(curr) + 1);
@@ -399,18 +399,11 @@
       }else{
         window.tar_str = $(e.target).attr('class').match(/upload_(\d+)/)[1];
       }
-      window.action_str = $("form").attr("action");
-      $("form").attr("action", window.action_str + "?vote_id="+window.tar_str);
+      window.action_str = $("form#new_upload").attr("action");
+      $("form#new_upload").attr("action", window.action_str + "?vote_id="+window.tar_str);
       $('.shangchuan').show();
       $('.shangchuanwarp').hide();
       $('.zhezhao').show();
       $('.zhucewarp').show();
     });
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "//hm.baidu.com/hm.js?d6163546b315a028c7ae2ce7f24c4dcb";
-      var s = document.getElementsByTagName("script")[0]; 
-      s.parentNode.insertBefore(hm, s);
-    })();
 = render :template => 'layouts/application'

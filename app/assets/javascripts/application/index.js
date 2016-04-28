@@ -101,6 +101,15 @@ var proSchool = {"00":["合肥","芜湖","阜阳","六安","池州","亳州"],
 		  $("#upload_city").val($(this).html());
 		  $("div[class='provinceSchool']").hide();
 		});
+	//适应窗口
+  var $w = $(window),
+  ww = $w.width(),
+  wh = $w.height(),
+  transform;
+  var scale = ww/360;
+  transform = 'scale(' + scale + ',' + scale + ')';
+  $('.mobile').css('-webkit-transform', transform)
+    .css('transform', transform);
 	var wheight =$(document).height();
 	$('.zhezhao').css('height',wheight);
 	window.fileSelected = false;
