@@ -87,21 +87,21 @@
         var unslider5 = $("#slider5").unslider({
                 during: 800,
                 delay: 7000,
-                swipe: true,
+                autoplay:false,
                 dots: true,             //  Display dot navigation
                 fluid: true
             });
         var unslider4 = $("#slider4").unslider({
             during: 800,
             delay: 7000,
-            swipe: true,
+            autoplay:false,
             dots: true,             //  Display dot navigation
             fluid: true
         });
         var unslider6 = $("#slider6").unslider({
             during: 800,
             delay: 7000,
-            swipe: true,
+            autoplay:false,
             dots: true,             //  Display dot navigation
             fluid: true
         });
@@ -115,7 +115,7 @@
             $("#slider4").unslider({
                 during: 800,
                 delay: 7000,
-                swipe: true,
+                autoplay:false,
                 dots: true,             //  Display dot navigation
                 fluid: true   
             });         //  Support responsive design. May break non-responsive designs
@@ -135,7 +135,7 @@
             $("#slider5").unslider({
                 during: 800,
                 delay: 7000,
-                swipe: true,
+                autoplay:false,
                 dots: true,             //  Display dot navigation
                 fluid: true
             });         //  Support responsive design. May break non-responsive designs
@@ -155,7 +155,7 @@
             $("#slider6").unslider({
                 during: 800,
                 delay: 7000,
-                swipe: true,
+                autoplay:false,
                 dots: true,             //  Display dot navigation
                 fluid: true   
             });         //  Support responsive design. May break non-responsive designs
