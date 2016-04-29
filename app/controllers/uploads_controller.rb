@@ -12,11 +12,17 @@ class UploadsController < ApplicationController
           format.html{
             render text: "您已经点赞过"
           }
+          format.js{
+            @text = "您已经点赞过"
+          }
         end
       elsif @upload && @upload.img && !params[:vote_id]
         respond_to do |format|
           format.html{
             render text: "您已经上传过照片"
+          }
+          format.js{
+            @text = "您已经上传过照片"
           }
         end
       else
@@ -34,10 +40,23 @@ class UploadsController < ApplicationController
                 render text: "#{@upload.img.url};#{@upload.upload_type}"
               end
             }
+            format.js{
+              if(params[:vote_id])
+                upload = Upload.find(params[:vote_id])
+                upload.vote_count = upload.vote_count + 1
+                upload.save
+                @text = '点赞成功'
+              else
+                @text = "#{@upload.img.url};#{@upload.upload_type}"
+              end
+            }
           else
             format.html{
               logger.info @upload.errors.inspect
               render text: '字段填写不全或者格式错误'
+            }
+            format.js{
+              @text = '字段填写不全或者格式错误'
             }
           end
         end
@@ -46,6 +65,9 @@ class UploadsController < ApplicationController
       respond_to do |format|
         format.html{
           render text: '验证码错误'
+        }
+        format.js{
+          @text = "验证码错误"
         }
       end
     end

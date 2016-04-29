@@ -16,7 +16,7 @@
             .sliderwarp.showslider#slider1
               .slider1.slider.carousel-inner
                 ul
-                  - Upload.where(upload_type: 1).each do |upload|
+                  - Upload.where(upload_type: 1).where('original_filename is not null').each do |upload|
                     li
                       a
                         =image_tag(upload.img.url)
@@ -32,7 +32,7 @@
             .sliderwarp#slider2
               .slider2.slider.carousel-inner
                 ul
-                  - Upload.where(upload_type: 2).each do |upload|
+                  - Upload.where(upload_type: 2).where('original_filename is not null').each do |upload|
                     li
                       a
                         =image_tag(upload.img.url)
@@ -48,7 +48,7 @@
             .sliderwarp#slider3
               .slider3.slider.carousel-inner
                 ul
-                  - Upload.where(upload_type: 3).each do |upload|
+                  - Upload.where(upload_type: 3).where('original_filename is not null').each do |upload|
                     li
                       a
                         =image_tag(upload.img.url)
@@ -221,7 +221,7 @@
         .warp
           .kuangbg
             =image_tag('wap_shangchuanbg.png')
-            = form_for Upload.new, :html => { :multipart => true, target: "upload_target" } do |f|
+            = form_for Upload.new do |f|
               .shangchuanwarp
                 label
                   input type="text" id="input1" placeholder="点击上传电脑图片" disabled="disabled"
@@ -259,13 +259,6 @@
                   label for="yan" 验证码
                   = f.text_field "captcha", style: "width: 120px;"
                   = captcha_tag height: 24,width:58
-                  javascript:
-                    Date.now = Date.now || function() { return +new Date; }; 
-                    $(function(){
-                      $(".big img").click(function(e){
-                         $(e.target).attr("src", '/captcha?i=' + Date.now());
-                      });
-                    });
                 p.word 是否愿意接受指定城市经销商与您联系，到店即可获得精美礼品,先到先得，抢完即止。
                 span
                   = f.radio_button "is_contact", 1, checked: true
@@ -282,34 +275,7 @@
               span 分享到微信朋友圈
               span.right ✕
             =image_tag('erweima.png')
-  iframe id="upload_target" name="upload_target" style="height:0px;"
   javascript:
-    $('#upload_target').on('load', function(){
-        body = $('iframe').contents().find('body')[0].innerHTML;
-        if(body.indexOf(":") > -1){
-          $('.shangchuan').hide();
-          $('.gongxi').show();
-          attrs = body.split(";");
-          $(".usersshareimg").append("<img src='"+attrs[0]+"' style='width:100%'></img>")
-          $(".xuanyan_"+ attrs[1]).show();
-        }else{
-            if(body == "点赞成功"){
-              $('.shangchuan').hide();
-              $('.shangchuan').hide();
-              if(window.action_str){
-                $("form#new_upload").attr("action", window.action_str);
-              }
-              curr = $("span.upload_"+window.tar_str).find('b').text();
-              $("span.upload_"+window.tar_str).find('b').text(parseInt(curr) + 1);
-              $('.zhezhao').show();
-              $('.zansuccess').show();
-            }else{
-              if(body !== ""){
-                alert(body);
-              }
-            }
-        }
-    });
     $(document).on('click',"span.greenbg",function(e){
       if(e.target.tagName ==='I'){
         window.tar_str = $(e.target).parent().attr('class').match(/upload_(\d+)/)[1];
@@ -324,9 +290,22 @@
       $('.mobile .shangchuan .kuangbg>img').attr('src','/assets/wap_zhucebg.png');
       $('.zhucewarp').show();
     });
-  javascript:
     $('#slider1').carousel({resizeChildByNum: 3 });
     $('#slider3').carousel({resizeChildByNum: 3 });
     $('#slider3').carousel({resizeChildByNum: 3 });
+    $(".zhucewarp .sharebutton input").click(function(e){
+      e.preventDefault();
+      var form = $('form')[0];
+      var formData = new FormData(form);
+      $.ajax({
+          url: '/uploads.js',
+          data: formData,
+          type: "POST",
+          // THIS MUST BE DONE FOR FILE UPLOADING
+          contentType: false,
+          processData: false,
+          // ... Other options like success and etc
+      });
+    });
 
 = render :template => 'layouts/application'
