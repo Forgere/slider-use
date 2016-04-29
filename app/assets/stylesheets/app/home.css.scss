@@ -118,10 +118,19 @@ body.home{
                   float: left;
                   display: inline-block;
                   overflow: hidden;
-                  img{
-                    display: block;
+                  // img{
+                  //   display: block;
+                  //   width: 232px;
+                  //   height: 154px;
+                  // }
+                  .imgcontain{
                     width: 232px;
                     height: 154px;
+                    overflow: hidden;
+                    img{
+                      display: block;
+                      width: 100%;
+                    }
                   }
                   span.greenbg{
                     display: block;
