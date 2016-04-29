@@ -134,6 +134,7 @@ var proSchool = {"00":["合肥","芜湖","阜阳","六安","池州","亳州"],
 	$('.mobile .zhezhao').on('click', function(e) {
 		$('.tanchu').hide();
 		$('.zhezhao').hide();
+		$('.erweima').hide();
 		if(window.action_str){
       $("form").attr("action", window.action_str);
     }
