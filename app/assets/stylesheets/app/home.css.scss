@@ -276,6 +276,9 @@ body.home{
               display: block;
               box-sizing: border-box;
               padding: 0;
+              .lt-ie9 &{
+                width: 1012px !important
+              }
               a{
                 float: left;
                 text-decoration: none;
