@@ -36,7 +36,8 @@
                   - Upload.where(upload_type: 2).where('original_filename is not null').each do |upload|
                     li
                       a
-                        =image_tag(upload.img.url)
+                        div.imgcontain
+                          =image_tag(upload.img.url)
                         span.greenbg class= "upload_#{upload.id}"
                           i
                           | 点赞数
@@ -52,7 +53,8 @@
                   - Upload.where(upload_type: 3).where('original_filename is not null').each do |upload|
                     li
                       a
-                        =image_tag(upload.img.url)
+                        div.imgcontain
+                          =image_tag(upload.img.url)
                         span.greenbg class= "upload_#{upload.id}"
                           i
                           | 点赞数
