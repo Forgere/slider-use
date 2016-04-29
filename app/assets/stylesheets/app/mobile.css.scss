@@ -103,10 +103,14 @@
                   float: left;
                   display: inline-block;
                   overflow: hidden;
-                  img{
-                    display: block;
+                  .imgcontain{
                     width: 102px;
                     height: 67px;
+                    overflow: hidden;
+                    img{
+                      display: block;
+                      width: 100%;
+                    }
                   }
                   span.greenbg{
                     display: block;
