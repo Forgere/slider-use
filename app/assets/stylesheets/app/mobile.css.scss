@@ -18,7 +18,9 @@
     background: none;
     height: auto;
     width: 100%;
-    margin-bottom: 4px;
+    margin: 4px 0;
+    position: relative;
+    top: -2%;
     padding-bottom: 0;
     span{
       position: absolute;
@@ -32,16 +34,20 @@
   }
   .main-inner{
     background: none;
+    position: relative;
   }
   .showarea{
     background: none;
     .showdianzan{
       .title1{
         padding-left: 8px;
+        overflow: hidden;
         img{
           width: 63px;
+          float: left;
         }
         ul.groups{
+          float: left;
           margin-left: 8px;
           li{
             float: left;
@@ -75,6 +81,8 @@
       }
       .sliders{
         .sliderwarp{
+          position: relative;
+          display: none;
           padding: 0;
           width: 100%;
           .carousel-inner{
@@ -167,7 +175,9 @@
       position: relative;
       .title2{
         margin-top: -2px;
+        overflow: hidden;
         ul.groups{
+          float: left;
           margin-left: 50px;
           margin-top: 108px;
           li{
@@ -295,16 +305,22 @@
   .hotel{
     background: none;
     height: 145px;
+    margin-top: 8px;
     .warp{
       background: url(image_path('wap_hotelbg.png')) no-repeat 50% top;
       background-size: contain;
       height: 140px;
+      position: relative;
+      padding-bottom: 77px;
       .sliders{
         top: 45px;
         left: 113px;
         width: 245px;
+        position: absolute;
         .carousel-inner{
           width: 220px;
+          overflow: hidden;
+          margin:0 auto;
           ul{
             overflow: hidden;
             width: 10000px;
@@ -312,20 +328,22 @@
             margin-left:-13px;
             li{
               float: left;
-              .ie6 &{
-                display: inline;
-              }
               a{
                 display: inline-block;
                 text-decoration: none;
                 img{
                   width: 104px;
                   height: 78px;
-                  .lt-ie9 &{
-                    max-width: none;
-                  }
                 }
                 span.title{
+                  display: block;
+                  color: #3a2d29;
+                  font-size: 8px;
+                  font-family: '微软雅黑';
+                  margin-top: 4px;
+                  box-sizing:border-box;
+                  text-align: center;
+                  text-decoration: none;
                   height: 10px;
                   line-height: 10px;
                 }
@@ -334,11 +352,14 @@
           }
         }
         .unslider-arrow{
+          position: absolute;
           width: 8px;
           height: 15px;
           display: inline-block;
           font-size: 30px;
           top: 28px;
+          font-weight: bolder;
+          color: #d91e1c;
         }
         .prev{
           left: -6px;
@@ -355,8 +376,6 @@
   .liangdian{
     margin-top: 20px;
     .warp{
-      width: 1012px;
-      margin: 0 auto;
       text-align: center;
       a.button{
       }
@@ -472,7 +491,7 @@
           right: auto;
           left: 23.5px;
           top: 201px;
-          // display: none;
+          display: none;
         }
         .usersshareimg{
           position: absolute;
