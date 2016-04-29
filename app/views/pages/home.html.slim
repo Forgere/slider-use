@@ -292,13 +292,6 @@
                 label for="yan" 验证码
                 = f.text_field "captcha", style: "width: 200px;"
                 = captcha_tag height: 30
-                javascript:
-                  Date.now = Date.now || function() { return +new Date; }; 
-                  $(function(){
-                    $(".big img").click(function(e){
-                       $(e.target).attr("src", '/captcha?i=' + Date.now());
-                    });
-                  });
               p.word 是否愿意接受指定城市经销商与您联系，到店即可获得精美礼品,先到先得，抢完即止。
               span
                 = f.radio_button "is_contact", 1, checked: true
@@ -386,6 +379,7 @@
             }else{
               if(body !== ""){
                 alert(body);
+                $(".big img").trigger("click");
               }
             }
         }
