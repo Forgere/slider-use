@@ -131,7 +131,7 @@ var proSchool = {"00":["合肥","芜湖","阜阳","六安","池州","亳州"],
     }
 	});
 	//wap close
-	$('.mobile .tanchu').on('click', function(e) {
+	$('.mobile .zhezhao').on('click', function(e) {
 		$('.tanchu').hide();
 		$('.zhezhao').hide();
 		if(window.action_str){
