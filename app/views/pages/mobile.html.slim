@@ -284,7 +284,8 @@
       }
       window.action_str = $("form#new_upload").attr("action");
       $("form#new_upload").attr("action", window.action_str + "?vote_id="+window.tar_str);
-      $('.shangchuan').show();
+      //$('.shangchuan').show();
+      popup($('.shangchuan'));
       $('.shangchuanwarp').hide();
       $('.zhezhao').show();
       $('.mobile .shangchuan .kuangbg>img').attr('src','/assets/wap_zhucebg.png');
@@ -298,9 +299,10 @@
       var form = $('form')[0];
       var formData = new FormData(form);
       $.ajax({
-          url: '/uploads.js',
+          url: $('form').attr('action'),
           data: formData,
           type: "POST",
+          dataType: 'script',
           // THIS MUST BE DONE FOR FILE UPLOADING
           contentType: false,
           processData: false,

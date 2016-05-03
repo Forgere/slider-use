@@ -1,4 +1,11 @@
 Date.now = Date.now || function() { return +new Date; };
+function popup(popupName){
+    var _scrollHeight = $(document).scrollTop(),//获取当前窗口距离页面顶部高度
+    _windowHeight = $(window).height(),//获取当前窗口高度
+    _popupHeight = popupName.height(),//获取弹出层高度
+    _posiTop = (_windowHeight - _popupHeight)/2 + _scrollHeight - $('.headimg').height();
+    popupName.css({"top":_posiTop + "px","display":"block"});//设置position
+}
 $(function(){
 var province = [["00","安徽省"],["02","北京"],["03","重庆"],["04","福建省"],["05","甘肃省"],["06","广东省"],["07","广西省"],["08","贵州省"],["09","海南省"],["10","河北省"],["11","河南省"],["12","黑龙江省"],["13","湖北省"],["14","湖南省"],["15","吉林省"],["16","江苏省"],["17","江西省"],["18","辽宁省"],["19","内蒙古自治区"],["20","宁夏回族自治区"],["21","青海省"],["22","山东省"],["23","山西省"],["24","陕西省"],["25","上海"],["26","四川省"],["28","天津"],["29","西藏自治区"],["31","新疆维吾尔自治区"],["32","云南省"],["33","浙江省"]];
 var proSchool = {"00":["合肥","芜湖","阜阳","六安","池州","亳州"],
@@ -160,8 +167,10 @@ var proSchool = {"00":["合肥","芜湖","阜阳","六安","池州","亳州"],
 		event.preventDefault();
 		/* Act on the event */
 		showzhezhao();
-		$('.shangchuan').show();
-		$('.shangchuanwarp').show();
+		//$('.shangchuan').show();
+		//$('.shangchuanwarp').show();
+		popup($('.shangchuan'));
+		popup($('.shangchuanwarp'));
 		$('.zhucewarp').hide();
 	});
 	$('input#upload_img').on("change", function(){
@@ -197,13 +206,11 @@ var proSchool = {"00":["合肥","芜湖","阜阳","六安","池州","亳州"],
 		/* Act on the event */
 		//$('.tanchu').hide();
 		$('.zhezhao').show();
-		$('.tanchu').hide();
-		$('.erweima').show();
+		popup($('.erweima'));
 	});
 	$('span.right').click(function(event) {
 		/* Act on the event */
 		$('.erweima').hide();
-		$('.zhezhao').hide();
 	});
 
 	$(".xuanxiang input").change(function(e){

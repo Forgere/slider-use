@@ -1,7 +1,7 @@
 var body = '<%= @text %>';
 if(body.indexOf(";") > -1){
   $('.shangchuan').hide();
-  $('.gongxi').show();
+  popup($('.gongxi'));
   attrs = body.split(";");
   $(".usersshareimg").append("<img src='"+attrs[0]+"' style='width:100%'></img>")
   $(".xuanyan_"+ attrs[1]).show();
@@ -15,7 +15,7 @@ if(body.indexOf(";") > -1){
       curr = $("span.upload_"+window.tar_str).find('b').text();
       $("span.upload_"+window.tar_str).find('b').text(parseInt(curr) + 1);
       $('.zhezhao').show();
-      $('.zansuccess').show();
+      popup($('.zansuccess'));
     }else{
       if(body !== ""){
         alert(body);
