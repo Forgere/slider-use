@@ -8,6 +8,8 @@ $.fn.carousel = (options={})->
       el.data('carousel',new Carousel(el,options))
   @
 
+isAnimating = false
+
 class Carousel
   @defaults: {
     nextSelector: '.btn-next'
@@ -43,10 +45,19 @@ class Carousel
     @inner.find('ul').css('margin-left': pos)
 
   _scrollThumb: (v,from)->
+    if isAnimating == true
+      return
     pos = if from? then from else parseFloat(@inner.find('ul').css('margin-left') || 0)
     pos = @_limitPos(pos + @childOuterWidth * v)
     @currentChild = Math.floor(pos / @childOuterWidth * -1)
-    @inner.find('ul').stop().animate({'margin-left': pos},@scrollDuring)
+    isAnimating = true
+    @inner.find('ul').stop().animate {
+      'margin-left': pos
+    },
+      duration: @scrollDuring,
+      complete: ->
+        isAnimating = false
+        return
 
   _limitPos: (pos)->
     Math.min(0,Math.max(@inner.width() - @childOuterWidth * @count, pos))
