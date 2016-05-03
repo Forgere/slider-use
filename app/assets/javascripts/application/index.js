@@ -3,7 +3,7 @@ function popup(popupName){
     var _scrollHeight = $(document).scrollTop(),//获取当前窗口距离页面顶部高度
     _windowHeight = $(window).height(),//获取当前窗口高度
     _popupHeight = popupName.height(),//获取弹出层高度
-    _posiTop = (_windowHeight - _popupHeight)/2 + _scrollHeight - $('.headimg').height();
+    _posiTop = (_windowHeight - _popupHeight)/2 + _scrollHeight - $('#header').height();
     popupName.css({"top":_posiTop + "px","display":"block"});//设置position
 }
 $(function(){
