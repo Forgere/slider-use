@@ -408,4 +408,10 @@
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();
+    $('.showdianzan .title1>img').click(function(e){
+      _hmt.push(['_trackEvent', 'pc', '我要上传']);
+    });
+    $('.sharebutton img').click(function(e){
+      _hmt.push(['_trackEvent', 'pc', '开始上传']);
+    });
 = render :template => 'layouts/application'
