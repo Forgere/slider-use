@@ -5,6 +5,7 @@ Cms::Application.routes.draw do
   resources :posts, :only => [:show]
   resources :uploads, :only => [:create, :show] do
   	get 'export', on: :collection
+  	get 'thumb', on: :member
   end
   mount Amalgam::Engine => '/'
   root :to => 'pages#show' , :defaults => {:id => 'home'}
