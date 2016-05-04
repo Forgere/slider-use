@@ -1,3 +1,3 @@
 $(function(){
-	$('.slider img').unveil(200);
+	$('.slider img').unveil();
 });

@@ -322,5 +322,13 @@
     $('.sharebutton img').click(function(e){
       _hmt.push(['_trackEvent', 'mobile', '开始上传']);
     });
-
+    $(function(){
+      $(window).trigger("lookup");
+      $('.showdianzan .groups li').on('click', function(){
+        $(window).trigger("lookup");
+      });
+      $('.showdianzan .unslider-arrow').on('click',function(){
+        $(window).trigger("lookup");
+      })
+    });
 = render :template => 'layouts/application'
