@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.unveil.js
 //= require carousel
 //= require unslider.js
 //= require jquery.remotipart

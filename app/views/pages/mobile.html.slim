@@ -19,7 +19,7 @@
                   - Upload.where(upload_type: 1).where('original_filename is not null').each do |upload|
                     li
                       a
-                        =image_tag(thumb_upload_url(upload))
+                        img src=image_path('slide_loading.gif') data-src=thumb_upload_url(upload)
                         span.greenbg class= "upload_#{upload.id}"
                           i
                           | 点赞数
@@ -35,7 +35,7 @@
                   - Upload.where(upload_type: 2).where('original_filename is not null').each do |upload|
                     li
                       a
-                        =image_tag(thumb_upload_url(upload))
+                        img src=image_path('slide_loading.gif') data-src=thumb_upload_url(upload)
                         span.greenbg class= "upload_#{upload.id}"
                           i
                           | 点赞数
@@ -51,7 +51,7 @@
                   - Upload.where(upload_type: 3).where('original_filename is not null').each do |upload|
                     li
                       a
-                        =image_tag(thumb_upload_url(upload))
+                        img src=image_path('slide_loading.gif') data-src=thumb_upload_url(upload)
                         span.greenbg class= "upload_#{upload.id}"
                           i
                           | 点赞数
