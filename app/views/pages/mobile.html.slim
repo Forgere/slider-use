@@ -330,5 +330,8 @@
       $('.showdianzan .unslider-arrow').on('click',function(){
         $(window).trigger("lookup");
       })
+      $(window).on('swipe', function(){
+        $(window).trigger("lookup");
+      });
     });
 = render :template => 'layouts/application'
