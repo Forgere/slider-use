@@ -1,3 +1,3 @@
 $(function(){
-	$('.slider img').unveil();
+	$('.slider img').unveil($(window).width());
 });

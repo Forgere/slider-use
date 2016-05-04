@@ -34,12 +34,11 @@
         var $e = $(this);
         if ($e.is(":hidden")) return;
 
-        var wt = $w.scrollTop(),
-            wb = wt + $w.height(),
-            et = $e.offset().top,
-            eb = et + $e.height();
-
-        return eb >= wt - th && et <= wb + th;
+        // var wt = $w.scrollTop(),
+        //     wb = wt + $w.height(),
+        //     et = $e.offset().top,
+        //     eb = et + $e.height();
+        return $e.offset().left < $w.width() + th;
       });
 
       loaded = inview.trigger("unveil");
