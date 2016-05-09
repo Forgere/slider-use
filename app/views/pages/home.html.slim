@@ -247,6 +247,7 @@
         .kuangbg
           =image_tag('tanchukuang3.png')
           = form_for Upload.new, :html => { :multipart => true, target: "upload_target" } do |f|
+            = f.hidden_field :origin, :value => 'pc'
             .shangchuanwarp
               .title
                 =image_tag('title-shangchuan.png')

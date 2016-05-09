@@ -222,6 +222,7 @@
           .kuangbg
             =image_tag('wap_shangchuanbg.png')
             = form_for Upload.new do |f|
+              = f.hidden_field :origin, :value => 'wap'
               .shangchuanwarp
                 label
                   input type="text" id="input1" placeholder="点击上传电脑图片" disabled="disabled"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160423023309) do
+ActiveRecord::Schema.define(:version => 20160509023531) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "username"
@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(:version => 20160423023309) do
     t.string   "original_filename"
     t.integer  "vote_id"
     t.integer  "vote_count",        :default => 0
+    t.string   "origin"
   end
 
 end
