@@ -22,7 +22,6 @@ class PagesController < ApplicationController
   private
 
   def switch_mobile
-    logger.info request.env["HTTP_USER_AGENT"]
-    params[:id] = 'mobile' if request.env["HTTP_USER_AGENT"].match(/Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile/) && params[:id] == 'home'
+    params[:id] = 'mobile' if request.env["HTTP_USER_AGENT"] && request.env["HTTP_USER_AGENT"].match(/Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile/) && params[:id] == 'home'
   end
 end
