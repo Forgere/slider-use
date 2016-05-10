@@ -83,6 +83,7 @@ class UploadsController < ApplicationController
   end
 
   def thumb
+    response.headers["Expires"] = 1.year.from_now.httpdate
     upload = Upload.find(params[:id])
     send_file upload.img.list.file.path, disposition: 'inline'
   end
