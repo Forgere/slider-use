@@ -311,7 +311,6 @@
       background-size: contain;
       height: 140px;
       position: relative;
-      padding-bottom: 77px;
       .sliders{
         top: 45px;
         left: 113px;
@@ -377,6 +376,7 @@
   .yezhongbanner{
     margin-top: 10px;
     a{
+      display: block;
       img{
         width: 360px;
       }
