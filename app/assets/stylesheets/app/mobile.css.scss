@@ -103,6 +103,7 @@
                   float: left;
                   display: inline-block;
                   overflow: hidden;
+                  -webkit-tap-highlight-color: rgba(0,0,0,0);
                   img{
                     display: block;
                     width: 109px;
@@ -231,6 +232,7 @@
                 width: 100px;
                 display: block;
                 padding:0 3px;
+                -webkit-tap-highlight-color: rgba(0,0,0,0);
                 img{
                   width: 100px;
                   height: 80px;
@@ -331,6 +333,7 @@
                 display: inline-block;
                 text-decoration: none;
                 padding-left: 4px;
+                -webkit-tap-highlight-color: rgba(0,0,0,0);
                 img{
                   width: 104px;
                   height: 78px;
@@ -377,6 +380,8 @@
     margin-top: 10px;
     a{
       display: block;
+      line-height: 0;
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
       img{
         width: 360px;
       }
@@ -387,6 +392,7 @@
     .warp{
       text-align: center;
       a.button{
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
       }
     }
   }
