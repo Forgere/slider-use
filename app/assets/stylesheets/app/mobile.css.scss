@@ -104,6 +104,7 @@
                   display: inline-block;
                   overflow: hidden;
                   -webkit-tap-highlight-color: rgba(0,0,0,0);
+                  -webkit-user-select:none;
                   img{
                     display: block;
                     width: 109px;
@@ -233,6 +234,7 @@
                 display: block;
                 padding:0 3px;
                 -webkit-tap-highlight-color: rgba(0,0,0,0);
+                -webkit-user-select:none;
                 img{
                   width: 100px;
                   height: 80px;
@@ -334,6 +336,7 @@
                 text-decoration: none;
                 padding-left: 4px;
                 -webkit-tap-highlight-color: rgba(0,0,0,0);
+                -webkit-user-select:none;
                 img{
                   width: 104px;
                   height: 78px;
@@ -382,6 +385,7 @@
       display: block;
       line-height: 0;
       -webkit-tap-highlight-color: rgba(0,0,0,0);
+      -webkit-user-select:none;
       img{
         width: 360px;
       }
@@ -393,6 +397,8 @@
       text-align: center;
       a.button{
         -webkit-tap-highlight-color: rgba(0,0,0,0);
+        -webkit-user-select:none;
+        user-select: none;
       }
     }
   }
