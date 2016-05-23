@@ -506,9 +506,9 @@ QunarAPI.checkJsApi({
 QunarAPI.ready(function() {
     // 调用QunarAPI提供的各种接口
  QunarAPI.onMenuShare({
-        title: '荣威360  幸福新发现', // 标题
+        title: '荣威360 幸福新发现', // 标题
         link: 'http://roewe360.xtunes.cn/', // 链接URL
         desc: '通用分享，描述', // 描述
-        imgUrl: 'http://roewe360.xtunes.cn/apple-touch-icon-76x76.png', // 分享图标
+        imgUrl: 'http://roewe360.xtunes.cn/assets/sharelogo.png', // 分享图标
     });
 });
