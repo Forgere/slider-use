@@ -494,27 +494,21 @@ QunarAPI.config({
 });
 
 QunarAPI.checkJsApi({
-    jsApiList: ['chooseImage'], // 需要检测的JS接口列表
+    jsApiList: ['onMenuShare'], // 需要检测的JS接口列表
     success: function(res) {
         // 以键值对的形式返回，可用的api值true，不可用为false
         // HY
-        // res: {"chooseImage": true}
+        // res: {"onMenuShare": true}
         // wechat
         // res：{"checkResult":{"chooseImage":true},"errMsg":"checkJsApi:ok"}
     }
 });
 QunarAPI.ready(function() {
     // 调用QunarAPI提供的各种接口
-    QunarAPI.onMenuShare({
+ QunarAPI.onMenuShare({
         title: '荣威360 幸福新发现', // 标题
         link: 'http://roewe360.xtunes.cn/', // 链接URL
         desc: '通用分享，描述', // 描述
         imgUrl: 'http://roewe360.xtunes.cn/apple-touch-icon-76x76.png', // 分享图标
-        success: function () {
-            alert('设置完成');
-        },
-        fail: function () {
-            alert('设置失败');
-        }
     });
 });
