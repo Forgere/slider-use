@@ -105,13 +105,15 @@ body.home{
             overflow: hidden;
             width: 980px;
             margin: 0 auto;
+            height: 220px;
             ul{
               overflow: hidden;
               width: 10000px;
               display: inline-block;
               height: 218px;
+              position: relative;
               li{
-                float: left;
+                position: absolute;
                 width: 233px;
                 padding: 6px;
                 a{
@@ -159,21 +161,23 @@ body.home{
                 }
               }
             }
+            .arrow{
+              position: absolute;
+              top: 44.5px;
+              z-index: 9;
+              cursor: pointer;
+              width: 26px;
+              height: 69px;
+            }
+            .prev{
+              left: 0px;
+              background: url('/assets/leftarrow.png');
+            }
+            .next{
+              right: 0px;
+              background: url('/assets/rightarrow.png');
+            }
           }
-          .unslider-arrow{
-            position: absolute;
-            top: 44.5px;
-            z-index: 9;
-            cursor: pointer;
-            width: 26px;
-            height: 69px;
-          }
-          .prev{
-            left: 0px;
-          }
-          .next{
-            right: 0px;
-          }         
         }
         .showslider{
             display: block;
