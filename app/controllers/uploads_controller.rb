@@ -73,6 +73,14 @@ class UploadsController < ApplicationController
     end
   end
 
+  def index
+    respond_to do |format|
+      format.json{
+        render json: Upload.page(params[:page_id]).to_json
+      }
+    end
+  end
+
   def show
     upload = Upload.find(params[:id])
     if params[:thumb] == 'list'
