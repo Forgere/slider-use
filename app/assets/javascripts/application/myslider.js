@@ -121,6 +121,8 @@
 					}
 				} else {
 					options.array = options.romoteArray.slice(from, to);
+					console.log(from + ','+ to);
+					console.log(options.array);
 				}
 				return options.array;
 			}
@@ -218,7 +220,25 @@
 				}
 			}
 			function next() {
-				if (options.romoteArray.length === $that.i) return;
+				if (options.romoteArray.length === $that.i)return;
+				if (options.romoteArray.length-1 === $that.i) {
+					//到底 外获取
+					options.pageId++;
+					$.ajax({
+						url: options.api+options.pageId,
+						type: 'GET',
+						dataType: 'json',
+						success:function(result){
+							var romoteArray = [];
+							$.each(result,function(i) {
+								romoteArray[i] = "http://"+window.location.host+result[i].img.url+"/thumb";
+							});
+							$.each(romoteArray,function(i) {
+								options.romoteArray.push(romoteArray[i]);
+							});
+						}
+					});
+				}
 				$that.i++;
 				getArray($that.i - 1, $that.i);
 				//判断要添加的图片是否不存在
@@ -251,7 +271,6 @@
 			}
 
 			function to(index, callback) {
-				console.log(index);
 				if ($that.t) {
 					stop();
 					play();
@@ -277,7 +296,6 @@
 					obj = {};
 
 				if (!ul.queue('fx').length) {
-									console.log($liWidth);
 					el.animate(obj, speed, easing) && ul.animate($.extend({
 						left: (options.number - index) * $liWidth
 					}, obj), speed, easing, function (data) {
