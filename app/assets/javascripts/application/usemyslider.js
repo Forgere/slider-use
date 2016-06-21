@@ -1,11 +1,10 @@
 $(function () {
-	var pageId= 4;
+	var pageId= 4,api = 'http://localhost:3000/uploads.json?page_id=';
 	$.ajax({
-		url: 'http://localhost:3000/uploads.json?page_id='+pageId,
+		url: api+pageId,
 		type: 'GET',
 		dataType: 'json',
 		success:function(result){
-			console.log(result);
 			var romoteArray = [];
 			$.each(result,function(i) {
 				romoteArray[i] = "http://"+window.location.host+result[i].img.url+"/thumb";
@@ -23,10 +22,12 @@ $(function () {
 				lazyload: true, //是否开启lazyload
 				loading: '/assets/loading.gif', //加载中的图片
 				fadeIn: false, //开启fadeIn滚动特效
-				romoteArray:romoteArray
+				romoteArray:romoteArray,
+				pageId:pageId,//存在即无线滚动下去
+				api:api
 			});
 			$('.arrow').html('');
-			console.log(options);
+
 		}
 	});
 });
