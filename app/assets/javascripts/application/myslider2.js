@@ -23,7 +23,8 @@
       loading: '',            //lazy图片
       fadeIn: false,          //fadeIN效果
       romoteArray: '',        //动态加入图片
-      ajaxcallback: false
+      ajaxcallback: false,     //ajax回调数组 url success类型默认get json；若动态改变则在whichchange中写入改变的参数
+      innerHTML:'<li><img></li>'     //包括li在内的html结构
     };
 
     this.init = function (el, o) {
@@ -36,14 +37,19 @@
       this.liWidth = this.parentW / this.o.number;
       //  当前图片index
       this.i = 0;
+      //现有图片到底事件
+      this.el.bind('reachLastImage', this.el, function(event) {
+        that.ajaxcallback(that.o.ajaxcallback.url,that.o.ajaxcallback.success,that.o.ajaxcallback.whichchange,that.o.ajaxcallback.type,that.o.ajaxcallback.datatype);
+      });
       //已加载图片的最大index
       this.maxI = this.o.number;
       if(this.o.romoteArray){
         //初始加赞图片
         this.o.array = this.o.romoteArray.slice(this.i, this.i + this.o.number);
         for (var i = 0; i < this.o.number; i++) {
-          this.addImage(this.o.array, 'right', this.i);
+          this.addImage(this.o.array, 'right', this.i,this.o.innerHTML);
           this.i++;
+          this.onreachLastImage();
         }
       }
       //高度
@@ -70,32 +76,34 @@
       //  Patch for fluid-width sliders. Screw those guys.
       if (this.o.autochange) {
         $(window).resize(function () {
-          var sliderWidth = this.liWidth * this.o.number;
-          this.r && clearTimeout(this.r) && clearTimeout(this.protectTime);
-          this.r = setTimeout(function () {
-            var beforeSaveLiList = this.el.find(this.o.items).children('li');
-            var beforeSaveWidth = parseInt(this.el.find(this.o.items).children('li').eq(0).outerWidth());
-            this.el.width(sliderWidth);
-            this.el.find('img').width(sliderWidth / this.o.number);
+          var sliderWidth = that.liWidth * that.o.number;
+          that.r && clearTimeout(that.r) && clearTimeout(that.protectTime);
+          that.r = setTimeout(function () {
+            var beforeSaveLiList = that.el.find(that.o.items).children('li');
+            var beforeSaveWidth = parseInt(that.el.find(that.o.items).children('li').eq(0).outerWidth());
+            that.el.width(sliderWidth);
+            that.el.find('img').width(sliderWidth / that.o.number);
             var liWidth = beforeSaveLiList.eq(0).outerWidth();
             for (var i = 0; i < beforeSaveLiList.length; i++) {
-              if (this.i === this.maxI) {
-                beforeSaveLiList.eq(i).css('left', liWidth * (this.i - beforeSaveLiList.length + i));
-              } else if (this.maxI - this.o.savenumber > this.i) {
-                beforeSaveLiList.eq(i).css('left', liWidth * (parseInt(beforeSaveLiList.eq(beforeSaveLiList.length - 1).css('left')) / this.liWidth + 1 - beforeSaveLiList.length + i));
-              } else if (this.o.savenumber > this.maxI - this.i) {
-                beforeSaveLiList.eq(i).css('left', liWidth * (this.maxI - beforeSaveLiList.length + i));
+              if (that.i === that.maxI) {
+                beforeSaveLiList.eq(i).css('left', liWidth * (that.i - beforeSaveLiList.length + i));
+              } else if (that.maxI - that.o.savenumber > that.i) {
+                beforeSaveLiList.eq(i).css('left', liWidth * (parseInt(beforeSaveLiList.eq(beforeSaveLiList.length - 1).css('left')) / that.liWidth + 1 - beforeSaveLiList.length + i));
+              } else if (that.o.savenumber > that.maxI - that.i) {
+                beforeSaveLiList.eq(i).css('left', liWidth * (that.maxI - beforeSaveLiList.length + i));
               }
             }
-            this.el.find(this.o.items).css('left', (this.o.number - this.i) * liWidth);
+            that.el.find(that.o.items).css('left', (that.o.number - that.i) * liWidth);
           }, 50);
         }).resize();
       }
-      setInterval(
-        function () {
-          that.protect();
-        }, 1000);
-      return this;
+      if(this.o.savenumber){
+        setInterval(
+          function () {
+            that.protect();
+          }, 2000);
+        return this;
+      }
     };
     //basic ///////////////////////////////////////////////////
     //  根据this.i移动ul
@@ -135,7 +143,7 @@
     //  自动增加index
     this.play = function () {
       that.t = setInterval(function () {
-        that.next(that.o.ajaxcallback);
+        that.el.find('.next').trigger('click');
       }, that.o.duration | 0);
     };
 
@@ -146,13 +154,13 @@
     };
 
     //  右箭头
-    this.next = function (callback) {
+    this.next = function () {
       if(this.ul.queue('fx').length)return;
-      if (this.o.romoteArray.length === this.i) return;
-      if (this.o.romoteArray.length - 1 === this.i){
-        //到底 外获取
-        $.isFunction(callback) && callback();
+      if (this.o.romoteArray.length === this.i) {
+        this.onNoLoopReachEnd();
+        return;
       }
+      this.onreachLastImage();
       this.i++;
       this.getArray(this.i - 1, this.i);
       //判断要添加的图片是否不存在
@@ -160,14 +168,17 @@
       var width = Math.floor(parseInt(this.el.parent().css('width')) / this.o.number);
       var lastImageIndex = lastImageLeft / width - 1;
       if (this.i > lastImageIndex) {
-        this.addImage(this.o.array, 'right', this.i - 1);
+        this.addImage(this.o.array, 'right', this.i - 1,this.o.innerHTML);
       }
-      return this.stop().to(this.i);
+      return this.to(this.i);
     };
     //  左箭头
     this.prev = function () {
       this.i--;
-      if (this.o.number === this.i + 1) return;
+      if (this.o.number === this.i + 1) {
+        this.onNoLoopReachFirst();
+        return;
+      }
       if (this.o.savenumber) {
         var firstImageLeft = parseInt(this.el.find(this.o.items).children('li').first().css('left'));
         var width = Math.floor(parseInt(this.el.parent().css('width')) / this.o.number);
@@ -178,7 +189,7 @@
           this.addImage(this.o.array, 'left', this.i + 1);
         }
       }
-      return this.stop().to(this.i);
+      return this.to(this.i);
     };
     //  Create dots and arrows
     function nav(name, html) {
@@ -195,39 +206,63 @@
 
       that.el.addClass('has-' + name + 's').append(html).find('.' + name).click(function () {
         var me = $(this);
-        me.hasClass('dot') ? that.stop().to(me.index()) : me.hasClass('prev') ? that.prev() : that.next(that.o.ajaxcallback);
+        me.hasClass('dot') ? that.stop().to(me.index()) : me.hasClass('prev') ? that.prev() : that.next();
       });
     }
-    this.getArray = function (from, to) {
-      if (to <= this.maxI) {
-        if (this.o.cache[from] == null || undefined) {
-          this.o.array = [];
-        } else {
-          this.o.array[0] = this.o.cache[from];
+    var urlid = 0;
+    this.ajaxcallback=function(geturl,successFunc,whichChange,getType,getdataType){
+      if(that.o.romoteArray){
+        if(whichChange){
+          var reg=/id=(\w)/;
+          var originId = parseInt(geturl.match(reg)[1]) + urlid;
+          geturl = geturl.split(reg)[0] + whichChange+'=' + originId +geturl.split(reg)[2];
+          urlid++;
         }
-      } else {
-        this.o.array = this.o.romoteArray.slice(from, to);
-      }
-      return this.o.array;
-    },
-    this.addImage = function (array, direction, index) {
-      if (array.length === 0) {
-        return;
-      }
-      //lazyload support
-      if (this.o.lazyload) {
-        this.lazyload(array, direction, index);
-      } else {
-        // if (array[0] === '' || !array[0]) {array.shift();}
-        $("<li style='left:" + (this.i - 1) * this.liWidth + 'px' + "'><img src=" + array[0] + " style='width:" + this.liWidth + ";'></li>").appendTo(this.ul);
-        array.shift();
+        $.ajax({
+          url: geturl,
+          type: getType || 'GET',
+          dataType: getdataType || 'json',
+          success:successFunc
+        });
       }
     },
-    this.lazyload = function (array, direction, index) {
-      var creatImg = $("<li style='left:" + index * this.liWidth + 'px' + "'><img src=" + this.o.loading + " style='height:100%;width:" + this.liWidth + ";'></li>");
+    this.getArray = function (from, to) {
+      if(this.o.romoteArray){
+        if (to <= this.maxI) {
+          if (this.o.cache[from] == null || undefined) {
+            this.o.array = [];
+          } else {
+            this.o.array[0] = this.o.cache[from];
+          }
+        } else {
+          this.el.bind('addNewImage', this.el, function(event) {
+            that.o.array = that.o.romoteArray.slice(from, to);
+          });
+          this.onaddNewImage();
+        }
+        return this.o.array;
+      }
+    },
+    //自定义html
+    this.addImage = function (array, direction, index, inner) {
+      if(this.o.romoteArray){
+        if (array.length === 0) {
+          return;
+        }
+        //lazyload support
+        if (this.o.lazyload) {
+          this.lazyload(array, direction, index ,that.o.innerHTML);
+        } else {
+          $(inner).css('left',(this.i - 1) * this.liWidth + 'px').appendTo(this.ul).find('img').width(this.liWidth);
+          array.shift();
+        }
+      }
+    },
+    this.lazyload = function (array, direction, index,inner) {
+      var creatImg = $(inner);
+      creatImg.css('left',index * this.liWidth+'px').find('img').width(this.liWidth).attr('src', this.o.loading);
       if (direction === 'left') {
-        creatImg = $("<li style='left:" + (index - this.o.number - 1) * this.liWidth + 'px' + "'><img src=" + this.o.loading + " style='width:" + this.liWidth + ";'></li>");
-        creatImg.prependTo(this.ul);
+        creatImg.css('left',(index - this.o.number - 1) * this.liWidth + 'px').prependTo(this.ul).find('img').width(this.liWidth);
       } else {
         creatImg.appendTo(this.ul);
       }
@@ -251,7 +286,7 @@
             that.protectMemory();
           }, 1000);
       }
-    };
+    },
     //保护内存
     this.protectMemory = function () {
       //留下的图片的index 从0开始
@@ -272,7 +307,28 @@
           currentLiList.eq(i).remove();
         }
       }
-    };
+    },
+    //第一张
+    this.onNoLoopReachFirst = function(){
+      that.el.trigger('noLoopReachFirst');
+    },
+    //最后一张
+    this.onNoLoopReachEnd = function(){
+      that.el.trigger('noLoopReachEnd');
+    },
+    //新添一张
+    this.onaddNewImage = function(){
+      that.el.trigger('addNewImage');
+    },
+    //何时触发reachLastImage最后一张
+    this.onreachLastImage = function(){
+      if (this.o.romoteArray.length - 1 === this.i){
+        //到底 外获取
+        if (that.o.ajaxcallback && that.o.romoteArray) {
+          that.el.trigger('reachLastImage');
+        }
+      }
+    }
   };
 
   //  Create a jQuery plugin

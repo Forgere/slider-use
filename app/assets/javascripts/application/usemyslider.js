@@ -1,5 +1,5 @@
 $(function () {
-	var pageId= 1,api = 'http://localhost:3000/uploads.json?page_id=';
+	pageId= 1;api = 'http://localhost:3000/uploads.json?page_id=';
 	$.ajax({
 		url: api+pageId,
 		type: 'GET',
@@ -17,23 +17,20 @@ $(function () {
 				romoteArray:romoteArray,
 				prev: '',
 				next: '',
-				ajaxcallback:function(){
-					pageId++;
-					$.ajax({
-						url: api+pageId,
-						type: 'GET',
-						dataType: 'json',
-						success:function(result){
-							var romoteAddArray = [];
-							$.each(result,function(i) {
-								romoteAddArray[i] = "http://"+window.location.host+result[i].img.url+"/thumb";
-							});
-							$.each(romoteAddArray,function(i) {
-								romoteArray.push(romoteAddArray[i]);
-							});
-						}
-					});},
-				addImageCallback:function(){},
+				innerHTML:'<li><a><img></a></li>',
+				ajaxcallback:{
+					url:api+(pageId+1),
+					whichchange:'id',
+					success:function(result){
+						var romoteAddArray = [];
+						$.each(result,function(i) {
+							romoteAddArray[i] = "http://"+window.location.host+result[i].img.url+"/thumb";
+						});
+						$.each(romoteAddArray,function(i) {
+							romoteArray.push(romoteAddArray[i]);
+						});
+					}
+				},
 			});
 			// console.log(weinr.data(weinr.data('key')).next());
 		}
