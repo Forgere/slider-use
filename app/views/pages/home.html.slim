@@ -15,15 +15,6 @@
           .sliderwarp.showslider#slider1
             .slider1.slider.carousel-inner
               ul
-                - Upload.where(upload_type: 1).where('original_filename is not null').each do |upload|
-                  li
-                    a
-                      img src=image_path('slide_loading.gif') data-src=thumb_upload_url(upload)
-                      span.greenbg class= "upload_#{upload.id}"
-                        i
-                        | 点赞数
-                        b
-                          = upload.vote_count
           .sliderwarp#slider2
             .slider2.slider.carousel-inner
               ul

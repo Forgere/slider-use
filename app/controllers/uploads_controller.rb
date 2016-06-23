@@ -76,7 +76,7 @@ class UploadsController < ApplicationController
   def index
     respond_to do |format|
       format.json{
-        render json: Upload.page(params[:page_id]).to_json
+        render json: Upload.where('img is not null').page(params[:page_id]).per(5).to_json
       }
     end
   end

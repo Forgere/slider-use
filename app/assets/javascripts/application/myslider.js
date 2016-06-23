@@ -8,22 +8,23 @@
 			savenumber: null,
 			items: '>ul',
 			item: '>li',
-			autoplay: true,
+			autoplay: false,
 			loop: false,
-			autochange: true,
+			autochange: false,
 			duration: 3000,
 			arrows: true,
 			prev: '&larr;',
 			next: '&rarr;',
-			speed: 500,
+			speed: 200,
 			autospeed: 'slow',
 			array: [],
 			cache: [],
 			easing: 'swing',
 			lazyload: true,
-			loading: 'loading.gif',
+			loading: '',
 			fadeIn: false,
-			romoteArray:''
+			romoteArray:'',
+			ajaxcallback:false
 		};
 		options = $.extend(defaults, options);
 		$el = $that;
@@ -59,11 +60,11 @@
 				options.autoplay && setTimeout(function () {
 					if (options.duration | 0) {
 						if (options.autoplay) {
-							_.play();
+							play();
 						}
 						$el.on('mouseover mouseout', function (e) {
-							_.stop();
-							options.autoplay && e.type == 'mouseout' && _.play();
+							$that.stop();
+							options.autoplay && e.type == 'mouseout' && play();
 						});
 					}
 				}, 0);
@@ -76,7 +77,6 @@
 				//  Patch for fluid-width sliders. Screw those guys.
 				if (options.autochange) {
 					$(window).resize(function () {
-            clearInterval($that.protectTime);
 						var sliderWidth = $liWidth * options.number;
 						$that.r && clearTimeout($that.r) && clearTimeout($that.protectTime);
 						$that.r = setTimeout(function () {
@@ -86,29 +86,23 @@
 							$el.find('img').width(sliderWidth / options.number);
 							var liWidth = beforeSaveLiList.eq(0).outerWidth();
 							for (var i = 0; i < beforeSaveLiList.length; i++) {
-								// var beforeIndex = Math.floor(parseInt(beforeSaveLiList.eq(i).css('left')) / beforeSaveWidth);
 								if($that.i === $that.maxI){
 									beforeSaveLiList.eq(i).css('left', liWidth * ($that.i - beforeSaveLiList.length + i));
 								}else if($that.maxI-options.savenumber > $that.i){
-									beforeSaveLiList.eq(i).css('left', liWidth * ($that.i - beforeSaveLiList.length +options.savenumber+ i ));
-								}else{
+									beforeSaveLiList.eq(i).css('left', liWidth * (parseInt(beforeSaveLiList.eq( beforeSaveLiList.length - 1).css('left'))/$liWidth + 1 - beforeSaveLiList.length + i ));
+								}else if(options.savenumber > $that.maxI - $that.i){
 									beforeSaveLiList.eq(i).css('left', liWidth * ($that.maxI - beforeSaveLiList.length + i));
 								}
-							}
+							} 
 							$el.find(options.items).css('left', (options.number - $that.i) * liWidth);
 						}, 50);
 					}).resize();
 				}
-				// $el.hover(function () {
-				// 	 Stuff to do when the mouse enters the element 
-				// 	clearInterval($that.protectTime);
-				// }, function () {
           setInterval(
             function(){
             protect();
             }
-            ,50);
-				// });
+            ,1000);
 				return $that;
 			}();
 
@@ -121,8 +115,6 @@
 					}
 				} else {
 					options.array = options.romoteArray.slice(from, to);
-					console.log(from + ','+ to);
-					console.log(options.array);
 				}
 				return options.array;
 			}
@@ -136,7 +128,7 @@
 					lazyload(array, direction, index);
 				} else {
 					// if (array[0] === '' || !array[0]) {array.shift();}
-					$("<li style='left:" + ($that.i - 1) * $liWidth + 'px' + "'><img src=" + array[0] + " style='width:" + $liWidth + ";'></li>").appendTo(_.ul);
+					$("<li style='left:" + ($that.i - 1) * $liWidth + 'px' + "'><img src=" + array[0] + " style='width:" + $liWidth + ";'></li>").appendTo($that.ul);
 					array.shift();
 				}
 			}
@@ -177,7 +169,7 @@
 
 				$el.addClass('has-' + name + 's').append(html).find('.' + name).click(function () {
 					var me = $(this);
-					me.hasClass('dot') ? stop().to(me.index()) : me.hasClass('prev') ? prev() : next();
+					me.hasClass('dot') ? stop().to(me.index()) : me.hasClass('prev') ? prev() : next(options.ajaxcallback);
 				});
 			}
 
@@ -219,25 +211,12 @@
 					}
 				}
 			}
-			function next() {
+			function next(callback) {
+				if($ul.queue('fx').length)return;
 				if (options.romoteArray.length === $that.i)return;
 				if (options.romoteArray.length-1 === $that.i) {
 					//到底 外获取
-					options.pageId++;
-					$.ajax({
-						url: options.api+options.pageId,
-						type: 'GET',
-						dataType: 'json',
-						success:function(result){
-							var romoteArray = [];
-							$.each(result,function(i) {
-								romoteArray[i] = "http://"+window.location.host+result[i].img.url+"/thumb";
-							});
-							$.each(romoteArray,function(i) {
-								options.romoteArray.push(romoteArray[i]);
-							});
-						}
-					});
+					$.isFunction(callback) && callback();
 				}
 				$that.i++;
 				getArray($that.i - 1, $that.i);
@@ -253,9 +232,9 @@
 			}
 
 			function prev() {
+				if($ul.queue('fx').length)return;
         if ($that.i === options.number) return;
 				$that.i--;
-				if (options.number === $that.i + 1) return;
 				if (options.savenumber) {
 					var firstImageLeft = parseInt($el.find(options.items).children('li').first().css('left'));
 					var width = $liWidth;
@@ -294,14 +273,11 @@
 				var speed = callback ? 5 : options.speed | 0,
 					easing = options.easing,
 					obj = {};
-
-				if (!ul.queue('fx').length) {
-					el.animate(obj, speed, easing) && ul.animate($.extend({
-						left: (options.number - index) * $liWidth
-					}, obj), speed, easing, function (data) {
-						$that.maxI = (index > $that.maxI) ? index : $that.maxI;
-					});
-				}
+				el.animate(obj, speed, easing) && ul.animate($.extend({
+					left: (options.number - index) * $liWidth
+				}, obj), speed, easing, function (data) {
+					$that.maxI = (index > $that.maxI) ? index : $that.maxI;
+				});
 			}
 		});
 	};
