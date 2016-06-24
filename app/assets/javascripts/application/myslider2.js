@@ -106,92 +106,6 @@
         return this;
       }
     };
-    //basic ///////////////////////////////////////////////////
-    //  根据this.i移动ul
-    this.to = function (index, callback) {
-      if (this.t) {
-        this.stop();
-        this.play();
-      }
-      var o = this.o,
-        el = this.el,
-        ul = this.ul,
-        li = this.li,
-        current = this.i;
-      //  slider到达边缘条件
-      if ((this.o.romoteArray.length + 1 === this.i) && o.loop === false) {
-        this.i = index;
-        return;
-      }
-      if (index < this.o.number && o.loop === false) {
-        this.i = this.o.number;
-        return;
-      }
-
-      var speed = callback ? 5 : o.speed | 0,
-        easing = o.easing,
-        obj = {};
-
-      if (!ul.queue('fx').length) {
-        el.animate(obj, speed, easing) && ul.animate($.extend({
-          left: (this.o.number - index) * this.liWidth
-        }, obj), speed, easing, function (data) {
-          that.maxI = (index > that.maxI) ? index : that.maxI;
-        });
-      }
-    };
-
-    //  自动增加index
-    this.play = function () {
-      that.t = setInterval(function () {
-        that.el.find('.next').trigger('click');
-      }, that.o.duration | 0);
-    };
-
-    //  Stop
-    this.stop = function () {
-      that.t = clearInterval(that.t);
-      return that;
-    };
-
-    //  右箭头
-    this.next = function () {
-      if(this.ul.queue('fx').length)return;
-      if (this.o.romoteArray.length === this.i) {
-        this.onNoLoopReachEnd();
-        return;
-      }
-      this.onreachLastImage();
-      this.i++;
-      this.getArray(this.i - 1, this.i);
-      //判断要添加的图片是否不存在
-      var lastImageLeft = parseInt(this.el.find(this.o.items).children('li').last().css('left'));
-      var width = Math.floor(parseInt(this.el.parent().css('width')) / this.o.number);
-      var lastImageIndex = lastImageLeft / width - 1;
-      if (this.i > lastImageIndex) {
-        this.addImage(this.o.array, 'right', this.i - 1,this.o.innerHTML);
-      }
-      return this.to(this.i);
-    };
-    //  左箭头
-    this.prev = function () {
-      this.i--;
-      if (this.o.number === this.i + 1) {
-        this.onNoLoopReachFirst();
-        return;
-      }
-      if (this.o.savenumber) {
-        var firstImageLeft = parseInt(this.el.find(this.o.items).children('li').first().css('left'));
-        var width = Math.floor(parseInt(this.el.parent().css('width')) / this.o.number);
-        var firstImageIndex = firstImageLeft / width;
-        this.getArray(this.i - this.o.number, this.i - this.o.number + 1);
-        //判断要添加的图片是否不存在
-        if (this.i - this.o.number < firstImageIndex) {
-          this.addImage(this.o.array, 'left', this.i + 1);
-        }
-      }
-      return this.to(this.i);
-    };
     //  Create dots and arrows
     function nav(name, html) {
       if (name == 'dot') {
@@ -283,9 +197,9 @@
     this.protect = function () {
       if (this.o.savenumber) {
         this.protectTime = setTimeout(
-          function () {
-            that.protectMemory();
-          }, 1000);
+        function () {
+          that.protectMemory();
+        }, 1000);
       }
     },
     //保护内存
@@ -308,9 +222,95 @@
           currentLiList.eq(i).remove();
         }
       }
+    }
+  };
+  Slider.prototype = {
+    //  根据this.i移动ul
+    to : function(index, callback){
+      if (this.t) {
+        this.stop();
+        this.play();
+      }
+      var o = this.o,
+        el = this.el,
+        ul = this.ul,
+        li = this.li,
+        current = this.i;
+      //  slider到达边缘条件
+      if ((this.o.romoteArray.length + 1 === this.i) && o.loop === false) {
+        this.i = index;
+        return;
+      }
+      if (index < this.o.number && o.loop === false) {
+        this.i = this.o.number;
+        return;
+      }
+
+      var speed = callback ? 5 : o.speed | 0,
+        easing = o.easing,
+        obj = {};
+
+      if (!ul.queue('fx').length) {
+        el.animate(obj, speed, easing) && ul.animate($.extend({
+          left: (this.o.number - index) * this.liWidth
+        }, obj), speed, easing, function (data) {
+          that.maxI = (index > that.maxI) ? index : that.maxI;
+        });
+      }
+    },
+
+    //  自动增加index
+    play : function () {
+      that.t = setInterval(function () {
+        that.el.find('.next').trigger('click');
+      }, that.o.duration | 0);
+    },
+    //  Stop
+    stop : function () {
+      that.t = clearInterval(that.t);
+      return that;
+    },
+
+    //  右箭头
+    next : function () {
+      if(this.ul.queue('fx').length)return;
+      if (this.o.romoteArray.length === this.i) {
+        this.onNoLoopReachEnd();
+        return;
+      }
+      this.onreachLastImage();
+      this.i++;
+      this.getArray(this.i - 1, this.i);
+      //判断要添加的图片是否不存在
+      var lastImageLeft = parseInt(this.el.find(this.o.items).children('li').last().css('left'));
+      var width = Math.floor(parseInt(this.el.parent().css('width')) / this.o.number);
+      var lastImageIndex = lastImageLeft / width - 1;
+      if (this.i > lastImageIndex) {
+        this.addImage(this.o.array, 'right', this.i - 1,this.o.innerHTML);
+      }
+      return this.to(this.i);
+    },
+    //  左箭头
+    prev : function () {
+      this.i--;
+      if (this.o.number === this.i + 1) {
+        this.onNoLoopReachFirst();
+        return;
+      }
+      if (this.o.savenumber) {
+        var firstImageLeft = parseInt(this.el.find(this.o.items).children('li').first().css('left'));
+        var width = Math.floor(parseInt(this.el.parent().css('width')) / this.o.number);
+        var firstImageIndex = firstImageLeft / width;
+        this.getArray(this.i - this.o.number, this.i - this.o.number + 1);
+        //判断要添加的图片是否不存在
+        if (this.i - this.o.number < firstImageIndex) {
+          this.addImage(this.o.array, 'left', this.i + 1);
+        }
+      }
+      return this.to(this.i);
     },
     //给某一个li添加事件
-    this.onAddEvent = function(index,event,func){
+    onAddEvent : function(index,event,func){
       $.each(that.ul.children('li'),function(i){
         if(parseInt(that.ul.children('li').eq(i).css('left'))/that.liWidth === index){
           that.ul.on(event, this, function(event) {
@@ -321,19 +321,19 @@
       });
     },
     //第一张
-    this.onNoLoopReachFirst = function(){
+    onNoLoopReachFirst : function(){
       that.el.trigger('noLoopReachFirst');
     },
     //最后一张
-    this.onNoLoopReachEnd = function(){
+    onNoLoopReachEnd : function(){
       that.el.trigger('noLoopReachEnd');
     },
     //新添一张
-    this.onaddNewImage = function(){
+    onaddNewImage : function(){
       that.el.trigger('addNewImage');
     },
     //何时触发reachLastImage最后一张
-    this.onreachLastImage = function(){
+    onreachLastImage : function(){
       if (this.o.romoteArray.length - 1 === this.i){
         //到底 外获取
         if (that.o.ajaxcallback && that.o.romoteArray) {
@@ -342,7 +342,6 @@
       }
     }
   };
-
   //  Create a jQuery plugin
   $.fn.slider2 = function (o) {
     var len = this.length;
@@ -353,7 +352,6 @@
       var me = $(this),
         key = 'unslider' + (len > 1 ? '-' + ++index : ''),
         instance = (new Slider).init(me, o);
-
        // Invoke an Unslider instance
       me.data(key, instance).data('key', key);
     });
