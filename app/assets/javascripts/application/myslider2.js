@@ -37,10 +37,6 @@
       this.liWidth = this.parentW / this.o.number;
       //  当前图片index
       this.i = 0;
-      //现有图片到底事件
-      this.el.bind('reachLastImage', this.el, function(event) {
-        that.ajaxcallback(that.o.ajaxcallback.url,that.o.ajaxcallback.success,that.o.ajaxcallback.whichchange,that.o.ajaxcallback.type,that.o.ajaxcallback.datatype);
-      });
       //已加载图片的最大index
       this.maxI = this.o.number;
       if(this.o.romoteArray){
@@ -124,23 +120,6 @@
         me.hasClass('dot') ? that.stop().to(me.index()) : me.hasClass('prev') ? that.prev() : that.next();
       });
     }
-    var urlid = 0;
-    this.ajaxcallback=function(geturl,successFunc,whichChange,getType,getdataType){
-      if(that.o.romoteArray){
-        if(whichChange){
-          var reg=/id=(\w)/;
-          var originId = parseInt(geturl.match(reg)[1]) + urlid;
-          geturl = geturl.split(reg)[0] + whichChange+'=' + originId +geturl.split(reg)[2];
-          urlid++;
-        }
-        $.ajax({
-          url: geturl,
-          type: getType || 'GET',
-          dataType: getdataType || 'json',
-          success:successFunc
-        });
-      }
-    },
     this.getArray = function (from, to) {
       if(this.o.romoteArray){
         if (to <= this.maxI) {
@@ -337,7 +316,7 @@
       if (this.o.romoteArray.length - 1 === this.i){
         //到底 外获取
         if (that.o.ajaxcallback && that.o.romoteArray) {
-          that.el.trigger('reachLastImage');
+          that.el.trigger('reachLastImage',that.i);
         }
       }
     }
@@ -353,7 +332,7 @@
         key = 'unslider' + (len > 1 ? '-' + ++index : ''),
         instance = (new Slider).init(me, o);
        // Invoke an Unslider instance
-      me.data(key, instance).data('key', key);
+      me.data('key', instance);
     });
   };
 
