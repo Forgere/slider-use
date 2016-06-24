@@ -36,9 +36,7 @@ $(function () {
 		}
 	});
 	function renderer(data){
-		var item;
 		var address = "http://"+window.location.host+data.img.url+"/thumb";
-		item = $('<li><a><img src='+address+'></a></li>');
-		return item;
+		return $('<li><a><img src='+address+'></a></li>');
 	}
 });
