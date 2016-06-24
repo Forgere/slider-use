@@ -31,8 +31,9 @@
       lazyload: true,         //lazyload
       loading: '',            //lazy图片
       fadeIn: false,          //fadeIN效果
-      romoteArray: '',        //动态加入图片
+      romoteData: '',        //动态加入图片
       ajaxcallback: false,     //ajax回调数组 url success类型默认get json；若动态改变则在whichchange中写入改变的参数
+      render:''
     };
 
     this.init = function (el, o) {
@@ -47,6 +48,9 @@
       this.i = 0;
       //已加载图片的最大index
       this.maxI = this.o.number;
+      $.each(this.o.romoteData,function(i) {
+        this.romoteArray[i] = this.o.renderer(this.o.romoteData[i]);
+      });
       if(this.o.romoteArray){
         //初始加赞图片
         this.o.array = this.o.romoteArray.slice(this.i, this.i + this.o.number);
