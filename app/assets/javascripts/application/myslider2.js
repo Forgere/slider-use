@@ -1,3 +1,12 @@
+/*
+控制器行为     weinr.data('key').next();
+
+添加事件        weinr.on('addNewImage', function(event) {
+                alert(1);
+              });
+
+
+*/
 (function ($) {
   var Slider = function () {
     that = this;
@@ -24,7 +33,6 @@
       fadeIn: false,          //fadeIN效果
       romoteArray: '',        //动态加入图片
       ajaxcallback: false,     //ajax回调数组 url success类型默认get json；若动态改变则在whichchange中写入改变的参数
-      innerHTML:'<li><img></li>'     //包括li在内的html结构
     };
 
     this.init = function (el, o) {
@@ -138,7 +146,7 @@
       }
     },
     //自定义html
-    this.addImage = function (array, direction, index, inner) {
+    this.addImage = function (array, direction, index) {
       if(this.o.romoteArray){
         if (array.length === 0) {
           return;
@@ -147,20 +155,21 @@
         if (this.o.lazyload) {
           this.lazyload(array, direction, index ,that.o.innerHTML);
         } else {
-          $(inner).css('left',(this.i - 1) * this.liWidth + 'px').appendTo(this.ul).find('img').width(this.liWidth);
+          $(array[0]).css('left',(this.i - 1) * this.liWidth + 'px').appendTo(this.ul).find('img').width(this.liWidth);
           array.shift();
         }
       }
     },
-    this.lazyload = function (array, direction, index,inner) {
-      var creatImg = $(inner);
+    this.lazyload = function (array, direction, index) {
+      var originSrc = array[0].find('img')[0].src;
+      var creatImg = array[0];
       creatImg.css('left',index * this.liWidth+'px').find('img').width(this.liWidth).attr('src', this.o.loading);
       if (direction === 'left') {
         creatImg.css('left',(index - this.o.number - 1) * this.liWidth + 'px').prependTo(this.ul).find('img').width(this.liWidth);
       } else {
         creatImg.appendTo(this.ul);
       }
-      var tmpimg = $("<img src=" + array[0] + ">");
+      var tmpimg = $("<img src=" + originSrc + ">");
       tmpimg.ready(function () {
         setTimeout(function () {
           //fadeIn
@@ -197,7 +206,7 @@
         var eachImageIndex = liEachLeft / liEachWidth;
         if (eachImageIndex < protectededFirst || eachImageIndex > protectededLast) {
           //保存数据
-          this.o.cache[eachImageIndex] = currentLiList.eq(i).find('img').attr('src');
+          this.o.cache[eachImageIndex] = currentLiList.eq(i);
           currentLiList.eq(i).remove();
         }
       }
