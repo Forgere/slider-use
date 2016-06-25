@@ -4,8 +4,6 @@
 添加事件        weinr.on('addNewImage', function(event) {
                 alert(1);
               });
-
-
 */
 (function ($) {
   var Slider = function () {
@@ -61,7 +59,6 @@
         that.o.romoteData.shift();
       });
       // this.onreachLastImage();
-      console.log(!this.o.romoteArray);
       if(this.o.romoteArray){
         //初始加赞图片
         this.o.array = this.o.romoteArray.slice(this.i, this.i + this.o.number);
