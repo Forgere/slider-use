@@ -48,16 +48,26 @@
       this.i = 0;
       //已加载图片的最大index
       this.maxI = this.o.number;
-      $.each(this.o.romoteData,function(i) {
-        this.romoteArray[i] = this.o.renderer(this.o.romoteData[i]);
+      this.o.romoteArray = [];
+      this.el.on('reachLastImage',function(){
+        setTimeout(function(){
+          $.each(that.o.romoteData,function(i) {
+            that.o.romoteArray.push(that.o.render(that.o.romoteData[i]));
+          });
+        },100);
       });
+      $.each(this.o.romoteData,function(i) {
+        that.o.romoteArray.push(that.o.render(that.o.romoteData[0]));
+        that.o.romoteData.shift();
+      });
+      // this.onreachLastImage();
+      console.log(!this.o.romoteArray);
       if(this.o.romoteArray){
         //初始加赞图片
         this.o.array = this.o.romoteArray.slice(this.i, this.i + this.o.number);
         for (var i = 0; i < this.o.number; i++) {
           this.addImage(this.o.array, 'right', this.i,this.o.innerHTML);
           this.i++;
-          this.onreachLastImage();
         }
       }
       // this.onAddEvent(1,'click',function(){alert(1);});
@@ -326,7 +336,7 @@
     },
     //何时触发reachLastImage最后一张
     onreachLastImage : function(){
-      if (this.o.romoteArray.length - 1 === this.i){
+      if (this.o.romoteArray.length - 1 === (this.i || -1)){
         //到底 外获取
         if (that.o.ajaxcallback && that.o.romoteArray) {
           that.el.trigger('reachLastImage',that.i);

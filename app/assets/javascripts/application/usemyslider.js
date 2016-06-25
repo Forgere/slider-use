@@ -14,7 +14,7 @@ $(function () {
 				prev: '',
 				next: '',
 				ajaxcallback:true,
-				render: renderer()
+				render: renderer
 			});
 
 			weinr.on('reachLastImage',function(e,location){
@@ -24,13 +24,13 @@ $(function () {
             type: 'GET',
             dataType: 'json',
             success:function(result){
+            	weinr.data('key').o.romoteData = result;
             }
         });
 			});
 		}
 	});
 	function renderer(data){
-		console.log(data);
 		var address = "http://"+window.location.host+data.img.url+"/thumb";
 		return $('<li><a><img src='+address+'></a></li>');
 	}
