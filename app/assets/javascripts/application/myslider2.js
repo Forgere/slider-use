@@ -46,6 +46,7 @@
       this.i = 0;
       //已加载图片的最大index
       this.maxI = this.o.number;
+      //储存可以用的items
       this.o.romoteArray = [];
       this.el.on('reachLastImage',function(){
         setTimeout(function(){
