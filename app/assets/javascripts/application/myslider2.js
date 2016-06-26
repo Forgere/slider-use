@@ -55,8 +55,7 @@
         },100);
       });
       $.each(this.o.romoteData,function(i) {
-        that.o.romoteArray.push(that.o.render(that.o.romoteData[0]));
-        that.o.romoteData.shift();
+        that.o.romoteArray.push(that.o.render(that.o.romoteData[i]));
       });
       // this.onreachLastImage();
       if(this.o.romoteArray){
