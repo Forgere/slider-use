@@ -1,16 +1,24 @@
 /*
+调用          weinr = $('#slider1 .slider1').slider2
 控制器行为     weinr.data('key').next();
 
 添加事件        weinr.on('addNewImage', function(event) {
                 alert(1);
               });
+给第二个元素上事件      weinr.trigger('addEvent',[1,function(){
+                        alert(1);
+                      }]);
+第一张          noLoopReachFirst
+最后一张        noLoopReachEnd
+新添一张        addNewImage
+最后一张        reachLastImage
 */
 (function ($) {
   var Slider = function () {
     that = this;
     //  默认参数
     this.o = {
-      number: 4,              //显示都少图片
+      showaccout: 4,              //显示都少图片
       savenumber: null,       //前后保存数量
       items: '>ul',           //容器子元素
       item: '>li',            //容器孙元素
@@ -40,17 +48,15 @@
       this.el = el;
       this.ul = el.find(this.o.items);
       this.li = this.ul.find(this.o.item);
-      this.parentW = Math.floor(parseInt(el.parent().css('width')) / this.o.number) * this.o.number;
-      this.liWidth = this.parentW / this.o.number;
+      this.parentW = Math.floor(parseInt(el.parent().css('width')) / this.o.showaccout) * this.o.showaccout;
+      this.liWidth = this.parentW / this.o.showaccout;
       //  当前图片index
       this.i = 0;
       //已加载图片的最大index
-      this.maxI = this.o.number;
+      this.maxI = this.o.showaccout;
       //储存可以用的items
       this.o.romoteArray = [];
       this.el.on('addEvent', function(event,index,callback) {
-        console.log(that.el.find('li').eq(index));
-        console.log(callback);
         that.el.find('li').eq(index).on('click', function(){
           callback();
         });
@@ -60,21 +66,19 @@
           $.each(that.o.romoteData,function(i) {
             that.o.romoteArray.push(that.o.render(that.o.romoteData[i]));
           });
-        },100);
+          if(that.el.find('li').length === 0){
+            if(that.o.romoteArray){
+              //初始加赞图片
+              that.o.array = that.o.romoteArray.slice(that.i, that.i + that.o.showaccount);
+              for (var i = 0; i < that.o.showaccount; i++) {
+                that.addImage(that.o.array, 'right', that.i,that.o.innerHTML);
+                that.i++;
+              }
+            }
+          }
+        },200);
       });
-      $.each(this.o.romoteData,function(i) {
-        that.o.romoteArray.push(that.o.render(that.o.romoteData[i]));
-      });
-      // this.onreachLastImage();
-      if(this.o.romoteArray){
-        //初始加赞图片
-        this.o.array = this.o.romoteArray.slice(this.i, this.i + this.o.number);
-        for (var i = 0; i < this.o.number; i++) {
-          this.addImage(this.o.array, 'right', this.i,this.o.innerHTML);
-          this.i++;
-        }
-      }
-      // this.onAddEvent(1,'click',function(){alert(1);});
+      this.onreachLastImage();
       //高度
       this.ul.height('100%');
       //  Autoslide
@@ -99,16 +103,17 @@
       //  Patch for fluid-width sliders. Screw those guys.
       if (this.o.autochange) {
         $(window).resize(function () {
-          var sliderWidth = that.liWidth * that.o.number;
+          var sliderWidth = that.liWidth * that.o.showaccount;
           that.r && clearTimeout(that.r) && clearTimeout(that.protectTime);
           that.r = setTimeout(function () {
             var beforeSaveLiList = that.el.find(that.o.items).children('li');
             var beforeSaveWidth = parseInt(that.el.find(that.o.items).children('li').eq(0).outerWidth());
             that.el.width(sliderWidth);
-            that.el.find('img').width(sliderWidth / that.o.number);
+            that.el.find('img').width(sliderWidth / that.o.showaccount);
             var liWidth = beforeSaveLiList.eq(0).outerWidth();
             for (var i = 0; i < beforeSaveLiList.length; i++) {
               if (that.i === that.maxI) {
+                console.log(that.i);
                 beforeSaveLiList.eq(i).css('left', liWidth * (that.i - beforeSaveLiList.length + i));
               } else if (that.maxI - that.o.savenumber > that.i) {
                 beforeSaveLiList.eq(i).css('left', liWidth * (parseInt(beforeSaveLiList.eq(beforeSaveLiList.length - 1).css('left')) / that.liWidth + 1 - beforeSaveLiList.length + i));
@@ -116,7 +121,7 @@
                 beforeSaveLiList.eq(i).css('left', liWidth * (that.maxI - beforeSaveLiList.length + i));
               }
             }
-            that.el.find(that.o.items).css('left', (that.o.number - that.i) * liWidth);
+            that.el.find(that.o.items).css('left', (that.o.showaccount - that.i) * liWidth);
           }, 50);
         }).resize();
       }
@@ -164,8 +169,8 @@
         this.i = index;
         return;
       }
-      if (index < this.o.number && o.loop === false) {
-        this.i = this.o.number;
+      if (index < this.o.showaccout && o.loop === false) {
+        this.i = this.o.showaccout;
         return;
       }
       var speed = callback ? 5 : o.speed | 0,
@@ -174,7 +179,7 @@
 
       if (!ul.queue('fx').length) {
         el.animate(obj, speed, easing) && ul.animate($.extend({
-          left: (this.o.number - index) * this.liWidth
+          left: (this.o.showaccout - index) * this.liWidth
         }, obj), speed, easing, function (data) {
           that.maxI = (index > that.maxI) ? index : that.maxI;
         });
@@ -205,7 +210,7 @@
       this.getArray(this.i - 1, this.i);
       //判断要添加的图片是否不存在
       var lastImageLeft = parseInt(this.el.find(this.o.items).children('li').last().css('left'));
-      var width = Math.floor(parseInt(this.el.parent().css('width')) / this.o.number);
+      var width = Math.floor(parseInt(this.el.parent().css('width')) / this.o.showaccout);
       var lastImageIndex = lastImageLeft / width - 1;
       if (this.i > lastImageIndex) {
         this.addImage(this.o.array, 'right', this.i - 1,this.o.innerHTML);
@@ -215,17 +220,17 @@
     //  左箭头
     prev : function () {
       this.i--;
-      if (this.o.number === this.i + 1) {
+      if (this.o.showaccout === this.i + 1) {
         this.onNoLoopReachFirst();
         return;
       }
       if (this.o.savenumber) {
         var firstImageLeft = parseInt(this.el.find(this.o.items).children('li').first().css('left'));
-        var width = Math.floor(parseInt(this.el.parent().css('width')) / this.o.number);
+        var width = Math.floor(parseInt(this.el.parent().css('width')) / this.o.showaccout);
         var firstImageIndex = firstImageLeft / width;
-        this.getArray(this.i - this.o.number, this.i - this.o.number + 1);
+        this.getArray(this.i - this.o.showaccout, this.i - this.o.showaccout + 1);
         //判断要添加的图片是否不存在
-        if (this.i - this.o.number < firstImageIndex) {
+        if (this.i - this.o.showaccout < firstImageIndex) {
           this.addImage(this.o.array, 'left', this.i + 1);
         }
       }
@@ -268,7 +273,7 @@
       var creatImg = array[0];
       creatImg.css('left',index * this.liWidth+'px').find('img').width(this.liWidth).attr('src', this.o.loading);
       if (direction === 'left') {
-        creatImg.css('left',(index - this.o.number - 1) * this.liWidth + 'px').prependTo(this.ul).find('img').width(this.liWidth);
+        creatImg.css('left',(index - this.o.showaccout - 1) * this.liWidth + 'px').prependTo(this.ul).find('img').width(this.liWidth);
       } else {
         creatImg.appendTo(this.ul);
       }
@@ -296,7 +301,7 @@
     //保护内存
     protectMemory : function () {
       //留下的图片的index 从0开始
-      var protectededFirst = this.i - (this.o.number + this.o.savenumber);
+      var protectededFirst = this.i - (this.o.showaccout + this.o.savenumber);
       var protectededLast = this.i + this.o.savenumber - 1;
       //限制修正这两个index
       protectededFirst = (protectededFirst < 0) ? 0 : protectededFirst;
@@ -313,17 +318,6 @@
           currentLiList.eq(i).remove();
         }
       }
-    },
-    //给某一个li添加事件
-    onAddEvent : function(index,event,func){
-      $.each(that.ul.children('li'),function(i){
-        if(parseInt(that.ul.children('li').eq(i).css('left'))/that.liWidth === index){
-          that.ul.on(event, this, function(event) {
-            event.stopPropagation();
-            func();
-          });
-        }
-      });
     },
     //第一张
     onNoLoopReachFirst : function(){
@@ -342,7 +336,9 @@
       if (this.o.romoteArray.length - 1 === (this.i || -1)){
         //到底 外获取
         if (that.o.ajaxcallback && that.o.romoteArray) {
-          that.el.trigger('reachLastImage',that.i);
+          setTimeout(function(){
+            that.el.trigger('reachLastImage',that.i);
+          },100);
         }
       }
     }
