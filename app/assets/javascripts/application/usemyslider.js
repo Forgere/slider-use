@@ -28,6 +28,9 @@ $(function () {
             }
         });
 			});
+		  weinr.trigger('addEvent',[1,function(){
+		  	alert(1);
+		  }]);
 		}
 	});
 	function renderer(data){
