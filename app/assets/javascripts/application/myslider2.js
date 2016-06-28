@@ -18,7 +18,7 @@
     that = this;
     //  默认参数
     this.o = {
-      showaccout: 4,          //显示都少图片
+      showaccount: 4,          //显示都少图片
       savenumber: null,       //前后保存数量
       items: 'ul',           //容器子元素
       item: 'li',            //容器孙元素
@@ -49,30 +49,22 @@
       this.ul = $("<"+this.o.items+"></"+this.o.items+">");
       this.ul.appendTo(el);
       this.li = this.ul.find(this.o.item);
-      if(this.o.showaccout === 'auto'){
+      if(this.o.showaccount === 'auto'){
+        this.parentW = parseInt(el.parent().css('width'));
+        this.eachImagleft = [];
       }else{
-        this.parentW = Math.floor(parseInt(el.parent().css('width')) / this.o.showaccout) * this.o.showaccout;
-        this.liWidth = this.parentW / this.o.showaccout;
+        this.parentW = Math.floor(parseInt(el.parent().css('width')) / this.o.showaccount) * this.o.showaccount;
+        this.liWidth = this.parentW / this.o.showaccount;
       }
       //  当前图片index
       this.i = 0;
       //已加载图片的最大index
-      this.maxI = this.o.showaccout;
+      this.maxI = this.o.showaccount;
       //高度
       this.ul.height('100%');
       //初始化加载
       if(this.o.dynamicLoading){
         this.onreachLastImage();
-      }else{
-        //有图的情况下 根据是否给出显示数量排布
-        if(this.o.showaccout === 'auto'){
-
-        }else{
-          var existingitems = this.el.find('li');
-          $.each(existingitems,function(i) {
-            existingitems[i].css('left', i*that.liWidth);
-          });
-        }
       }
       //  Autoslide
       this.o.autoplay && setTimeout(function () {
@@ -96,7 +88,6 @@
         }else{
           if(typeof(this.o.prev) === 'object'){
             var arrow = $('<div class="arrows"></div>');
-            console.log(arrow.appendTo(that.el));
             this.o.prev.appendTo(arrow);
             this.o.next.appendTo(arrow);
           }else{
@@ -173,17 +164,17 @@
         this.i = index;
         return;
       }
-      if (index < this.o.showaccout && o.loop === false) {
-        this.i = this.o.showaccout;
+      if (index < this.o.showaccount && o.loop === false) {
+        this.i = this.o.showaccount;
         return;
       }
       var speed = callback ? 5 : o.speed | 0,
         easing = o.easing,
         obj = {};
-
+        console.log(this.calcLeft);
       if (!ul.queue('fx').length) {
         el.animate(obj, speed, easing) && ul.animate($.extend({
-          left: (this.o.showaccout - index) * this.liWidth
+          left: (this.o.showaccount === 'auto')?this.calcLeft(index):(this.o.showaccount - index)*this.liWidth
         }, obj), speed, easing, function (data) {
           that.maxI = (index > that.maxI) ? index : that.maxI;
         });
@@ -209,12 +200,13 @@
         this.onNoLoopReachEnd();
         return;
       }
+      console.log(1);
       this.onreachLastImage();
       this.i++;
       this.getArray(this.i - 1, this.i);
       //判断要添加的图片是否不存在
       var lastImageLeft = parseInt(this.el.find(this.o.items).children('li').last().css('left'));
-      var width = Math.floor(parseInt(this.el.parent().css('width')) / this.o.showaccout);
+      var width = Math.floor(parseInt(this.el.parent().css('width')) / this.o.showaccount);
       var lastImageIndex = lastImageLeft / width - 1;
       if (this.i > lastImageIndex) {
         this.addImage(this.o.array, 'right', this.i - 1,this.o.innerHTML);
@@ -224,18 +216,18 @@
     //  左箭头
     prev : function () {
       this.i--;
-      if (this.o.showaccout === this.i + 1) {
+      if (this.o.showaccount === this.i + 1) {
         this.onNoLoopReachFirst();
-        this.i = this.o.showaccout;
+        this.i = this.o.showaccount;
         return;
       }
       if (this.o.dynamicLoading) {
         var firstImageLeft = parseInt(this.el.find(this.o.items).children('li').first().css('left'));
-        var width = Math.floor(parseInt(this.el.parent().css('width')) / this.o.showaccout);
+        var width = Math.floor(parseInt(this.el.parent().css('width')) / this.o.showaccount);
         var firstImageIndex = firstImageLeft / width;
-        this.getArray(this.i - this.o.showaccout, this.i - this.o.showaccout + 1);
+        this.getArray(this.i - this.o.showaccount, this.i - this.o.showaccount + 1);
         //判断要添加的图片是否不存在
-        if (this.i - this.o.showaccout < firstImageIndex) {
+        if (this.i - this.o.showaccount < firstImageIndex) {
           this.addImage(this.o.array, 'left', this.i + 1);
         }
       }
@@ -264,10 +256,21 @@
         } else {
           var creatImg = $("<"+this.o.item+"></"+this.o.item+">");
           creatImg.append(this.o.render(array[0]));
-          if (direction === 'left') {
-            $(creatImg).css('left',(index - this.o.showaccout - 1) * this.liWidth + 'px').prependTo(this.ul).find('img').width(this.liWidth);
-          } else {
-            $(creatImg).css('left',index * this.liWidth + 'px').appendTo(this.ul).find('img').width(this.liWidth);
+          if(this.o.showaccount === 'auto'){
+            if (direction === 'left') {
+              $(creatImg).prependTo(this.ul);
+            }else{
+              $(creatImg).appendTo(this.ul);
+              that.eachImagleft[index] = $(creatImg).outerWidth();
+              $(creatImg).css('left',this.calcLeft(index)+'px');
+            }
+            this.onreachLastImage();
+          }else{
+            if (direction === 'left') {
+              $(creatImg).css('left',(index - this.o.showaccount - 1) * this.liWidth + 'px').prependTo(this.ul).find('img').width(this.liWidth);
+            } else {
+              $(creatImg).css('left',index * this.liWidth + 'px').appendTo(this.ul).find('img').width(this.liWidth);
+            }
           }
           array.shift();
         }
@@ -279,7 +282,7 @@
       creatImg.append(this.o.render(array[0]));
       creatImg.css('left',index * this.liWidth+'px').find('img').width(this.liWidth).attr('src', this.o.loading);
       if (direction === 'left') {
-        creatImg.css('left',(index - this.o.showaccout - 1) * this.liWidth + 'px').prependTo(this.ul).find('img').width(this.liWidth);
+        creatImg.css('left',(index - this.o.showaccount - 1) * this.liWidth + 'px').prependTo(this.ul).find('img').width(this.liWidth);
       } else {
         creatImg.appendTo(this.ul);
       }
@@ -307,7 +310,7 @@
     //保护内存
     protectMemory : function () {
       //留下的图片的index 从0开始
-      var protectededFirst = this.i - (this.o.showaccout + this.o.savenumber);
+      var protectededFirst = this.i - (this.o.showaccount + this.o.savenumber);
       var protectededLast = this.i + this.o.savenumber - 1;
       //限制修正这两个index
       protectededFirst = (protectededFirst < 0) ? 0 : protectededFirst;
@@ -324,6 +327,13 @@
         }
       }
     },
+    calcLeft : function (index){
+      var returnLeft = 0;
+      for(var i = 0;i<index;i++){
+        returnLeft += that.eachImagleft[i];
+      }
+      return returnLeft;
+    },
     //第一张
     onNoLoopReachFirst : function(){
       that.el.trigger('noLoopReachFirst');
@@ -339,11 +349,12 @@
     //何时触发reachLastImage最后一张
     onreachLastImage : function(){
       if (this.o.romoteArray.length - 1 === (this.i || -1)){
+        console.log(this.o.romoteArray.length - 1);
         //到底 外获取
         if (that.o.dynamicLoading) {
           setTimeout(function(){
             that.el.trigger('reachLastImage',that.i);
-          },100);
+          },0);
         }
       }
     }
