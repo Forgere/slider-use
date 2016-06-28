@@ -7,7 +7,8 @@ $(function () {
 	var weinr = $('#slider1 .slider1').slider2({
 		showaccount: 4, //图数量
 		savenumber: 2, //显示前后保存的数据
-		render: renderer
+		render: renderer,
+		dynamicLoading : true
 	});
 	//控制器
 	var weinrcontrol = weinr.data('key');
@@ -45,6 +46,6 @@ $(function () {
 	});
 	function renderer(data){
 		var address = "http://"+window.location.host+data.img.url+"/thumb";
-		return $('<li><a><img src='+address+'></a></li>');
+		return $('<a><img src='+address+'></a>');
 	}
 });
