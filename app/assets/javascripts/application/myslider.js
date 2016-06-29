@@ -49,7 +49,8 @@
       this.el.on('slider:currentPage', slider_currentPage);
       //监听当前总page
       this.el.on('slider:totalPage', slider_totalPage);
-
+      //监听当前总item
+      this.el.on('slider:totalItem', slider_totalItem);
 
       if(this.o.mode !== 'static'){
       	setTimeout(function(){
@@ -88,15 +89,37 @@
 				}else{
 					//当前有超过
 					if(value*that.o.showcount < (that.o.totalItem)){
-						console.log(1);
 						for(var i=value*that.o.showcount;i<that.o.totalItem;i++){
 							that.getItem(i).remove();
 						}
 					}
 					//确保以后不会有超过发生
-
+					that.el.on('slider:checkPage',function() {
+						if(that.o.currentItem > (value-1)*that.o.showcount){
+							that.showPage = value;
+						}
+					});
 				}
-
+			}
+			function slider_totalItem(e,value){
+				if (!value) {
+					that.o.name = that.o.itemsArray.length;
+				}else{
+					//当前有超过
+					var liArray = that.el.find(that.o.item);
+					var liArrayLastImageIndex = parseInt(liArray.eq(liArray.length - 1).css('left'))/that.liWidth;
+					if(value <= liArrayLastImageIndex){
+						for(var i=value;i<=liArrayLastImageIndex;i++){
+							that.getItem(i).remove();
+						}
+					}
+					//确保以后不会有超过发生
+					that.el.on('slider:checkItem',function() {
+						if(that.o.currentItem + that.o.showcount > value){
+							that.showItem = value;
+						}
+					});
+				}
 			}
       return this;
 		};
@@ -114,6 +137,20 @@
 		next:function(count){
 			//currentItem值先改变
 			this.o.currentItem += 1;
+			this.el.trigger('slider:checkPage');
+			if(this.showPage){
+				if(this.o.currentItem > (this.showPage-1)*this.o.showcount){
+					this.o.currentItem -= 1;
+					return;
+				}
+			}
+			this.el.trigger('slider:checkItem');
+			if(this.showItem){
+				if(this.o.currentItem + this.o.showcount > this.showItem){
+					this.o.currentItem -= 1;
+					return;
+				}
+			}
 			var that = this;
 			//模式判断
 			if(this.o.mode === 'static'){
