@@ -51,6 +51,8 @@
       this.el.on('slider:totalPage', slider_totalPage);
       //监听当前总item
       this.el.on('slider:totalItem', slider_totalItem);
+      //监听自动播放
+      this.el.on('slider:autoplay', slider_autoplay);
 
       if(this.o.mode !== 'static'){
       	setTimeout(function(){
@@ -121,6 +123,26 @@
 					});
 				}
 			}
+			function slider_autoplay(e,value){
+				if(value){
+          play();
+          that.el.on('mouseover mouseout', function (e) {
+            stop();
+						e.type == 'mouseout' && play();
+          });
+				}else{
+					stop();
+				}
+			}
+			function play(){
+	      that.t = setInterval(function () {
+	        that.el.find('.next').trigger('click');
+	      }, that.o.duration | 0);
+			}
+			function stop(){
+	      that.t = clearInterval(that.t);
+	      return that;
+			}
       return this;
 		};
 	};
@@ -133,6 +155,7 @@
 		set:function(name,value){
 			this.o.name = value;
 			this.el.trigger('slider:'+name,value);
+			return this.o.name;
 		},
 		next:function(count){
 			//currentItem值先改变
