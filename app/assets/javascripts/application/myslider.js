@@ -42,6 +42,15 @@
         this.liWidth = this.parentW / this.o.showcount;
       }
       this.ul.height('100%');
+
+      //监听当前item
+      this.el.on('slider:currentItem', slider_currentItem);
+      //监听当前page
+      this.el.on('slider:currentPage', slider_currentPage);
+      //监听当前总page
+      this.el.on('slider:totalPage', slider_totalPage);
+
+
       if(this.o.mode !== 'static'){
       	setTimeout(function(){
       		that.el.trigger('reachLastImage');
@@ -62,29 +71,44 @@
 		      });
         }
       }
+      //
+			function slider_currentItem(e,value){
+				that.ul.animate({left:value*that.liWidth*-1},that.o.speed,that.o.easing);
+			}
+			function slider_currentPage(e,value){
+				if(!value){
+					thisat.o.name = Math.floor(that.o.currentItem/that.o.showcount);
+				}else{
+					that.ul.animate({left:value*that.o.showcount*that.liWidth*-1},that.o.speed,that.o.easing);
+				}
+			}
+			function slider_totalPage(e,value){
+				if (!value) {
+					that.o.name = Math.ceil(that.o.itemsArray.length/that.o.showcount);
+				}else{
+					//当前有超过
+					if(value*that.o.showcount < (that.o.currentItem + that.o.showcount -1)){
+						for(var i=value*that.o.showcount+1;i<(that.o.currentItem + that.o.showcount);i++){
+							that.getItem(i).remove();
+						}
+					}
+					//确保以后不会有超过发生
+
+				}
+
+			}
       return this;
 		};
 	};
 	//api
 	Slider.prototype = {
 		get:function(name){
-			if(name === 'currentPage'){
-				this.o.name = Math.floor(this.o.currentItem/this.o.showcount);
-			}
-			if(name === 'totalPage'){
-				this.o.name = Math.ceil(this.o.itemsArray.length/this.o.showcount);
-			}
+			this.el.trigger('slider:'+name);
 			return this.o.name;
 		},
 		set:function(name,value){
 			this.o.name = value;
-
-			if(name === "currentItem"){
-				this.ul.animate({left:value*this.liWidth*-1},this.o.speed,this.o.easing);
-			}
-			if(name === "currentPage"){
-				this.ul.animate({left:value*this.o.showcount*this.liWidth*-1},this.o.speed,this.o.easing);
-			}
+			this.el.trigger('slider:'+name,value);
 		},
 		next:function(count){
 			//currentItem值先改变
@@ -154,10 +178,10 @@
 		    }
 				that.o.totalItem ++;
 				//挪后
-				$.each(that.ul.find('li'),function(j) {
-					if(parseInt(that.ul.find('li').eq(j).css('left')) >= that.getPositionLeft(index+i)){
+				$.each(that.ul.find(that.o.item),function(j) {
+					if(parseInt(that.ul.find(that.o.item).eq(j).css('left')) >= that.getPositionLeft(index+i)){
 						//改变后的left值
-						var changeLeft = parseInt(that.ul.find('li').eq(j).css('left')) + creatImg.outerWidth();
+						var changeLeft = parseInt(that.ul.find(that.o.item).eq(j).css('left')) + creatImg.outerWidth();
 					}
 				});
 			});
@@ -165,15 +189,17 @@
 		},
 		removeItem:function(index){
 			var removeitemWidth = this.getItem(index).outerWidth();
-			this.getItem(index).remove();
-			this.o.itemsArray[index].remove();
-			that.o.currentItem --;
+			this.o.itemsArray.splice(index,1);
+			this.o.currentItem --;
+			var that = this;
 			//挪前
-			$.each(this.li,function(i) {
-				if(this.li[i].offset().left > getPositionLeft(index)){
-					this.li[i].offset().left -= removeitemWidth;
+			$.each(this.ul.find(that.o.item),function(i) {
+				if(parseInt(that.ul.find(that.o.item).eq(i).css('left')) >= parseInt(that.getItem(index).css('left'))){
+					var changeLeft = parseInt(that.ul.find(that.o.item).eq(i).css('left')) - removeitemWidth;
+					that.ul.find(that.o.item).eq(i).css('left', changeLeft+'px');
 				}
 			});
+			this.getItem(index).remove();
 		},
 		//显示的items中
 		getItem:function(index){
@@ -181,7 +207,9 @@
 			if(this.o.showcount !== 'auto'){
 				showedFirstItem = parseInt(this.el.find('li').eq(0).css('left'))/this.liWidth;
 				showedEndItem = parseInt(this.el.find('li').eq(this.el.find('li').length - 1).css('left'))/this.liWidth;
-
+				if(showedFirstItem <= index <= showedEndItem){
+					return this.el.find('li').eq(showedFirstItem+index);
+				}
 			}
 		},
 		getPositionLeft: function(index){
