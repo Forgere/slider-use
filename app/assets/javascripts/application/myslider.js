@@ -87,8 +87,9 @@
 					that.o.name = Math.ceil(that.o.itemsArray.length/that.o.showcount);
 				}else{
 					//当前有超过
-					if(value*that.o.showcount < (that.o.currentItem + that.o.showcount -1)){
-						for(var i=value*that.o.showcount+1;i<(that.o.currentItem + that.o.showcount);i++){
+					if(value*that.o.showcount < (that.o.totalItem)){
+						console.log(1);
+						for(var i=value*that.o.showcount;i<that.o.totalItem;i++){
 							that.getItem(i).remove();
 						}
 					}
