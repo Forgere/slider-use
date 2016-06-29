@@ -10,7 +10,7 @@
 			prevButton:'◀️',
 			nextButton:'▶️',
 			//动态
-			showcount: 4,
+			showcount: 4,                     //'auto' or number
 			cachepage: 1,
 			autoplay: false,
 			autospeed:'slow',
@@ -20,100 +20,154 @@
 			speed:200,
 			lazyload:false,
 			easing:'swing',
-			itemsArray:'',
+			itemsArray:[],
 			renderer:'',
 			mode:'static',
-			currentpage:0,
-			currentitem:0,
-			totalpage:0,
-			totalitem:0,
+			currentPage:0,
+			currentItem:0,
+			totalPage:0,
+			totalItem:0,
 		};
 		this.init = function (el , o) {
+			var that = this;
       this.o = $.extend(this.o, o);
       this.el = el;
       this.ul = $("<"+this.o.items+"></"+this.o.items+">");
       this.ul.appendTo(el);
       this.li = this.ul.find(this.o.item);
+      if(this.o.showcount === 'auto'){
+      	this.parentW = el.parent().width();
+      }else{
+        this.parentW = parseInt(el.parent().width()/ this.o.showcount) * this.o.showcount;
+        this.liWidth = this.parentW / this.o.showcount;
+      }
+      this.ul.height('100%');
+      if(this.o.mode !== 'static'){
+      	setTimeout(function(){
+      		that.el.trigger('reachLastImage');
+      	},0);
+      }
+      this.set('autoplay',this.o.autoplay);
+      if(this.o.arrows){
+        if(typeof(this.o.prev) === 'object'){
+        	//选择器
+          this.o.prev.onclick(function(){this.prev();});
+          this.o.next.onclick(function(){this.next();});
+        }else{
+	        var html = '<div class="';
+	        html = html + 'arrows">' + html + 'arrow' + ' prev">' + that.o.prev + '</div>' + html + 'arrow' + ' next">' + that.o.next + '</div></div>';
+		      that.el.addClass('has-' + 'arrows').append(html).find('.arrow').click(function () {
+		        var me = $(this);
+		        me.hasClass('dot') ? that.stop().to(me.index()) : me.hasClass('prev') ? that.prev() : that.next();
+		      });
+        }
+      }
+      return this;
 		};
-		function getPositionLeft(index){
-			
-		}
-		function creatImg (argument) {
-			var creatImg = $("<"+that.o.item+"></"+that.o.item+">");
-	    creatImg.append(that.o.renderer(that.o.itemsArray[argument]));
-	    if(this.getitem(argument-1)){
-	    	creatImg.insertAfter(this.getitem(argument-1));
-	    	this.o.itemsArray.insertAfter(this.getitem(argument-1));
-	    }else{
-	    	creatImg.insertBefore(this.getitem(argument+1));
-	    	this.o.itemsArray.insertBefore(this.getitem(argument+1));
-	    }
-			creatImg.css('left', getPositionLeft(argument));
-			//挪后
-			$.each(this.li,function(i) {
-				if(this.li[i].offset().left >= getPositionLeft(argument)){
-					this.li[i].offset().left += creatImg.outerWidth();
-				}
-			});
-		}
 	};
 	//api
-	Slider.fn = {
+	Slider.prototype = {
 		get:function(name){
+			if(name === 'currentPage'){
+				this.o.name = Math.floor(this.o.currentItem/this.o.showcount);
+			}
+			if(name === 'totalPage'){
+				this.o.name = Math.ceil(this.o.itemsArray.length/this.o.showcount);
+			}
 			return this.o.name;
 		},
 		set:function(name,value){
 			this.o.name = value;
-			this.el.trigger('"on"+'+name+'+"change"');
+
+			if(name === "currentItem"){
+				this.ul.animate({left:value*this.liWidth*-1},this.o.speed,this.o.easing);
+			}
+			if(name === "currentPage"){
+				this.ul.animate({left:value*this.o.showcount*this.liWidth*-1},this.o.speed,this.o.easing);
+			}
 		},
 		next:function(count){
-			//currentitem值先改变
-			this.o.currentitem += 1;
+			//currentItem值先改变
+			this.o.currentItem += 1;
+			var that = this;
 			//模式判断
 			if(this.o.mode === 'static'){
-				if(this.o.totalitem >= this.o.currentitem){
-					this.set(currentitem,this.o.currentitem);
+				if(this.o.totalItem >= this.o.currentItem){
+					this.set(currentItem,this.o.currentItem);
 				}else{
-					this.o.currentitem = this.o.totalitem;
+					this.o.currentItem = this.o.totalItem;
 				}
 			}else{
-				if(this.o.itemsArray.length >= this.o.currentitem){
+				if(this.o.itemsArray.length > this.o.currentItem+this.o.showcount-1){
 					//已经接收到
 					if (this.o.cachepage) {
-						this.additem(this.o.currentitem,this.o.itemsArray.slice(this.o.currentitem, this.o.currentitem + 1));
 					}
-					this.set(currentitem,this.o.currentitem);
+					this.set('currentItem',this.o.currentItem);
 				}else{
 					this.el.trigger('reachLastImage');
 				}
 			}
 		},
 		prev:function(count){
-			this.o.currentitem -= 1;
+			this.o.currentItem -= 1;
+			if(this.o.currentItem < 0){
+				this.o.currentItem = 0;
+				return;
+			}
 			if(this.o.mode === 'static'){
-				if(this.o.currentitem < 0){
-					this.o.currentitem = 0;
-					return;
-				}else{
-					this.set(currentitem,this.o.currentitem);
+				if(this.o.currentItem < 0){
+					this.set('currentItem',this.o.currentItem);
 				}
 			}else{
 				if (this.o.cachepage) {
-					this.additem(this.o.currentitem,this.o.itemsArray.slice(this.o.currentitem, this.o.currentitem + 1));
+					this.addItems(this.o.currentItem,this.o.itemsArray.slice(this.o.currentItem, this.o.currentItem + 1));
 				}
-				this.set(currentitem,this.o.currentitem);
+				this.set('currentItem',this.o.currentItem);
 			}
 		},
-		additem:function(index,array){
+		addItems:function(index,array){
 			var that = this;
+			if(array.length === 0) {
+				//没有远程数据
+				this.o.currentItem --;
+				return;
+			}
 			$.each(array,function(i) {
-				creatImg(index+i);
+				var creatImg = $("<"+that.o.item+"></"+that.o.item+">");
+		    creatImg.append(that.o.renderer(array[i]));
+		    //初始添加
+		    if(index === 0){
+		    	creatImg.appendTo(that.ul);
+		    	that.o.itemsArray.push(array[i]);
+		    	that.set('currentItem',0);
+		    	creatImg.css('left', that.getPositionLeft(index+i));
+		    }else{
+		    	if((index+i+that.o.showcount -1) > (that.o.itemsArray.length -1)){
+		    		//新添加时
+		    		creatImg.appendTo(that.ul);
+		    		that.o.itemsArray.push(array[i]);
+		    		creatImg.css('left', that.getPositionLeft(index+i+that.o.showcount -1));
+		    	}else{
+		    		//itemsArray中存在，但没有出现
+
+		    	}
+		    }
+				that.o.totalItem ++;
+				//挪后
+				$.each(that.ul.find('li'),function(j) {
+					if(parseInt(that.ul.find('li').eq(j).css('left')) >= that.getPositionLeft(index+i)){
+						//改变后的left值
+						var changeLeft = parseInt(that.ul.find('li').eq(j).css('left')) + creatImg.outerWidth();
+					}
+				});
 			});
+			this.set('currentItem',this.o.currentItem);
 		},
-		removeitem:function(index){
-			var removeitemWidth = this.getitem(index).outerWidth();
-			this.getitem(index).remove();
+		removeItem:function(index){
+			var removeitemWidth = this.getItem(index).outerWidth();
+			this.getItem(index).remove();
 			this.o.itemsArray[index].remove();
+			that.o.currentItem --;
 			//挪前
 			$.each(this.li,function(i) {
 				if(this.li[i].offset().left > getPositionLeft(index)){
@@ -122,14 +176,27 @@
 			});
 		},
 		//显示的items中
-		getitem:function(index){
+		getItem:function(index){
+			var showedFirstItem,showedEndItem;
+			if(this.o.showcount !== 'auto'){
+				showedFirstItem = parseInt(this.el.find('li').eq(0).css('left'))/this.liWidth;
+				showedEndItem = parseInt(this.el.find('li').eq(this.el.find('li').length - 1).css('left'))/this.liWidth;
 
+			}
+		},
+		getPositionLeft: function(index){
+			if(this.o.showcount !== 'auto'){
+				return index * this.liWidth;
+			}else{
+
+			}
 		}
+
 
 	};
 
 	//jquery plugin
-	$.fn.slider = function(){
+	$.fn.slider = function(o){
     return this.each(function (index) {
       //  Cache a copy of $(this), so it
       var me = $(this),

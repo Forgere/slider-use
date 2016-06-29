@@ -1,21 +1,25 @@
 $(function () {
 	var weinr = $('#slider1 .slider1').slider({
-		cachecount: 2, //显示前后保存的数据
+		cachepage: false, //显示前后保存的数据
 		showcount: 4, //图数量
 		renderer: renderer,
-		mode : 'dynamic'
+		mode : 'dynamic',
+		prev:'',
+		next:''
 	});
-
-	var weinrcontrol = weinr.data('key');
-
+  var id = 1;
+	var weinrControl = weinr.data('key');
+	console.log(weinrControl);
 	weinr.on('reachLastImage',function(e){
+		var url = "http://127.0.0.1:3000/uploads.json?page_id=";
     $.ajax({
-        url: "http://127.0.0.1:3000/uploads.json?page_id=1",
+        url: url + id,
         type: 'GET',
         dataType: 'json',
         success:function(result){
+        	id ++;
         	//传入结果
-        	weinrcontrol.additems(weinrcontrol.currentpage,result);
+        	weinrControl.addItems(weinrControl.o.currentItem,result);
         }
     });
 	});
