@@ -120,9 +120,7 @@
 					that.el.width(sliderWidth);
 					that.el.find('li').outerWidth(that.liWidth);
 					for (var i = 0; i < that.o.totalItem; i++) {
-						console.log(i);
 						if (that.getItem(i)) {
-							console.log(i);
 							that.getItem(i).css('left', i * that.liWidth);
 						}
 					}
@@ -339,6 +337,17 @@
 				this.o.currentItem--;
 				return;
 			}
+			if(that.getItem(index)){
+				//currentItem
+				that.set('currentItem',that.o.currentItem+array.length);
+				//挪后
+				for(var j = index;j<that.ul.find(that.o.item).length+index;j++){
+					if(that.getItem(j)){
+						var changeLeft = parseInt(that.getItem(j).css('left')) + array.length*that.liWidth+'px';
+						that.getItem(j).css('left',changeLeft);
+					}
+				}
+			}
 			$.each(array, function (i) {
 				var creatImg = $("<" + that.o.item + "></" + that.o.item + ">");
 				creatImg.append(that.o.renderer(array[i]));
@@ -350,55 +359,37 @@
 					creatImg.ready(function () {
 						setTimeout(function () {
 							//初始添加
-							if (index === 0) {
+							if(that.getItem(index + i-1)){
+								creatImg.insertAfter(that.getItem(index + i-1));
+							}else{
 								creatImg.appendTo(that.ul);
-								that.o.itemsArray.push(array[i]);
-								that.set('currentItem', 0);
-								creatImg.css('left', that.getPositionLeft(index + i));
-								creatImg.outerWidth(that.liWidth);
-							} else {
-								if ((index + i + that.o.showcount - 1) > (that.o.itemsArray.length - 1)) {
-									//新添加时
-									creatImg.appendTo(that.ul);
-									that.o.itemsArray.push(array[i]);
-									creatImg.css('left', that.getPositionLeft(index + i + that.o.showcount - 1));
-									creatImg.outerWidth(that.liWidth);
-								} else {
-									//itemsArray中存在，但没有出现
-
-								}
 							}
+							that.o.itemsArray.push(array[i]);
+							creatImg.css('left', that.getPositionLeft(index + i));
+							creatImg.outerWidth(that.liWidth);
 							lazyBox.remove();
 						}, 1000);
 					});
 				} else {
 					//初始添加
-					if (index === 0) {
+					if(that.getItem(index + i-1)){
+						creatImg.insertAfter(that.getItem(index + i-1));
+					}else{
 						creatImg.appendTo(that.ul);
-						that.o.itemsArray.push(array[i]);
-						that.set('currentItem', 0);
-						creatImg.css('left', that.getPositionLeft(index + i));
-						creatImg.outerWidth(that.liWidth);
-					} else {
-						if ((index + i + that.o.showcount - 1) > (that.o.itemsArray.length - 1)) {
-							//新添加时
-							creatImg.appendTo(that.ul);
-							that.o.itemsArray.push(array[i]);
-							creatImg.css('left', that.getPositionLeft(index + i + that.o.showcount - 1));
-							creatImg.outerWidth(that.liWidth);
-						} else {
-							//itemsArray中存在，但没有出现
-						}
 					}
+				console.log(index+i);
+					console.log(that.o.itemsArray);
+					if(index+i === that.o.itemsArray.length){
+						that.o.itemsArray.push(array[i]);
+					}else{
+						var firstArray = that.o.itemsArray.splice(0,index);
+						//数据改变
+						that.o.itemsArray=$.merge($.merge(firstArray, array),that.o.itemsArray);
+					}
+					creatImg.css('left', that.getPositionLeft(index + i));
+					creatImg.outerWidth(that.liWidth);
 				}
 				that.o.totalItem++;
-				//挪后
-				$.each(that.ul.find(that.o.item), function (j) {
-					if (parseInt(that.ul.find(that.o.item).eq(j).css('left')) >= that.getPositionLeft(index + i)) {
-						//改变后的left值
-						var changeLeft = parseInt(that.ul.find(that.o.item).eq(j).css('left')) + creatImg.outerWidth();
-					}
-				});
 			});
 			this.set('currentItem', this.o.currentItem);
 		},

@@ -10,7 +10,8 @@ $(function () {
 	});
   var id = 1;
 	var weinrControl = weinr.data('key');
-	weinr.on('reachLastImage',function(e){
+	weinr.on('reachLastImage',ajax);
+	function ajax(e){
 		var url = "http://127.0.0.1:3000/uploads.json?page_id=";
     $.ajax({
         url: url + id,
@@ -19,10 +20,10 @@ $(function () {
         success:function(result){
         	id ++;
         	//传入结果
-        	weinrControl.addItems(weinrControl.o.currentItem,result);
+        	weinrControl.addItems(weinrControl.o.totalItem,result);
         }
     });
-	});
+	}
 	function renderer(data){
 		var address = "http://"+window.location.host+data.img.url+"/thumb";
 		return $('<a><img src='+address+'></a>');
