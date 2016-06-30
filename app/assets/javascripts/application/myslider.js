@@ -97,9 +97,9 @@
 					}
 					//确保以后不会有超过发生
 					that.el.on('slider:checkPage',function() {
-						if(that.o.currentItem > (value-1)*that.o.showcount){
+						// if(that.o.currentItem > (value-1)*that.o.showcount){
 							that.showPage = value;
-						}
+						// }
 					});
 				}
 			}
@@ -117,9 +117,7 @@
 					}
 					//确保以后不会有超过发生
 					that.el.on('slider:checkItem',function() {
-						if(that.o.currentItem + that.o.showcount > value){
-							that.showItem = value;
-						}
+						that.showItem = value;
 					});
 				}
 			}
@@ -176,7 +174,6 @@
 				if(this.o.currentItem + this.o.showcount > this.showItem){
 					if(this.o.loop){
 						this.o.currentItem = 0;
-										console.log(this.o.currentItem);
 					}else{
 						this.o.currentItem -= 1;
 						return;
@@ -205,7 +202,18 @@
 		prev:function(count){
 			this.o.currentItem -= 1;
 			if(this.o.loop){
-
+				this.el.trigger('slider:checkItem');
+				if(this.showItem){
+					if(this.o.currentItem < 0){
+						this.o.currentItem = this.showItem -this.o.showcount;
+					}
+				}
+				this.el.trigger('slider:checkPage');
+				if (this.showPage) {
+					if(this.o.currentItem < 0){
+						this.o.currentItem = (this.showPage-1)*this.o.showcount;
+					}
+				}
 			}else{
 				if(this.o.currentItem < 0){
 					this.o.currentItem = 0;
