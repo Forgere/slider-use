@@ -61,24 +61,7 @@
       }
 
       if (this.o.autosize) {
-        $(window).resize(function () {
-        	that.parentW = that.el.parent().width();
-        	that.liWidth = that.parentW / that.o.showcount;
-          var sliderWidth = that.liWidth * that.o.showcount;
-          that.r && clearTimeout(that.r);
-          that.r = setTimeout(function () {
-            var beforeSaveLiList = that.el.find(that.o.items).children(that.o.item);
-            var beforeSaveWidth = that.el.find(that.o.items).children(that.o.item).eq(0).outerWidth();
-            that.el.width(sliderWidth);
-            that.el.find('li').outerWidth(that.liWidth);
-            for (var i = 0; i < that.o.totalItem; i++) {
-            	if(that.getItem(i)){
-            		that.getItem(i).css('left', that.getPositionLeft(i));
-            	}
-            }
-            that.set('currentItem',that.o.currentItem);
-          }, 50);
-        }).resize();
+        $(window).resize(slider_resize).resize();
       }
       this.set('autoplay',this.o.autoplay);
 
@@ -95,6 +78,26 @@
 		        me.hasClass('dot') ? that.stop().to(me.index()) : me.hasClass('prev') ? that.prev() : that.next();
 		      });
         }
+      }
+      function slider_resize(){
+      	that.parentW = that.el.parent().width();
+      	that.liWidth = that.parentW / that.o.showcount;
+        var sliderWidth = that.liWidth * that.o.showcount;
+        that.r && clearTimeout(that.r);
+        that.r = setTimeout(function () {
+          var beforeSaveLiList = that.el.find(that.o.items).children(that.o.item);
+          var beforeSaveWidth = that.el.find(that.o.items).children(that.o.item).eq(0).outerWidth();
+          that.el.width(sliderWidth);
+          that.el.find('li').outerWidth(that.liWidth);
+          for (var i = 0; i < that.o.totalItem; i++) {
+          	console.log(i);
+          	if(that.getItem(i)){
+          		console.log(i);
+          		that.getItem(i).css('left', i*that.liWidth);
+          	}
+          }
+          that.set('currentItem',that.o.currentItem);
+        }, 50);
       }
       //
 			function slider_currentItem(e,value){
@@ -273,25 +276,56 @@
 			$.each(array,function(i) {
 				var creatImg = $("<"+that.o.item+"></"+that.o.item+">");
 		    creatImg.append(that.o.renderer(array[i]));
-		    //初始添加
-		    if(index === 0){
-		    	creatImg.appendTo(that.ul);
-		    	that.o.itemsArray.push(array[i]);
-		    	that.set('currentItem',0);
-		    	creatImg.css('left', that.getPositionLeft(index+i));
-		    	creatImg.outerWidth(that.liWidth);
-		    }else{
-		    	if((index+i+that.o.showcount -1) > (that.o.itemsArray.length -1)){
-		    		//新添加时
-		    		creatImg.appendTo(that.ul);
-		    		that.o.itemsArray.push(array[i]);
-		    		creatImg.css('left', that.getPositionLeft(index+i+that.o.showcount -1));
-		    		creatImg.outerWidth(that.liWidth);
-		    	}else{
-		    		//itemsArray中存在，但没有出现
+				if(that.o.lazyload){
+					var lazyBox = $('<div class="lazyload"><div class="lazyload_inner"></div></div>');
+					$('.lazyload').outerWidth(that.liWidth);
+					lazyBox.appendTo(that.ul);
+					lazyBox.css('left', that.getPositionLeft(index+i));
+					creatImg.ready(function(){
+						setTimeout(function(){
+					    //初始添加
+					    if(index === 0){
+					    	creatImg.appendTo(that.ul);
+					    	that.o.itemsArray.push(array[i]);
+					    	that.set('currentItem',0);
+					    	creatImg.css('left', that.getPositionLeft(index+i));
+					    	creatImg.outerWidth(that.liWidth);
+					    }else{
+					    	if((index+i+that.o.showcount -1) > (that.o.itemsArray.length -1)){
+					    		//新添加时
+					    		creatImg.appendTo(that.ul);
+					    		that.o.itemsArray.push(array[i]);
+					    		creatImg.css('left', that.getPositionLeft(index+i+that.o.showcount -1));
+					    		creatImg.outerWidth(that.liWidth);
+					    	}else{
+					    		//itemsArray中存在，但没有出现
 
-		    	}
-		    }
+					    	}
+					    }
+							lazyBox.remove();
+						},1000);
+					});
+				}else{
+			    //初始添加
+			    if(index === 0){
+			    	creatImg.appendTo(that.ul);
+			    	that.o.itemsArray.push(array[i]);
+			    	that.set('currentItem',0);
+			    	creatImg.css('left', that.getPositionLeft(index+i));
+			    	creatImg.outerWidth(that.liWidth);
+			    }else{
+			    	if((index+i+that.o.showcount -1) > (that.o.itemsArray.length -1)){
+			    		//新添加时
+			    		creatImg.appendTo(that.ul);
+			    		that.o.itemsArray.push(array[i]);
+			    		creatImg.css('left', that.getPositionLeft(index+i+that.o.showcount -1));
+			    		creatImg.outerWidth(that.liWidth);
+			    	}else{
+			    		//itemsArray中存在，但没有出现
+
+			    	}
+			    }
+				}
 				that.o.totalItem ++;
 				//挪后
 				$.each(that.ul.find(that.o.item),function(j) {
@@ -322,7 +356,7 @@
 			var showedFirstItem,showedEndItem;
 			if(this.o.showcount !== 'auto'){
 				showedFirstItem = parseInt(this.el.find('li').eq(0).css('left'))/this.liWidth;
-				showedEndItem = Math.ceil(parseInt(this.el.find('li').eq(this.el.find('li').length - 1).css('left'))/this.liWidth);
+				showedEndItem = this.el.find('li').length - 1 + showedFirstItem;
 				if(showedFirstItem <= index&& index<= showedEndItem){
 					return this.el.find('li').eq(showedFirstItem+index);
 				}
