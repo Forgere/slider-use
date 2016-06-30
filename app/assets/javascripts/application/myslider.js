@@ -77,12 +77,16 @@
       //
 			function slider_currentItem(e,value){
 				that.ul.animate({left:value*that.liWidth*-1},that.o.speed,that.o.easing);
+				that.o.currentItem = value;
+				return that.o.currentItem;
 			}
 			function slider_currentPage(e,value){
 				if(!value){
-					thisat.o.name = Math.floor(that.o.currentItem/that.o.showcount);
+					that.o.name = Math.floor(that.o.currentItem/that.o.showcount);
 				}else{
 					that.ul.animate({left:value*that.o.showcount*that.liWidth*-1},that.o.speed,that.o.easing);
+					that.o.currentPage = value;
+					return that.o.currentPage;
 				}
 			}
 			function slider_totalPage(e,value){
@@ -91,15 +95,15 @@
 				}else{
 					//当前有超过
 					if(value*that.o.showcount < (that.o.totalItem)){
+						//回到最后一个位置
+						that.set('currentItem',(value-1)*that.o.showcount);
 						for(var i=value*that.o.showcount;i<that.o.totalItem;i++){
-							that.getItem(i).remove();
+							that.getItem(value*that.o.showcount).remove();
 						}
 					}
 					//确保以后不会有超过发生
 					that.el.on('slider:checkPage',function() {
-						// if(that.o.currentItem > (value-1)*that.o.showcount){
-							that.showPage = value;
-						// }
+						that.showPage = value;
 					});
 				}
 			}
@@ -111,8 +115,10 @@
 					var liArray = that.el.find(that.o.item);
 					var liArrayLastImageIndex = parseInt(liArray.eq(liArray.length - 1).css('left'))/that.liWidth;
 					if(value <= liArrayLastImageIndex){
+						//回到最后一个位置
+						that.set('currentItem',value-that.o.showcount);
 						for(var i=value;i<=liArrayLastImageIndex;i++){
-							that.getItem(i).remove();
+							that.getItem(value).remove();
 						}
 					}
 					//确保以后不会有超过发生
@@ -289,7 +295,7 @@
 			if(this.o.showcount !== 'auto'){
 				showedFirstItem = parseInt(this.el.find('li').eq(0).css('left'))/this.liWidth;
 				showedEndItem = parseInt(this.el.find('li').eq(this.el.find('li').length - 1).css('left'))/this.liWidth;
-				if(showedFirstItem <= index <= showedEndItem){
+				if(showedFirstItem <= index&& index<= showedEndItem){
 					return this.el.find('li').eq(showedFirstItem+index);
 				}
 			}
