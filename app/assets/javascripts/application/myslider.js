@@ -96,7 +96,9 @@
 					//当前有超过
 					if(value*that.o.showcount < (that.o.totalItem)){
 						//回到最后一个位置
-						that.set('currentItem',(value-1)*that.o.showcount);
+						if(that.o.currentItem+that.o.showcount > value*that.o.showcount){
+							that.set('currentItem',(value-1)*that.o.showcount);
+						}
 						for(var i=value*that.o.showcount;i<that.o.totalItem;i++){
 							that.getItem(value*that.o.showcount).remove();
 						}
@@ -116,7 +118,9 @@
 					var liArrayLastImageIndex = parseInt(liArray.eq(liArray.length - 1).css('left'))/that.liWidth;
 					if(value <= liArrayLastImageIndex){
 						//回到最后一个位置
-						that.set('currentItem',value-that.o.showcount);
+						if(that.o.currentItem+that.o.showcount > value){
+							that.set('currentItem',value-that.o.showcount);
+						}
 						for(var i=value;i<=liArrayLastImageIndex;i++){
 							that.getItem(value).remove();
 						}
