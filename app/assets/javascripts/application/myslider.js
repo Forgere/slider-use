@@ -377,8 +377,6 @@
 					}else{
 						creatImg.appendTo(that.ul);
 					}
-				console.log(index+i);
-					console.log(that.o.itemsArray);
 					if(index+i === that.o.itemsArray.length){
 						that.o.itemsArray.push(array[i]);
 					}else{
