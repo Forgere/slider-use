@@ -6,10 +6,10 @@ $(function () {
 		mode : 'dynamic',
 		prev:'',
 		next:'',
+		autosize:true
 	});
   var id = 1;
 	var weinrControl = weinr.data('key');
-	console.log(weinrControl);
 	weinr.on('reachLastImage',function(e){
 		var url = "http://127.0.0.1:3000/uploads.json?page_id=";
     $.ajax({

@@ -59,7 +59,29 @@
       		that.el.trigger('reachLastImage');
       	},0);
       }
+
+      if (this.o.autosize) {
+        $(window).resize(function () {
+        	that.parentW = that.el.parent().width();
+        	that.liWidth = that.parentW / that.o.showcount;
+          var sliderWidth = that.liWidth * that.o.showcount;
+          that.r && clearTimeout(that.r);
+          that.r = setTimeout(function () {
+            var beforeSaveLiList = that.el.find(that.o.items).children(that.o.item);
+            var beforeSaveWidth = that.el.find(that.o.items).children(that.o.item).eq(0).outerWidth();
+            that.el.width(sliderWidth);
+            that.el.find('li').outerWidth(that.liWidth);
+            for (var i = 0; i < that.o.totalItem; i++) {
+            	if(that.getItem(i)){
+            		that.getItem(i).css('left', that.getPositionLeft(i));
+            	}
+            }
+            that.set('currentItem',that.o.currentItem);
+          }, 50);
+        }).resize();
+      }
       this.set('autoplay',this.o.autoplay);
+
       if(this.o.arrows){
         if(typeof(this.o.prev) === 'object'){
         	//选择器
@@ -257,12 +279,14 @@
 		    	that.o.itemsArray.push(array[i]);
 		    	that.set('currentItem',0);
 		    	creatImg.css('left', that.getPositionLeft(index+i));
+		    	creatImg.outerWidth(that.liWidth);
 		    }else{
 		    	if((index+i+that.o.showcount -1) > (that.o.itemsArray.length -1)){
 		    		//新添加时
 		    		creatImg.appendTo(that.ul);
 		    		that.o.itemsArray.push(array[i]);
 		    		creatImg.css('left', that.getPositionLeft(index+i+that.o.showcount -1));
+		    		creatImg.outerWidth(that.liWidth);
 		    	}else{
 		    		//itemsArray中存在，但没有出现
 
@@ -298,7 +322,7 @@
 			var showedFirstItem,showedEndItem;
 			if(this.o.showcount !== 'auto'){
 				showedFirstItem = parseInt(this.el.find('li').eq(0).css('left'))/this.liWidth;
-				showedEndItem = parseInt(this.el.find('li').eq(this.el.find('li').length - 1).css('left'))/this.liWidth;
+				showedEndItem = Math.ceil(parseInt(this.el.find('li').eq(this.el.find('li').length - 1).css('left'))/this.liWidth);
 				if(showedFirstItem <= index&& index<= showedEndItem){
 					return this.el.find('li').eq(showedFirstItem+index);
 				}
@@ -317,12 +341,15 @@
 
 	//jquery plugin
 	$.fn.slider = function(o){
-    return this.each(function (index) {
-      //  Cache a copy of $(this), so it
-      var me = $(this),
-        	instance = (new Slider).init(me, o);
-      // Invoke an Unslider instance
-      me.data('key', instance);
-    });
+		if(this.data('key')){
+	  	var mecontrol = this.data('key');
+			return mecontrol;
+		}else{
+	    return this.each(function (index) {
+	      var me = $(this);
+	      var instance = new Slider();
+		    me.data('key', instance.init(me, o));
+	    });
+		}
 	};
 })(window.jQuery);

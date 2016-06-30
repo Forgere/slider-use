@@ -114,12 +114,13 @@ body.home{
               position: relative;
               li{
                 position: absolute;
-                width: 233px;
+                // width: 233px;
                 padding: 6px;
                 a{
                   float: left;
                   display: inline-block;
                   overflow: hidden;
+                  width: 100%;
                   // img{
                   //   display: block;
                   //   width: 232px;
@@ -127,8 +128,7 @@ body.home{
                   // }
                   img{
                     display: block;
-                    width: 232px;
-                    height: 154px;
+                    width: 100%;
                   }
                   span.greenbg{
                     display: block;
