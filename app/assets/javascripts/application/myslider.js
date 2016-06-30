@@ -163,15 +163,24 @@
 			this.el.trigger('slider:checkPage');
 			if(this.showPage){
 				if(this.o.currentItem > (this.showPage-1)*this.o.showcount){
-					this.o.currentItem -= 1;
-					return;
+					if(this.o.loop){
+						this.o.currentItem = 0;
+					}else{
+						this.o.currentItem -= 1;
+						return;
+					}
 				}
 			}
 			this.el.trigger('slider:checkItem');
 			if(this.showItem){
 				if(this.o.currentItem + this.o.showcount > this.showItem){
-					this.o.currentItem -= 1;
-					return;
+					if(this.o.loop){
+						this.o.currentItem = 0;
+										console.log(this.o.currentItem);
+					}else{
+						this.o.currentItem -= 1;
+						return;
+					}
 				}
 			}
 			var that = this;
@@ -195,9 +204,13 @@
 		},
 		prev:function(count){
 			this.o.currentItem -= 1;
-			if(this.o.currentItem < 0){
-				this.o.currentItem = 0;
-				return;
+			if(this.o.loop){
+
+			}else{
+				if(this.o.currentItem < 0){
+					this.o.currentItem = 0;
+					return;
+				}
 			}
 			if(this.o.mode === 'static'){
 				if(this.o.currentItem < 0){

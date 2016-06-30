@@ -5,7 +5,8 @@ $(function () {
 		renderer: renderer,
 		mode : 'dynamic',
 		prev:'',
-		next:''
+		next:'',
+		loop:true
 	});
   var id = 1;
 	var weinrControl = weinr.data('key');
