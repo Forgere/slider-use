@@ -6,6 +6,7 @@ $(function () {
 		mode : 'dynamic',
 		prev:'',
 		next:'',
+		dots:true,
 	});
   var id = 1;
 	var weinrControl = weinr.data('key');

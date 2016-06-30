@@ -40,18 +40,7 @@ body.home{
     }
   }
 }
-.lazyload{
-  position: absolute;
-  padding: 6px;
-  height: 100%;
-  .lazyload_inner{
-    height:100%;
-    display: block;
-    width: 100%;
-    background: image_url('loading.gif');
-    background-size: contain;
-  }
-}
+
 .showarea{
   background: url(image_path('routebg.png')) no-repeat 50% 167px;
   .home_wap &{
