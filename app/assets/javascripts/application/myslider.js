@@ -37,6 +37,7 @@
 			this.li = this.ul.find(this.o.item);
 			if (this.o.showcount === 'auto') {
 				this.parentW = el.parent().width();
+				this.leftArray = [];
 			} else {
 				this.parentW = parseInt(el.parent().width() / this.o.showcount) * this.o.showcount;
 				this.liWidth = this.parentW / this.o.showcount;
@@ -79,7 +80,11 @@
 					html = html + 'arrows">' + html + 'arrow' + ' prev">' + that.o.prev + '</div>' + html + 'arrow' + ' next">' + that.o.next + '</div></div>';
 					that.el.addClass('has-' + 'arrows').append(html).find('.arrow').click(function () {
 						var me = $(this);
-						me.hasClass('dot') ? that.stop().to(me.index()) : me.hasClass('prev') ? that.prev() : that.next();
+						if(me.hasClass('prev')){
+							that.prev();
+						}else{
+							that.next();
+						}
 					});
 				}
 			}
@@ -87,8 +92,8 @@
 				var totalPages = this.get('totalPage');
 				var dots = $('<div class="dots"></div>');
 				dots.appendTo(this.el);
-				if (totalPages === 0) {
-					totalPages++;
+				if (totalPages === 0|| !totalPages) {
+					totalPages = 1;
 				}
 				//根据pages创建dots
 				for (var i = 0; i < totalPages; i++) {
@@ -113,7 +118,7 @@
 				that.parentW = that.el.parent().width();
 				that.liWidth = that.parentW / that.o.showcount;
 				var sliderWidth = that.liWidth * that.o.showcount;
-				that.r && clearTimeout(that.r);
+				if(that.r) clearTimeout(that.r);
 				that.r = setTimeout(function () {
 					var beforeSaveLiList = that.el.find(that.o.items).children(that.o.item);
 					var beforeSaveWidth = that.el.find(that.o.items).children(that.o.item).eq(0).outerWidth();
@@ -154,7 +159,7 @@
 
 			function slider_currentItem(e, value) {
 				that.ul.animate({
-					left: value * that.liWidth * -1
+					left: (that.o.showcount === 'auto')?that.leftArray[value]*-1:value * that.liWidth * -1
 				}, that.o.speed, that.o.easing);
 				that.o.currentItem = value;
 				return that.o.currentItem;
@@ -162,20 +167,31 @@
 
 			function slider_currentPage(e, value) {
 				if (!value && value !== 0) {
-					that.o.name = Math.floor(that.o.currentItem / that.o.showcount);
+					that.o.name = (that.o.showcount === 'auto')?Math.floor(parseInt(that.ul.css('left'))*-1/that.el.width()):Math.floor(that.o.currentItem / that.o.showcount);
 				} else {
+					var currentpage;
+					$.each(that.leftArray,function(i){
+						if(that.leftArray[i]>that.el.width()*value){
+							currentpage = i;
+							return false;
+						}
+					});
 					that.ul.animate({
-						left: value * that.o.showcount * that.liWidth * -1
+						left: (that.o.showcount === 'auto')? that.leftArray[currentpage-1]*-1 :value * that.o.showcount * that.liWidth * -1
 					}, that.o.speed, that.o.easing,function(){
 						// that.o.currentPage = value-1;
-						that.o.currentItem = (value)*that.o.showcount;
+						if(that.o.showcount === 'auto'){
+							that.o.currentItem = currentpage-1;
+						}else{
+							that.o.currentItem = (value)*that.o.showcount;
+						}
 					});
 				}
 			}
 
 			function slider_totalPage(e, value) {
 				if (!value) {
-					that.o.name = Math.floor(that.o.itemsArray.length / that.o.showcount);
+					that.o.name = Math.floor(that.leftArray[that.leftArray.length-1] / that.el.width());
 				} else {
 					//当前有超过
 					if (value * that.o.showcount < (that.o.totalItem)) {
@@ -222,7 +238,7 @@
 					play();
 					that.el.on('mouseover mouseout', function (e) {
 						stop();
-						e.type == 'mouseout' && play();
+						if(e.type == 'mouseout')  play();
 					});
 				} else {
 					stop();
@@ -287,12 +303,22 @@
 					this.o.currentItem = this.o.totalItem;
 				}
 			} else {
-				if (this.o.itemsArray.length > this.o.currentItem + this.o.showcount - 1) {
-					//已经接收到
-					if (this.o.cachepage) {}
-					this.set('currentItem', this.o.currentItem);
-				} else {
-					this.el.trigger('reachLastImage');
+				if(this.o.showcount === 'auto'){
+					if ((this.leftArray[this.leftArray.length-1]-this.leftArray[this.o.currentItem])>this.el.width()) {
+						//已经接收到
+						if (this.o.cachepage) {}
+						this.set('currentItem', this.o.currentItem);
+					} else {
+						this.el.trigger('reachLastImage');
+					}
+				}else{
+					if (this.o.itemsArray.length > this.o.currentItem + this.o.showcount - 1) {
+						//已经接收到
+						if (this.o.cachepage) {}
+						this.set('currentItem', this.o.currentItem);
+					} else {
+						this.el.trigger('reachLastImage');
+					}
 				}
 			}
 			that.el.trigger('slider:checkdots');
@@ -353,7 +379,7 @@
 				creatImg.append(that.o.renderer(array[i]));
 				if (that.o.lazyload) {
 					var lazyBox = $('<div class="lazyload"><div class="lazyload_inner"></div></div>');
-					$('.lazyload').outerWidth(that.liWidth);
+					$('.lazyload').outerWidth(that.liWidth?that.liWidth:that.el.width()/4);
 					lazyBox.appendTo(that.ul);
 					lazyBox.css('left', that.getPositionLeft(index + i));
 					creatImg.ready(function () {
@@ -408,13 +434,21 @@
 		},
 		//显示的items中
 		getItem: function (index) {
+			var that = this;
 			var showedFirstItem, showedEndItem;
 			if (this.o.showcount !== 'auto') {
 				showedFirstItem = parseInt(this.el.find('li').eq(0).css('left')) / this.liWidth;
-				showedEndItem = this.el.find('li').length - 1 + showedFirstItem;
-				if (showedFirstItem <= index && index <= showedEndItem) {
-					return this.el.find('li').eq(showedFirstItem + index);
-				}
+			}else{
+				$.each(that.leftArray,function(i) {
+					if(that.leftArray[i] == parseInt(that.el.find('li').eq(0).css('left'))){
+						showedFirstItem = i;
+						return false;
+					}
+				});
+			}
+			showedEndItem = this.el.find('li').length - 1 + showedFirstItem;
+			if (showedFirstItem <= index && index <= showedEndItem) {
+				return this.el.find('li').eq(showedFirstItem + index);
 			}
 		},
 		getPositionLeft: function (index) {
@@ -422,7 +456,14 @@
 			if (this.o.showcount !== 'auto') {
 				return index * this.liWidth;
 			} else {
-					return that.el.find('img').eq(index).width()*index;
+				if(!this.leftArray[index]){
+					if(that.el.find('img').eq(index).width()){
+						that.leftArray[index] = that.el.find('img').eq(index).width()*index;
+					}else{
+						return this.el.width()/4*index;
+					}
+				}
+				return this.leftArray[index];
 			}
 		}
 
