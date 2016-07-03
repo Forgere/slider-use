@@ -366,7 +366,7 @@
 							}
 							that.o.itemsArray.push(array[i]);
 							creatImg.css('left', that.getPositionLeft(index + i));
-							creatImg.outerWidth(that.liWidth);
+							// creatImg.outerWidth(that.liWidth);
 							lazyBox.remove();
 						}, 1000);
 					});
@@ -385,8 +385,9 @@
 						that.o.itemsArray=$.merge($.merge(firstArray, array),that.o.itemsArray);
 					}
 					creatImg.css('left', that.getPositionLeft(index + i));
-					creatImg.outerWidth(that.liWidth);
+					// creatImg.outerWidth(that.liWidth);
 				}
+
 				that.o.totalItem++;
 			});
 			this.set('currentItem', this.o.currentItem);
@@ -417,10 +418,11 @@
 			}
 		},
 		getPositionLeft: function (index) {
+			var that =this;
 			if (this.o.showcount !== 'auto') {
 				return index * this.liWidth;
 			} else {
-
+					return that.el.find('img').eq(index).width()*index;
 			}
 		}
 
