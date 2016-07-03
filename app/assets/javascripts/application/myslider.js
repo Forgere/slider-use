@@ -147,8 +147,8 @@
 						$('.dot').eq(i).on('click',{value:i},dot_changePage);
 					}
 				}else{
-					for(var j=totalPages;j<currentDots;j++){
-						$('.dot').eq(j).remove();
+					for(var j=totalPages;j<currentDots-1;j++){
+						$('.dot').last().remove();
 					}
 				}
 				//当前页
@@ -169,22 +169,26 @@
 				if (!value && value !== 0) {
 					that.o.name = (that.o.showcount === 'auto')?Math.floor(parseInt(that.ul.css('left'))*-1/that.el.width()):Math.floor(that.o.currentItem / that.o.showcount);
 				} else {
-					var currentpage;
-					$.each(that.leftArray,function(i){
-						if(that.leftArray[i]>that.el.width()*value){
-							currentpage = i;
-							return false;
-						}
-					});
+					if(that.o.showcount === 'auto'){
+						var currentpage;
+						$.each(that.leftArray,function(i){
+							if(that.leftArray[i]>that.el.width()*value){
+								currentpage = i;
+							that.ul.animate({
+								left: that.leftArray[currentpage-1]*-1
+							}, that.o.speed, that.o.easing,function(){
+								// that.o.currentPage = value-1;
+								that.o.currentItem = currentpage-1;
+							});
+								return false;
+							}
+						});
+					}
 					that.ul.animate({
-						left: (that.o.showcount === 'auto')? that.leftArray[currentpage-1]*-1 :value * that.o.showcount * that.liWidth * -1
+						left: value * that.o.showcount * that.liWidth * -1
 					}, that.o.speed, that.o.easing,function(){
 						// that.o.currentPage = value-1;
-						if(that.o.showcount === 'auto'){
-							that.o.currentItem = currentpage-1;
-						}else{
-							that.o.currentItem = (value)*that.o.showcount;
-						}
+						that.o.currentItem = (value)*that.o.showcount;
 					});
 				}
 			}
@@ -194,8 +198,8 @@
 					that.o.name = Math.floor(parseInt(that.ul.find(that.o.item).eq(that.ul.find(that.o.item).length-1).css('left')) / that.el.width());
 				} else {
 					//当前有超过
-					if ((value * that.o.showcount < (that.o.totalItem)) || that.leftArray[that.leftArray.length - 1]>value*that.el.width()) {
-						if(that.o.showcount === 'auto'){
+					if ((value * that.o.showcount < (that.o.totalItem))) {
+						if(that.o.showcount === 'auto'&& that.leftArray[that.leftArray.length - 1]>value*that.el.width()){
 							if(parseInt(that.el.find(that.o.item).last().css('left')) > value*that.el.width()){
 								var currentItem;
 								$.each(that.leftArray,function(j) {
@@ -225,6 +229,7 @@
 					that.el.on('slider:checkPage', function () {
 						that.showPage = value;
 					});
+					that.el.trigger('slider:checkdots');
 				}
 			}
 
@@ -265,6 +270,7 @@
 					that.el.on('slider:checkItem', function () {
 						that.showItem = value;
 					});
+					that.el.trigger('slider:checkdots');
 				}
 			}
 
@@ -309,23 +315,47 @@
 			this.o.currentItem += 1;
 			this.el.trigger('slider:checkPage');
 			if (this.showPage) {
-				if ((this.o.currentItem > (this.showPage - 1) * this.o.showcount) || ((this.leftArray[this.o.currentItem])>(this.showPage-1)*this.el.width())) {
-					if (this.o.loop) {
-						this.o.currentItem = 0;
-					} else {
-						this.o.currentItem -= 1;
-						return;
+				if(this.o.showcount === 'auto'){
+					if(((this.leftArray[this.o.currentItem])>(this.showPage-1)*this.el.width())){
+						if (this.o.loop) {
+							this.o.currentItem = 0;
+						} else {
+							this.o.currentItem -= 1;
+							return;
+						}
+					}
+				}else{
+					if ((this.o.currentItem > (this.showPage - 1) * this.o.showcount)) {
+						if (this.o.loop) {
+							this.o.currentItem = 0;
+						} else {
+							this.o.currentItem -= 1;
+							return;
+						}
 					}
 				}
 			}
 			this.el.trigger('slider:checkItem');
 			if (this.showItem) {
-				if ((this.o.currentItem + this.o.showcount > this.showItem) ||parseInt(this.ul.css('left'))*-1 > this.leftArray[this.showItem]-this.el.width()) {
-					if (this.o.loop) {
-						this.o.currentItem = 0;
-					} else {
-						this.o.currentItem -= 1;
-						return;
+				if(this.o.showcount === 'auto'){
+					if(parseInt(this.ul.css('left'))*-1 > this.leftArray[this.showItem-1]-this.el.width()){
+						if ((this.o.currentItem + this.o.showcount > this.showItem)){
+							if (this.o.loop) {
+								this.o.currentItem = 0;
+							} else {
+								this.o.currentItem -= 1;
+								return;
+							}
+						}
+					}
+				}else{
+					if ((this.o.currentItem + this.o.showcount > this.showItem)){
+						if (this.o.loop) {
+							this.o.currentItem = 0;
+						} else {
+							this.o.currentItem -= 1;
+							return;
+						}
 					}
 				}
 			}

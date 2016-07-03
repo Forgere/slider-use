@@ -1,7 +1,7 @@
 $(function () {
 	var weinr = $('#slider1 .slider1').slider({
 		cachepage: false, //显示前后保存的数据
-		showcount: 'auto', //图数量
+		showcount: 4, //图数量
 		renderer: renderer,
 		mode : 'dynamic',
 		prev:'',
