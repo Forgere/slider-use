@@ -191,16 +191,34 @@
 
 			function slider_totalPage(e, value) {
 				if (!value) {
-					that.o.name = Math.floor(that.leftArray[that.leftArray.length-1] / that.el.width());
+					that.o.name = Math.floor(parseInt(that.ul.find(that.o.item).eq(that.ul.find(that.o.item).length-1).css('left')) / that.el.width());
 				} else {
 					//当前有超过
-					if (value * that.o.showcount < (that.o.totalItem)) {
-						//回到最后一个位置
-						if (that.o.currentItem + that.o.showcount > value * that.o.showcount) {
-							that.set('currentItem', (value - 1) * that.o.showcount);
-						}
-						for (var i = value * that.o.showcount; i < that.o.totalItem; i++) {
-							that.getItem(value * that.o.showcount).remove();
+					if ((value * that.o.showcount < (that.o.totalItem)) || that.leftArray[that.leftArray.length - 1]>value*that.el.width()) {
+						if(that.o.showcount === 'auto'){
+							if(parseInt(that.el.find(that.o.item).last().css('left')) > value*that.el.width()){
+								var currentItem;
+								$.each(that.leftArray,function(j) {
+									if(that.leftArray[j]+that.el.width() > that.el.width()*value){
+										currentItem = j;
+										return false;
+									}
+								});
+								that.set('currentItem', currentItem);
+							}
+							$.each(that.ul.find(that.o.item),function(k){
+								if(parseInt(that.ul.find(that.o.item).eq(k).css('left'))>value*that.el.width()){
+									that.ul.find(that.o.item).eq(k).remove();
+								}
+							});
+						}else{
+							//回到最后一个位置
+							if (that.o.currentItem + that.o.showcount > value * that.o.showcount) {
+								that.set('currentItem', (value - 1) * that.o.showcount);
+							}
+							for (var i = value * that.o.showcount; i < that.o.totalItem; i++) {
+								that.getItem(value * that.o.showcount).remove();
+							}
 						}
 					}
 					//确保以后不会有超过发生
@@ -216,14 +234,31 @@
 				} else {
 					//当前有超过
 					var liArray = that.el.find(that.o.item);
-					var liArrayLastImageIndex = parseInt(liArray.eq(liArray.length - 1).css('left')) / that.liWidth;
+					var liArrayLastImageIndex =(that.o.showcount === 'auto')? that.leftArray.length -1 :parseInt(liArray.eq(liArray.length - 1).css('left')) / that.liWidth;
 					if (value <= liArrayLastImageIndex) {
-						//回到最后一个位置
-						if (that.o.currentItem + that.o.showcount > value) {
-							that.set('currentItem', value - that.o.showcount);
-						}
-						for (var i = value; i <= liArrayLastImageIndex; i++) {
-							that.getItem(value).remove();
+						if(that.o.showcount === 'auto'){
+							//回到最后一个位置
+							if (parseInt(liArray.eq(liArray.length-1).css('left'))>that.leftArray[value]) {
+								var currentItem;
+								$.each(that.leftArray,function(i) {
+									if(that.leftArray[i]+that.el.width() > that.leftArray[value]){
+										currentItem = i;
+										return false;
+									}
+								});
+								that.set('currentItem', currentItem);
+							}
+							for (var i = value; i <= liArrayLastImageIndex; i++) {
+								that.getItem(value).remove();
+							}
+						}else{
+							//回到最后一个位置
+							if (that.o.currentItem + that.o.showcount > value) {
+								that.set('currentItem', value - that.o.showcount);
+							}
+							for (var j = value; j <= liArrayLastImageIndex; j++) {
+								that.getItem(value).remove();
+							}
 						}
 					}
 					//确保以后不会有超过发生
@@ -274,7 +309,7 @@
 			this.o.currentItem += 1;
 			this.el.trigger('slider:checkPage');
 			if (this.showPage) {
-				if (this.o.currentItem > (this.showPage - 1) * this.o.showcount) {
+				if ((this.o.currentItem > (this.showPage - 1) * this.o.showcount) || ((this.leftArray[this.o.currentItem])>(this.showPage-1)*this.el.width())) {
 					if (this.o.loop) {
 						this.o.currentItem = 0;
 					} else {
@@ -285,7 +320,7 @@
 			}
 			this.el.trigger('slider:checkItem');
 			if (this.showItem) {
-				if (this.o.currentItem + this.o.showcount > this.showItem) {
+				if ((this.o.currentItem + this.o.showcount > this.showItem) ||parseInt(this.ul.css('left'))*-1 > this.leftArray[this.showItem]-this.el.width()) {
 					if (this.o.loop) {
 						this.o.currentItem = 0;
 					} else {
