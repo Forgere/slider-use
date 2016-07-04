@@ -141,24 +141,34 @@
 				var totalPages = that.get('totalPage');
 				var currentPage = that.get('currentPage');
 				var currentDots = $('.dot').length;
-				if (totalPages === 0) {
-					totalPages++;
-				}
-				//根据pages,补充 删除 dots
-				if(totalPages > currentDots){
-					for(var i=currentDots;i<totalPages;i++){
-						$('<div class="dot"></div>').css('left',i*20+'px').appendTo(dots);
-						$('.dot').eq(i).on('click',{value:i},dot_changePage);
+				console.log(that.showPage);
+				if(that.showPage){
+					$('.dots').empty();
+					for(var j=0;j<that.showPage;j++){
+						$('<div class="dot"></div>').css('left',j*20+'px').appendTo(dots);
+						$('.dot').eq(j).on('click',{value:j},dot_changePage);
 					}
+					$('.dot').eq(0).addClass('active');
 				}else{
-					for(var j=totalPages;j<currentDots-1;j++){
-						$('.dot').last().remove();
+					if (totalPages === 0) {
+						totalPages++;
+					}
+					//根据pages,补充 删除 dots
+					if(totalPages > currentDots){
+						//如果小于当前页面
+						for(var i=currentDots;i<totalPages;i++){
+							$('<div class="dot"></div>').css('left',i*20+'px').appendTo(dots);
+							$('.dot').eq(i).on('click',{value:i},dot_changePage);
+						}
+					}else{
+						for(var k=totalPages;k<currentDots-1;k++){
+							$('.dot').last().remove();
+						}
 					}
 				}
 				//当前页
 				$('.dot').removeClass('active');
 				$('.dot').eq(currentPage).addClass('active');
-
 			}
 
 			function slider_currentItem(e, value) {
@@ -188,9 +198,12 @@
 							}
 						});
 					}else{
+						//超出已经获得的数量
+						if(value*that.o.showcount > that.o.itemsArray.length){
+							that.el.trigger('reachLastImage');
+						}
 						if(that.o.cachecount){
 							that.ul.empty();
-							console.log(that.o.itemsArray.slice((value-1)*that.o.showcount, (value-1)*that.o.showcount + that.o.cachecount+1));
 							if(value === 0){
 								that.addItems((value)*that.o.showcount,that.o.itemsArray.slice(value*that.o.showcount, value*that.o.showcount + that.o.cachecount+1));
 							}else{
@@ -240,9 +253,7 @@
 						}
 					}
 					//确保以后不会有超过发生
-					that.el.on('slider:checkPage', function () {
-						that.showPage = value;
-					});
+					that.showPage = value;
 					that.el.trigger('slider:checkdots');
 				}
 			}
@@ -328,6 +339,16 @@
 			//currentItem值先改变
 			this.o.currentItem += 1;
 			if(this.o.cachecount){
+				if(this.showPage){
+						if ((this.o.currentItem > (this.showPage - 1) * this.o.showcount)) {
+							if (this.o.loop) {
+								this.o.currentItem = 0;
+							} else {
+								this.o.currentItem -= 1;
+								return;
+							}
+						}
+				}
 				if(parseInt(this.el.find(this.o.item).eq(this.el.find(this.o.item).length - this.o.showcount).css('left')) <= parseInt(this.ul.css('left'))*-1 ){
 					var creatImg = (this.o.renderer(this.o.itemsArray[this.o.currentItem + this.o.showcount -1 ]));
 					this.el.find(this.o.item).first().empty().append(creatImg);
@@ -498,7 +519,7 @@
 								that.o.itemsArray=$.merge($.merge(firstArray, array),that.o.itemsArray);
 							}
 							creatImg.css('left', that.getPositionLeft(index + i));
-							// creatImg.outerWidth(that.liWidth);
+							creatImg.outerWidth(that.liWidth);
 							lazyBox.remove();
 						}, 1000);
 					});
@@ -512,7 +533,6 @@
 						}
 					}
 					if(index+i === that.o.itemsArray.length){
-						console.log(1);
 						that.o.itemsArray.push(array[i]);
 					}else{
 						if(!that.o.cachecount){
@@ -523,7 +543,7 @@
 					}
 				}
 					creatImg.css('left', that.getPositionLeft(index + i));
-					// creatImg.outerWidth(that.liWidth);
+					creatImg.outerWidth(that.liWidth);
 
 				that.o.totalItem++;
 			});

@@ -1,12 +1,10 @@
 $(function () {
 	var weinr = $('#slider1 .slider1').slider({
-		showcount: 4, //图数量
+		showcount:4, //图数量
 		renderer: renderer,
 		mode : 'dynamic',
 		prev:'',
 		next:'',
-		lazyload:false,
-		dots:true,
 		cachecount:8
 	});
   var id = 1;
@@ -22,6 +20,7 @@ $(function () {
         	id ++;
         	//传入结果
         	weinrControl.addItems(weinrControl.o.totalItem,result);
+        	weinrControl.set('totalPage',4);
         }
     });
 	}
