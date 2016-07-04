@@ -11,7 +11,7 @@
 			nextButton: '▶️',
 			//动态
 			showcount: 4, //'auto' or number
-			cachepage: 1,
+			cachecount: false,
 			autoplay: false,
 			autospeed: 'slow',
 			duration: 3000,
@@ -54,6 +54,10 @@
 			this.el.on('slider:totalItem', slider_totalItem);
 			//监听自动播放
 			this.el.on('slider:autoplay', slider_autoplay);
+			if(this.o.cachecount){
+				this.o.cachecount --;
+				this.set('totalItem',this.o.cachecount);
+			}
 
 			if (this.o.mode !== 'static') {
 				setTimeout(function () {
@@ -183,6 +187,16 @@
 								return false;
 							}
 						});
+					}else{
+						if(that.o.cachecount){
+							that.ul.empty();
+							console.log(that.o.itemsArray.slice((value-1)*that.o.showcount, (value-1)*that.o.showcount + that.o.cachecount+1));
+							if(value === 0){
+								that.addItems((value)*that.o.showcount,that.o.itemsArray.slice(value*that.o.showcount, value*that.o.showcount + that.o.cachecount+1));
+							}else{
+								that.addItems((value-1)*that.o.showcount,that.o.itemsArray.slice((value-1)*that.o.showcount, (value-1)*that.o.showcount + that.o.cachecount+1));
+							}
+						}
 					}
 					that.ul.animate({
 						left: value * that.o.showcount * that.liWidth * -1
@@ -313,33 +327,26 @@
 		next: function (count) {
 			//currentItem值先改变
 			this.o.currentItem += 1;
-			this.el.trigger('slider:checkPage');
-			if (this.showPage) {
-				if(this.o.showcount === 'auto'){
-					if(((this.leftArray[this.o.currentItem])>(this.showPage-1)*this.el.width())){
-						if (this.o.loop) {
-							this.o.currentItem = 0;
-						} else {
-							this.o.currentItem -= 1;
-							return;
-						}
-					}
-				}else{
-					if ((this.o.currentItem > (this.showPage - 1) * this.o.showcount)) {
-						if (this.o.loop) {
-							this.o.currentItem = 0;
-						} else {
-							this.o.currentItem -= 1;
-							return;
-						}
-					}
+			if(this.o.cachecount){
+				if(parseInt(this.el.find(this.o.item).eq(this.el.find(this.o.item).length - this.o.showcount).css('left')) <= parseInt(this.ul.css('left'))*-1 ){
+					var creatImg = (this.o.renderer(this.o.itemsArray[this.o.currentItem + this.o.showcount -1 ]));
+					this.el.find(this.o.item).first().empty().append(creatImg);
+					this.el.find(this.o.item).first().css('left',(this.o.currentItem+this.o.showcount-1)*this.liWidth).appendTo(this.ul);
 				}
-			}
-			this.el.trigger('slider:checkItem');
-			if (this.showItem) {
-				if(this.o.showcount === 'auto'){
-					if(parseInt(this.ul.css('left'))*-1 > this.leftArray[this.showItem-1]-this.el.width()){
-						if ((this.o.currentItem + this.o.showcount > this.showItem)){
+			}else{
+				this.el.trigger('slider:checkPage');
+				if (this.showPage) {
+					if(this.o.showcount === 'auto'){
+						if(((this.leftArray[this.o.currentItem])>(this.showPage-1)*this.el.width())){
+							if (this.o.loop) {
+								this.o.currentItem = 0;
+							} else {
+								this.o.currentItem -= 1;
+								return;
+							}
+						}
+					}else{
+						if ((this.o.currentItem > (this.showPage - 1) * this.o.showcount)) {
 							if (this.o.loop) {
 								this.o.currentItem = 0;
 							} else {
@@ -348,13 +355,28 @@
 							}
 						}
 					}
-				}else{
-					if ((this.o.currentItem + this.o.showcount > this.showItem)){
-						if (this.o.loop) {
-							this.o.currentItem = 0;
-						} else {
-							this.o.currentItem -= 1;
-							return;
+				}
+				this.el.trigger('slider:checkItem');
+				if (this.showItem) {
+					if(this.o.showcount === 'auto'){
+						if(parseInt(this.ul.css('left'))*-1 > this.leftArray[this.showItem-1]-this.el.width()){
+							if ((this.o.currentItem + this.o.showcount > this.showItem)){
+								if (this.o.loop) {
+									this.o.currentItem = 0;
+								} else {
+									this.o.currentItem -= 1;
+									return;
+								}
+							}
+						}
+					}else{
+						if ((this.o.currentItem + this.o.showcount > this.showItem)){
+							if (this.o.loop) {
+								this.o.currentItem = 0;
+							} else {
+								this.o.currentItem -= 1;
+								return;
+							}
 						}
 					}
 				}
@@ -371,15 +393,13 @@
 				if(this.o.showcount === 'auto'){
 					if ((this.leftArray[this.leftArray.length-1]-this.leftArray[this.o.currentItem])>this.el.width()) {
 						//已经接收到
-						if (this.o.cachepage) {}
 						this.set('currentItem', this.o.currentItem);
 					} else {
 						this.el.trigger('reachLastImage');
 					}
 				}else{
-					if (this.o.itemsArray.length > this.o.currentItem + this.o.showcount - 1) {
+					if (this.o.cachecount?this.o.itemsArray.length > this.o.currentItem + this.o.showcount:this.o.itemsArray.length > this.o.currentItem + this.o.showcount-1) {
 						//已经接收到
-						if (this.o.cachepage) {}
 						this.set('currentItem', this.o.currentItem);
 					} else {
 						this.el.trigger('reachLastImage');
@@ -390,23 +410,35 @@
 		},
 		prev: function (count) {
 			this.o.currentItem -= 1;
-			if (this.o.loop) {
-				this.el.trigger('slider:checkItem');
-				if (this.showItem) {
-					if (this.o.currentItem < 0) {
-						this.o.currentItem = this.showItem - this.o.showcount;
+			if(this.o.cachecount){
+				if(parseInt(this.el.find(this.o.item).eq(1).css('left')) >= parseInt(this.ul.css('left'))*-1 ){
+					if(this.o.currentItem <= 0){
+						this.set('currentItem',0);
+						return;
 					}
+					var creatImg = (this.o.renderer(this.o.itemsArray[this.o.currentItem - 1 ]));
+					this.el.find(this.o.item).last().empty().append(creatImg);
+					this.el.find(this.o.item).last().css('left',(this.o.currentItem-1)*this.liWidth).prependTo(this.ul);
 				}
-				this.el.trigger('slider:checkPage');
-				if (this.showPage) {
-					if (this.o.currentItem < 0) {
-						this.o.currentItem = (this.showPage - 1) * this.o.showcount;
+			}else{
+				if (this.o.loop) {
+					this.el.trigger('slider:checkItem');
+					if (this.showItem) {
+						if (this.o.currentItem < 0) {
+							this.o.currentItem = this.showItem - this.o.showcount;
+						}
 					}
-				}
-			} else {
-				if (this.o.currentItem < 0) {
-					this.o.currentItem = 0;
-					return;
+					this.el.trigger('slider:checkPage');
+					if (this.showPage) {
+						if (this.o.currentItem < 0) {
+							this.o.currentItem = (this.showPage - 1) * this.o.showcount;
+						}
+					}
+				} else {
+					if (this.o.currentItem < 0) {
+						this.o.currentItem = 0;
+						return;
+					}
 				}
 			}
 			if (this.o.mode === 'static') {
@@ -414,8 +446,8 @@
 					this.set('currentItem', this.o.currentItem);
 				}
 			} else {
-				if (this.o.cachepage) {
-					this.addItems(this.o.currentItem, this.o.itemsArray.slice(this.o.currentItem, this.o.currentItem + 1));
+				if (this.o.cachecount) {
+					// this.addItems(this.o.currentItem, this.o.itemsArray.slice(this.o.currentItem, this.o.currentItem + 1));
 				}
 				this.set('currentItem', this.o.currentItem);
 			}
@@ -428,8 +460,9 @@
 				this.o.currentItem--;
 				return;
 			}
-			if(that.getItem(index)){
+			if(that.getItem(index)&&!that.o.cachecount){
 				//currentItem
+				console.log(1);
 				that.set('currentItem',that.o.currentItem+array.length);
 				//挪后
 				for(var j = index;j<that.ul.find(that.o.item).length+index;j++){
@@ -449,35 +482,48 @@
 					lazyBox.css('left', that.getPositionLeft(index + i));
 					creatImg.ready(function () {
 						setTimeout(function () {
-							//初始添加
-							if(that.getItem(index + i-1)){
-								creatImg.insertAfter(that.getItem(index + i-1));
-							}else{
-								creatImg.appendTo(that.ul);
+							if(!that.o.cachecount || (that.o.cachecount && (i <= that.o.cachecount))){
+								//初始添加
+								if(that.getItem(index + i-1)){
+									creatImg.insertAfter(that.getItem(index + i-1));
+								}else{
+									creatImg.appendTo(that.ul);
+								}
 							}
-							that.o.itemsArray.push(array[i]);
+							if(index+i === that.o.itemsArray.length){
+								that.o.itemsArray.push(array[i]);
+							}else{
+								var firstArray = that.o.itemsArray.splice(0,index);
+								//数据改变
+								that.o.itemsArray=$.merge($.merge(firstArray, array),that.o.itemsArray);
+							}
 							creatImg.css('left', that.getPositionLeft(index + i));
 							// creatImg.outerWidth(that.liWidth);
 							lazyBox.remove();
 						}, 1000);
 					});
 				} else {
-					//初始添加
-					if(that.getItem(index + i-1)){
-						creatImg.insertAfter(that.getItem(index + i-1));
-					}else{
-						creatImg.appendTo(that.ul);
+					if(!that.o.cachecount || (that.o.cachecount && (that.el.find(that.o.item).length <= that.o.cachecount))){
+						//初始添加
+						if(that.getItem(index + i-1)){
+							creatImg.insertAfter(that.getItem(index + i-1));
+						}else{
+							creatImg.appendTo(that.ul);
+						}
 					}
 					if(index+i === that.o.itemsArray.length){
+						console.log(1);
 						that.o.itemsArray.push(array[i]);
 					}else{
-						var firstArray = that.o.itemsArray.splice(0,index);
-						//数据改变
-						that.o.itemsArray=$.merge($.merge(firstArray, array),that.o.itemsArray);
+						if(!that.o.cachecount){
+							var firstArray = that.o.itemsArray.splice(0,index);
+							//数据改变
+							that.o.itemsArray=$.merge($.merge(firstArray, array),that.o.itemsArray);
+						}
 					}
+				}
 					creatImg.css('left', that.getPositionLeft(index + i));
 					// creatImg.outerWidth(that.liWidth);
-				}
 
 				that.o.totalItem++;
 			});
