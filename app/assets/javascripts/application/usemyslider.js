@@ -48,6 +48,7 @@ $(function () {
 	}
   	weinrControl.set('totalPage',4);
 	function renderer(data){
+		console.log(data);
 		var address = "http://"+window.location.host+data.img.url+"/thumb";
 		return $('<a><img src='+address+'></a>');
 	}

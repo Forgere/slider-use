@@ -210,8 +210,12 @@
 							whichAjaxPage[0] = Math.ceil(currentPageFirstItem/that.ajax);
 							whichAjaxPage[1] = Math.ceil((currentPageFirstItem - that.o.currentItem)/that.ajax);
 						}
-						if(!that.o.itemsArray[currentPageLastItem]){
-							console.log(whichAjaxPage);
+						if(currentPageLastItem < that.o.currentItem){
+							whichAjaxPage[0] = Math.ceil(currentPageFirstItem/that.ajax);
+							whichAjaxPage[1] = Math.ceil((currentPageLastItem+1)/that.ajax)-Math.ceil(currentPageFirstItem/that.ajax)+1;
+						}
+						if(!that.o.itemsArray[currentPageLastItem] || !that.o.itemsArray[currentPageFirstItem]){
+						console.log(whichAjaxPage);
 							that.el.trigger('reachLastImage',whichAjaxPage);
 						}
 						if(that.o.cachecount){
@@ -523,15 +527,12 @@
 									creatImg.appendTo(that.ul);
 								}
 							}
-							console.log(i);
 							if(index+i === that.o.itemsArray.length){
-								console.log(1);
 								that.o.itemsArray.push(array[i]);
-								console.log(that.o.itemsArray);
 							}else{
-								console.log(2);
-								that.o.itemsArray[index+i] = array[i];
-								console.log(that.o.itemsArray);
+								if(!that.o.itemsArray[index+i]){
+									that.o.itemsArray[index+i] = array[i];
+								}
 							}
 							creatImg.css('left', that.getPositionLeft(index + i));
 							creatImg.outerWidth(that.liWidth);
@@ -582,7 +583,11 @@
 			var that = this;
 			var showedFirstItem, showedEndItem;
 			if (this.o.showcount !== 'auto') {
-				showedFirstItem = parseInt(this.el.find('li').eq(0).css('left')) / this.liWidth;
+				$.each(this.el.find('li'),function(i) {
+					if(parseInt(that.el.find('li').eq(i).css('left')) === index*that.liWidth){
+						return that.el.find('li').eq(i);
+					}
+				});
 			}else{
 				$.each(that.leftArray,function(i) {
 					if(that.leftArray[i] == parseInt(that.el.find('li').eq(0).css('left'))){
