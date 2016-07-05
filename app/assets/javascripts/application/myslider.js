@@ -141,7 +141,6 @@
 				var totalPages = that.get('totalPage');
 				var currentPage = that.get('currentPage');
 				var currentDots = $('.dot').length;
-				console.log(that.showPage);
 				if(that.showPage){
 					$('.dots').empty();
 					for(var j=0;j<that.showPage;j++){
@@ -198,24 +197,37 @@
 							}
 						});
 					}else{
-						//超出已经获得的数量
-						if(value*that.o.showcount > that.o.itemsArray.length){
-							that.el.trigger('reachLastImage');
+						//超出已经获得的数量4中情况
+						var currentPageFirstItem = value*that.o.showcount;
+						var currentPageLastItem = ( value+1) *that.o.showcount-1;
+						var whichAjaxPage = [];
+						//设置的当前页面在之后两种情况
+						if(currentPageFirstItem > (that.o.currentItem + that.o.showcount -1)){
+							whichAjaxPage[0] = Math.ceil(currentPageFirstItem/that.ajax);
+							whichAjaxPage[1] = Math.ceil((currentPageLastItem+1)/that.ajax)-Math.ceil(currentPageFirstItem/that.ajax)+1;
+						}
+						if(currentPageFirstItem < (that.o.currentItem + that.o.showcount-1) && (currentPageFirstItem > that.o.currentItem) && (currentPageLastItem > (that.o.currentItem + that.o.showcount-1))){
+							whichAjaxPage[0] = Math.ceil(currentPageFirstItem/that.ajax);
+							whichAjaxPage[1] = Math.ceil((currentPageFirstItem - that.o.currentItem)/that.ajax);
+						}
+						if(!that.o.itemsArray[currentPageLastItem]){
+							console.log(whichAjaxPage);
+							that.el.trigger('reachLastImage',whichAjaxPage);
 						}
 						if(that.o.cachecount){
 							that.ul.empty();
 							if(value === 0){
 								that.addItems((value)*that.o.showcount,that.o.itemsArray.slice(value*that.o.showcount, value*that.o.showcount + that.o.cachecount+1));
 							}else{
-								that.addItems((value-1)*that.o.showcount,that.o.itemsArray.slice((value-1)*that.o.showcount, (value-1)*that.o.showcount + that.o.cachecount+1));
+								that.addItems((value)*that.o.showcount,that.o.itemsArray.slice((value)*that.o.showcount, (value)*that.o.showcount + that.o.cachecount+1));
 							}
 						}
 					}
 					that.ul.animate({
 						left: value * that.o.showcount * that.liWidth * -1
 					}, that.o.speed, that.o.easing,function(){
-						// that.o.currentPage = value-1;
 						that.o.currentItem = (value)*that.o.showcount;
+						that.set('currentItem',that.o.currentItem);
 					});
 				}
 			}
@@ -416,14 +428,15 @@
 						//已经接收到
 						this.set('currentItem', this.o.currentItem);
 					} else {
-						this.el.trigger('reachLastImage');
+						this.el.trigger('reachLastImage',Math.ceil(this.get('currentPage')*this.showcount/this.ajax)+1);
 					}
 				}else{
 					if (this.o.cachecount?this.o.itemsArray.length > this.o.currentItem + this.o.showcount:this.o.itemsArray.length > this.o.currentItem + this.o.showcount-1) {
 						//已经接收到
 						this.set('currentItem', this.o.currentItem);
 					} else {
-						this.el.trigger('reachLastImage');
+						this.el.trigger('reachLastImage',Math.ceil(this.get('currentPage')*this.showcount/this.ajax)+1);
+						this.set('currentItem', this.o.currentItem);
 					}
 				}
 			}
@@ -483,7 +496,6 @@
 			}
 			if(that.getItem(index)&&!that.o.cachecount){
 				//currentItem
-				console.log(1);
 				that.set('currentItem',that.o.currentItem+array.length);
 				//挪后
 				for(var j = index;j<that.ul.find(that.o.item).length+index;j++){
@@ -511,12 +523,15 @@
 									creatImg.appendTo(that.ul);
 								}
 							}
+							console.log(i);
 							if(index+i === that.o.itemsArray.length){
+								console.log(1);
 								that.o.itemsArray.push(array[i]);
+								console.log(that.o.itemsArray);
 							}else{
-								var firstArray = that.o.itemsArray.splice(0,index);
-								//数据改变
-								that.o.itemsArray=$.merge($.merge(firstArray, array),that.o.itemsArray);
+								console.log(2);
+								that.o.itemsArray[index+i] = array[i];
+								console.log(that.o.itemsArray);
 							}
 							creatImg.css('left', that.getPositionLeft(index + i));
 							creatImg.outerWidth(that.liWidth);
@@ -532,7 +547,7 @@
 							creatImg.appendTo(that.ul);
 						}
 					}
-					if(index+i === that.o.itemsArray.length){
+					if(index+i >= that.o.itemsArray.length){
 						that.o.itemsArray.push(array[i]);
 					}else{
 						if(!that.o.cachecount){
@@ -541,13 +556,12 @@
 							that.o.itemsArray=$.merge($.merge(firstArray, array),that.o.itemsArray);
 						}
 					}
-				}
 					creatImg.css('left', that.getPositionLeft(index + i));
 					creatImg.outerWidth(that.liWidth);
+				}
 
 				that.o.totalItem++;
 			});
-			this.set('currentItem', this.o.currentItem);
 		},
 		removeItem: function (index) {
 			var removeitemWidth = this.getItem(index).outerWidth();
