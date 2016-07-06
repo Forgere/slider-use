@@ -217,13 +217,14 @@
 						if(!that.o.itemsArray[currentPageLastItem] || !that.o.itemsArray[currentPageFirstItem]){
 						console.log(whichAjaxPage);
 							that.el.trigger('reachLastImage',whichAjaxPage);
-						}
-						if(that.o.cachecount){
-							that.ul.empty();
-							if(value === 0){
-								that.addItems((value)*that.o.showcount,that.o.itemsArray.slice(value*that.o.showcount, value*that.o.showcount + that.o.cachecount+1));
-							}else{
-								that.addItems((value)*that.o.showcount,that.o.itemsArray.slice((value)*that.o.showcount, (value)*that.o.showcount + that.o.cachecount+1));
+						}else{
+							if(that.o.cachecount){
+								that.ul.empty();
+								if(value === 0){
+									that.addItems((value)*that.o.showcount,that.o.itemsArray.slice(value*that.o.showcount, value*that.o.showcount + that.o.cachecount+1));
+								}else{
+									that.addItems((value)*that.o.showcount,that.o.itemsArray.slice((value)*that.o.showcount, (value)*that.o.showcount + that.o.cachecount+1));
+								}
 							}
 						}
 					}
@@ -509,6 +510,8 @@
 					}
 				}
 			}
+				console.log(array[0]);
+				console.log(array[1]);
 			$.each(array, function (i) {
 				var creatImg = $("<" + that.o.item + "></" + that.o.item + ">");
 				creatImg.append(that.o.renderer(array[i]));
