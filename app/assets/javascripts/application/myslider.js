@@ -167,6 +167,11 @@
 				}
 				//当前页
 				$('.dot').removeClass('active');
+        if(!$('.dot').eq(currentPage).length){
+          var dotLength = $('.dot').length;
+          $('<div class="dot"></div>').css('left',dotLength*20+'px').appendTo(dots);
+          $('.dot').eq(dotLength).on('click',{value:dotLength},dot_changePage);
+        }
 				$('.dot').eq(currentPage).addClass('active');
 			}
 
@@ -175,6 +180,9 @@
 					left: (that.o.showcount === 'auto')?that.leftArray[value]*-1:value * that.liWidth * -1
 				}, that.o.speed, that.o.easing);
 				that.o.currentItem = value;
+        $('.dot')
+          .removeClass('active')
+          .eq(Math.floor(value/that.o.showcount)).addClass('active');
 				return that.o.currentItem;
 			}
 
@@ -202,7 +210,7 @@
 						var currentPageLastItem = ( value+1) *that.o.showcount-1;
 						var whichAjaxPage = [];
 						//设置的当前页面在之后两种情况
-						if(currentPageFirstItem > (that.o.currentItem + that.o.showcount -1)){
+						if(currentPageFirstItem > (that.o.currentItem + parseInt(that.o.showcount) -1)){
 							whichAjaxPage[0] = Math.ceil(currentPageFirstItem/that.ajax);
 							whichAjaxPage[1] = Math.ceil((currentPageLastItem+1)/that.ajax)-Math.ceil(currentPageFirstItem/that.ajax)+1;
 						}
@@ -215,7 +223,6 @@
 							whichAjaxPage[1] = Math.ceil((currentPageLastItem+1)/that.ajax)-Math.ceil(currentPageFirstItem/that.ajax)+1;
 						}
 						if(!that.o.itemsArray[currentPageLastItem] || !that.o.itemsArray[currentPageFirstItem]){
-						console.log(whichAjaxPage);
 							that.el.trigger('reachLastImage',whichAjaxPage);
 						}else{
 							if(that.o.cachecount){
@@ -433,14 +440,14 @@
 						//已经接收到
 						this.set('currentItem', this.o.currentItem);
 					} else {
-						this.el.trigger('reachLastImage',Math.ceil(this.get('currentPage')*this.showcount/this.ajax)+1);
+						this.el.trigger('reachLastImage',Math.ceil(this.get('currentPage')*this.o.showcount/this.ajax)+1);
 					}
 				}else{
 					if (this.o.cachecount?this.o.itemsArray.length > this.o.currentItem + this.o.showcount:this.o.itemsArray.length > this.o.currentItem + this.o.showcount-1) {
 						//已经接收到
 						this.set('currentItem', this.o.currentItem);
 					} else {
-						this.el.trigger('reachLastImage',Math.ceil(this.get('currentPage')*this.showcount/this.ajax)+1);
+						this.el.trigger('reachLastImage',[Math.ceil(this.get('totalPage')*parseInt(this.o.showcount)/this.ajax)+1,1]);
 						this.set('currentItem', this.o.currentItem);
 					}
 				}
@@ -510,8 +517,6 @@
 					}
 				}
 			}
-				console.log(array[0]);
-				console.log(array[1]);
 			$.each(array, function (i) {
 				var creatImg = $("<" + that.o.item + "></" + that.o.item + ">");
 				creatImg.append(that.o.renderer(array[i]));
