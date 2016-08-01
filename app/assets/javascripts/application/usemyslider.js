@@ -1,11 +1,11 @@
 $(function () {
 	var weinr = $('#slider1 .slider1').slider({
-		showcount:4, //图数量
+		showcount:5, //图数量
 		renderer: renderer,
 		mode : 'dynamic',
 		prev:'',
 		next:'',
-		cachecount:8,
+		cachecount:false,
 		lazyload:false
 	});
 	var weinrControl = weinr.data('key');
@@ -36,6 +36,7 @@ $(function () {
 				//积累数据
 				resultSum =$.merge(resultSum, result);
 				if( i === time -1){
+					console.log(resultSum);
 					weinrControl.addItems(weinrControl.ajax*(value-1),resultSum);
 				}
       }

@@ -152,7 +152,7 @@
 					if (totalPages === 0) {
 						totalPages++;
 					}
-					//根据pages,补充 删除 dots
+					// 根据pages,补充 删除 dots
 					if(totalPages > currentDots){
 						//如果小于当前页面
 						for(var i=currentDots;i<totalPages;i++){
@@ -160,8 +160,18 @@
 							$('.dot').eq(i).on('click',{value:i},dot_changePage);
 						}
 					}else{
-						for(var k=totalPages;k<currentDots-1;k++){
-							$('.dot').last().remove();
+						if (that.o.cachecount) {
+						    if (that.showItem || that.showPage) {
+						        console.log(that.showItem);
+						        console.log(that.showPage);
+						        for (var k = totalPages; k < currentDots - 1; k++) {
+						            $('.dot').last().remove();
+						        }
+						    }
+						} else {
+						    for (var g = totalPages; g < currentDots - 1; g++) {
+						        $('.dot').last().remove();
+						    }
 						}
 					}
 				}
@@ -176,6 +186,16 @@
 			}
 
 			function slider_currentItem(e, value) {
+				if(that.ul.find('li').length - that.o.showcount < value){
+					var useAjaxTime = Math.ceil((value + that.o.showcount - that.ul.find('li').length)/that.ajax);
+					if(useAjaxTime > 1){
+						if(parseInt(that.o.showcount) === that.ajax){
+							that.el.trigger('reachLastImage',[Math.floor(that.get('totalPage')*parseInt(that.o.showcount)/that.ajax)+1,useAjaxTime]);
+						}else{
+							that.el.trigger('reachLastImage',[Math.ceil(that.get('totalPage')*parseInt(that.o.showcount)/that.ajax)+1,useAjaxTime]);
+						}
+					}
+				}
 				that.ul.animate({
 					left: (that.o.showcount === 'auto')?that.leftArray[value]*-1:value * that.liWidth * -1
 				}, that.o.speed, that.o.easing);
@@ -204,49 +224,19 @@
 								return false;
 							}
 						});
-					}else{
-						//超出已经获得的数量4中情况
-						var currentPageFirstItem = value*that.o.showcount;
-						var currentPageLastItem = ( value+1) *that.o.showcount-1;
-						var whichAjaxPage = [];
-						//设置的当前页面在之后两种情况
-						if(currentPageFirstItem > (that.o.currentItem + parseInt(that.o.showcount) -1)){
-							whichAjaxPage[0] = Math.ceil(currentPageFirstItem/that.ajax);
-							whichAjaxPage[1] = Math.ceil((currentPageLastItem+1)/that.ajax)-Math.ceil(currentPageFirstItem/that.ajax)+1;
-						}
-						if(currentPageFirstItem < (that.o.currentItem + that.o.showcount-1) && (currentPageFirstItem > that.o.currentItem) && (currentPageLastItem > (that.o.currentItem + that.o.showcount-1))){
-							whichAjaxPage[0] = Math.ceil(currentPageFirstItem/that.ajax);
-							whichAjaxPage[1] = Math.ceil((currentPageFirstItem - that.o.currentItem)/that.ajax);
-						}
-						if(currentPageLastItem < that.o.currentItem){
-							whichAjaxPage[0] = Math.ceil(currentPageFirstItem/that.ajax);
-							whichAjaxPage[1] = Math.ceil((currentPageLastItem+1)/that.ajax)-Math.ceil(currentPageFirstItem/that.ajax)+1;
-						}
-						if(!that.o.itemsArray[currentPageLastItem] || !that.o.itemsArray[currentPageFirstItem]){
-							that.el.trigger('reachLastImage',whichAjaxPage);
-						}else{
-							if(that.o.cachecount){
-								that.ul.empty();
-								if(value === 0){
-									that.addItems((value)*that.o.showcount,that.o.itemsArray.slice(value*that.o.showcount, value*that.o.showcount + that.o.cachecount+1));
-								}else{
-									that.addItems((value)*that.o.showcount,that.o.itemsArray.slice((value)*that.o.showcount, (value)*that.o.showcount + that.o.cachecount+1));
-								}
-							}
-						}
 					}
-					that.ul.animate({
-						left: value * that.o.showcount * that.liWidth * -1
-					}, that.o.speed, that.o.easing,function(){
-						that.o.currentItem = (value)*that.o.showcount;
-						that.set('currentItem',that.o.currentItem);
-					});
+					that.o.currentItem = (value)*that.o.showcount;
+					that.set('currentItem',that.o.currentItem);
 				}
 			}
 
 			function slider_totalPage(e, value) {
 				if (!value) {
-					that.o.name = Math.floor(parseInt(that.ul.find(that.o.item).eq(that.ul.find(that.o.item).length-1).css('left')) / that.el.width());
+					if(parseInt(that.o.showcount) === that.ajax){
+						that.o.name = Math.ceil(parseInt(that.ul.find(that.o.item).eq(that.ul.find(that.o.item).length-1).css('left')) / that.el.width());
+					}else{
+						that.o.name = Math.floor(parseInt(that.ul.find(that.o.item).eq(that.ul.find(that.o.item).length-1).css('left')) / that.el.width());
+					}
 				} else {
 					//当前有超过
 					if ((value * that.o.showcount < (that.o.totalItem))) {
